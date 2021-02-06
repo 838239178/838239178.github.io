@@ -12,7 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: install ruby
-      run: |
-        apt install ruby && gem install jekyll && cd /clean && bundle install
+    - uses: actions/checkout@v2    
+    - uses: ruby/setup-ruby@1.64.1
+    
+    - run: |
+        gem install jekyll
+    
+    - run: |
+        cd /clean && bundle install
+        
