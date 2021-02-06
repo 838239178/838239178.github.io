@@ -1,0 +1,380 @@
+# JavaWeb学习计划&记录
+
+准备进行的学习路线，按学习顺序排列
+
+## 一​、:walking:JavaSE
+
+- [x] Java语言基础内容，已经掌握
+
+
+## 二、:horse:JSP/Servlet
+
+
+主要以理解Tomcat中Servlet的运行原理为重点
+
+### JSP
+
+Jsp本质是servlet，约等于分不清前后端，耦合性太强，已经被时代抛弃，大概了解即可，直接跳过学习。
+
+#### JSTL
+
+JavaServer Pages Tag Library ：JSP标准标签库
+
+用于简化和替换jsp页面上的java 代码
+
+### Servlet
+
+- **Servlet**: `@WebServlet("path")`tomcat服务器的核心，主要是理解Http协议、`HttpServletRequest`以及`HttpServletResponse`原理。req可以进行转发`forward`（服务器内servlet间转发），resp可以进行重定向`redirect`(由浏览器发送第二次请求，可跨服务器)
+
+- **Filter**：`@WebFilter("path")`过滤器，拦截request和response，可以对req和resp进行判断是否放行。
+
+- **Listener**：`@WebListener`监听器，`ServletCOntextListener`监听ServletContext对象的创建（服务器启动）和销毁（服务器关闭），该接口主要用于加载资源和释放资源等操作。除此之外还有其他监听器。
+- ServletContext：服务器内的一个全局上下文，可以从servlet或req中获取（单例类）。作用是获取服务器真实路径`getRealPath()`、设置服务器内共享的数据域`setAttribute()`和获取Content-type`getMimeType(filename)`，通过配置`<context-param>`可以用`getInitParam()`来加载资源文件
+
+- Cookie：保存于浏览器的数据，用来识别身份，保存sessionid。可以设置存活周期。
+
+
+- Session：保存于服务器的数据，用来记录每个浏览器特定的信息，由一个id对应。可以设置存活周期，再服务器关闭后会`钝化`，再次开启后`活化`
+
+### EL表达式
+
+语法：`${expression}`
+
+1. 运算
+
+   算数运算、比较运算、逻辑运算、判空运算`empty`
+
+2. **获取值**
+
+   从域对象中获取值`${域名称.keyName}`、`${keyName}`
+
+   | 域名称           | 说明                 |
+   | ---------------- | -------------------- |
+   | pageScope        | 从pageContext获取    |
+   | requestScope     | 从request中获取      |
+   | sessionScope     | 从session中获取      |
+   | applicationScope | 从ServletContext获取 |
+
+### ExtraDetail
+
+这里记录在学习这个模块的过程中额外学习到的内容。
+
+#### ProxyMode
+
+代理模式，软件设计模式的一种，通过中间代理执行方法，来达到增强的目的。后续框架中经常使用该模式。
+
+动态代理在Java中使用
+
+```java
+class Proxy{
+    public static Object newProxyInstance(ClassLoader loader, Class<?>[] interfacies, InvocationHandler h){}
+}
+```
+
+其中`InvocationHandler`是抽象类，需实现
+
+```java
+@Override
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {}
+```
+
+通过在该方法中调用`method.invoke(obj,args)`来执行被代理的对象的方法。可以**修改返回值**或者**参数**等手段来增强该方法，也可以在方法调用前和调用后增加其他类的方法。
+
+#### MVC开发模式
+
+1. **M:** Model 模型 `JavaBean`
+
+   完成业务逻辑操作，如查询数据库、封装数据
+
+2. **V:** View 视图 `jsp`
+
+   展示数据
+
+3. **C:** Controller 控制器 `servlet`
+
+   分发工作，获取客户端的输入然后调用模型，将数据交给视图。
+
+#### 三层架构
+
+1. 界面层（表示层 web）`SpringMVC`
+
+   用户能够通过界面的组件和服务器进行交互，调用Service完成请求处理，转发jsp页面完成显示。
+
+   - 控制器：servlet，接受用户请求并封装参数信息到Servic层
+   - 视图：JSP，接受控制器提供的数据并展示出来给用户
+
+2. 业务逻辑层 (service) `Spring`
+
+   处理业务逻辑，组合DAO层的简单方法，组成各种复杂的业务功能。
+
+3. 数据访问层 (dao) `MyBatis`
+
+   操作数据存储文件，定义了对数据库最基本的CRUD操作
+
+#### Bootstrap/JQuery/AJAX
+
+皆为前端框架
+
+- Boostrap
+
+  提供丰富的html标签和css样式，具有响应式布局，配合JQuery/Vue使用。
+
+- JQuery
+
+  对js的封装，提供了选择器等许多丰富API来帮助编写js动态生成页面。
+
+- AJAX
+
+  异步的JavaScript和XML，用于向服务器发送异步请求，可以在JQuery/Vue中便捷使用。
+
+## 三​、:bike:JDBC/SQL
+
+两者是数据库的重要内容，SQL有`MySQL、SQLserver`等，`JDBC`则是Java操作数据库SQL的重要API，都应熟练掌握并理解原理。
+
+### MySQL/SQL Server
+
+学会数据库增删查改等操作，熟练运用操控数据库的高级技巧，重点理解数据库原理，学会优化数据库。
+
+### JDBC
+
+JDBC是Java用来操作数据库的接口，具体实现由不同数据库公司实现。
+
+
+
+### Junit4
+
+Junit单元测试属于白盒测试的一种。
+
+#### 注解
+
+| 注解    | 说明                                   |
+| ------- | -------------------------------------- |
+| @Before | 在所有测试方法前执行                   |
+| @After  | 在所有测试方法后执行，无论是否存在异常 |
+| @Test   | 标注方法为测试方法                     |
+
+#### 测试方法
+
+所有测试方法都是无参的，测试方法内最好不要直接输出数值，应该尽量使用`assert`断言结果于预期是否相符合。对于测试期间出现的异常应该尽量捕获并写入文件中，标明异常方法和异常原因。
+
+### Redis/Jedis
+
+非关系型数据库，有缓存功能。。。
+
+### DataSourcePool
+
+连接池
+
+## 四、:car:SSM
+
+JavaWeb框架集合之一，由`Spring+SpringMVC+Mybatis`组成，适用于轻量级微服务开发，要深入理解原理。
+
+### Spring
+
+Spring框架属于Service层框架，但是也管理了Web层和DAO层
+
+#### IOC
+
+##### ioc容器
+
+Bean容器，spring在内部创建Java类，我们/Spring可以从容器中取出Bean
+
+##### XML式依赖注入
+
+对`<bean id="" class=""></bean>`对象的属性进行配置
+
+分别为：对象注入`ref`、普通数据类型注入`value`、集合类型
+
+- 集合类型：配置文件使用`<list><value>`、`<map><entry key="" value-ref="">`、`<props><prop key="">`组合使用 
+
+- 构造方法：有参构造，配置文件中使用`<constructor-arg name="" ref=""/>`注入
+- set方法：配置文件中使用`<property name="" ref=""/>`子标签标签设置属性值注入
+  - P命名空间：`<beans xmlns:p="http://www.springframework.org/schema/p">`创建命名空间，然后再使用`<bean p:XXX-ref="XXX"/>`注入
+
+**模块开发**
+
+```xml
+<import resource="applicationContext-xxx.xml" />
+```
+
+##### 注解式依赖注入
+
+1. **原始注解**
+
+   使用前须在配置文件中配置组件扫描，指定需要注解开发的包
+
+   ```xml
+   <context:component-scan base-package="" />
+   ```
+
+   | 注解           | 说明                                                 |
+   | :------------- | ---------------------------------------------------- |
+   | @Component     | 类上实例化Bean，代替Bean标签                         |
+   | @Controller    | web层类上实例化Bean                                  |
+   | @Respository   | dao层上实例化Bean                                    |
+   | @Service       | service层上实例化Bean                                |
+   | @Autowired     | 依赖注入标签，加在成员变量/setter/构造方法           |
+   | @Qualifier     | 结合Autowired一起使用根据名称进行依赖注入            |
+   | @Resource      | 相当于前两者的结合，是javaEE的注解，不是Spring的注解 |
+   | @Value         | 注入普通属性（int等）                                |
+   | @PostConstruct | 声明Bean的初始化方法                                 |
+   | @PreDestroy    | 声明Bean的销毁方法                                   |
+   | @Scope         | 标志Bean的范围，singleton/prototype                  |
+
+2. **新注解**
+
+   可以完全替代xml配置文件
+
+   | 注解            | 说明                                         |
+   | --------------- | -------------------------------------------- |
+   | @Configuration  | 指定类为配置类，创建容器时从该类上加载注解   |
+   | @ComponentScan  | 指定要扫描的包，同`<context:componnet-scan>` |
+   | @Bean           | 标注方法的返回值储存于容器中                 |
+   | @PropertySource | 用于加载`.properties`文件的配置              |
+   | @Import         | 用于导入其他配置类                           |
+
+
+#### AOP
+
+##### 概念
+
+面向切面编程，是动态代理的规范化编程，动态代理如何增强方法见上文。SpringAOP底层使用的动态代理为以下两种：
+
+1. Java原生接口代理
+
+   通过接口反射出代理对象，使用的是 [Proxy类](####ProxyMode)
+
+2. cglib子类代理
+
+   外部的工具库，已经集成在springframework-core中，使用的是Enhancer类。通过指定父类反射出代理对象。
+
+根据<u>目标对象</u>是否有接口来选择其中一个方法。
+
+[^目标对象]: 被代理的类
+[^切入点]: pointCut 目标对象的方法
+[^连接点]: 目标对象被增强的方法
+[^通知]: advice 用于增强连接点的方法
+
+
+
+##### XML配置动态代理
+
+maven导入依赖`aspectjweaver`、`spring-aop`
+
+1. 配置目标对象和切面对象Bean
+
+   切面类和目标类都需要配置为Bean才能被Spring从IOC容器中取出来
+   
+2. 配置织入（前置、后置……）
+
+   使用命名空间`xmlns:aop`
+
+   ```xml
+   <aop:config>
+    	<!--声明切面类-->   
+   	<aop:aspect ref="beanName">
+       	<!--配置切面：切点+通知-->
+           <!--类似的还有aop:after等等-->
+           <aop:before method="adviceName" pointcut="execution('方法声明')" />
+       </aop:aspect>
+   </aop:config>
+   ```
+
+   **切面标签**
+
+   |     名称     | 标签                | 说明                               |
+   | :----------: | :------------------ | ---------------------------------- |
+   |   前置通知   | aop:before          | 略                                 |
+   |   后置通知   | aop:after-returning | 略                                 |
+   |   环绕通知   | aop:around          | 前后都执行，比前置更前，比后置更后 |
+   | 异常抛出通知 | aop:throwing        | 出现异常时执行                     |
+   |   最终通知   | aop:after           | 最后执行，无论是否抛出异常         |
+
+   **环绕通知**方法需要携带参数`ProceedingJoinPoint`表示连接点对象，要在方法中执行该对象的`proceed()`方法并**return**该方法的返回值。
+
+3. 切点表达式
+
+   `execution([修饰符] 返回值 包名.类名.方法(参数))`
+
+   - 修饰符可以省略（public、private……）
+
+   - 可以用通配符（*）代表任意
+
+   - 参数可以用`..`表示任意个数，任意类型的参数列表（可变参数）
+
+   ex:
+
+   ```java
+   execution(* cn.test.*.*(..)) //cn.test包下任意类的任意方法
+   ```
+
+   **表达式抽取：**替换`point-cut`为`point-cut-ref`，引用`<aop:pointcut id="" expression=""/>`标签设定好的表达式<u>id</u>
+
+##### 注解配置动态代理
+
+在配置文件中添加`<aop:aspect-autoproxy />`自动代理aop
+
+或者在配置类上用`@EnableAspectJAutoProxy`标注
+
+| 注解            | 说明                                  |
+| --------------- | ------------------------------------- |
+| @Aspect         | 标注为切面类                          |
+| @Before         | 标志为前置通知，参数为execution表达式 |
+| @AfterReturning | 标志为后置通知                        |
+| @Around         | 标志为环绕通知                        |
+| @AfterThrowing  | 标志为异常抛出通知                    |
+| @After          | 标志为最终通知                        |
+
+**切点表达式抽取：**在切面类中定义空实现方法，在方法上用`@PointCut（’表达式‘）`标注，引用时按照`className.methodName()`来描述
+
+#### Spring事务控制
+
+##### 编程式控制
+
+**PlatfromTransactionManager**
+
+spring事务管理器的接口，依据不同Dao层技术使用不同的实现类
+
+##### XML声明式控制
+
+##### 注解声明式控制
+
+#### Spring-Junit
+
+通过注解集成Junit
+
+| 注解                  | 说明                       |
+| --------------------- | -------------------------- |
+| @RunWith              | 指定使用Spring内置的测试类 |
+| @ContextConfiguration | 指定Spring配置文件、配置类 |
+| @AutoWired            | 从bean容器中注入测试对象   |
+
+#### Spring-JdbcTemplate
+
+对JDBC API的封装，使调用更加简单
+
+maven需要导入依赖`spring-jdbc`和`spring-tx`
+
+#### Spring-web
+
+用于集成web环境的maven依赖`spring-web`，提供获取应用上下文（ApplicationContext）的工具类和监听器。获取的原理是在服务器启动时创建上下文并放入ServletContext域中，即可在服务器共享。
+
+1. web.xml中配置监听器`ContextLoaderListener`
+2. 配置`<context-param>`指定applicationContext.xml的路径
+3. 使用`WebApplicationContextUtils`获取上下文
+
+### SpringMVC
+
+属于web层框架，提供轻量级的MVC开发 ，核心是用`servlet`实现的前端控制器。
+
+### Mybatis
+
+### ExtraDetail
+
+#### Properties/ResourceBundle
+
+properties是一种键值对`key=value`储存文件，Java中自带的Properties类可以简单的读写properties文件，但是ResourceBundle类更好的支持了不同的语言，比前者要好一点。
+
+## 五、:boat:SpringBoot
+
+JavaWeb超轻量化开发，免去了Spring大量配置工作。。。
