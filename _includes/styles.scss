@@ -116,8 +116,8 @@ body {
 }
 
 .content {
-  width: 100%;
-  max-width: 700px;
+  width: 90%;
+  max-width: 1000px;
   margin: 25px auto 0 auto;
   @include box-sizing(border-box);
   @include respond-to(800) {
