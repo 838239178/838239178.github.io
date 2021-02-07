@@ -1,3 +1,3 @@
 # Jekyll BLog
 
-![](https://blog.pressed.top-@champyin-success.svg?style=flat-square)
+![](/github/workflow/status/:user/:repo/:workflow)
