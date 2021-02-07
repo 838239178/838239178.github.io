@@ -1,9 +1,7 @@
-name: Jekyll site CI
+name: Jekyll site deploy
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -13,12 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2    
-      
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.6 # Not needed with a .ruby-version file
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
-    - run: bundle
     
-    - run: bundle exec jekyll serve
+    - name: Build & Deploy to GitHub Pages
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+      uses: BryanSchuetz/jekyll-deploy-gh-pages@master
