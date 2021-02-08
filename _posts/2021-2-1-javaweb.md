@@ -3,9 +3,12 @@ layout: post
 cover: 'assets/images/crazy.png'
 title: Java Web
 date: 2021-2-1 12:00:00
-tags: test
+tags: java web
 author: sjh
 ---
+
+
+<p>从零开始学JAVA web，我学了些什么，这篇文章将会记录这一段学习历程。</p>
 
 # JavaWeb学习计划&记录
 
