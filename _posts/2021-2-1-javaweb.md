@@ -1,9 +1,9 @@
 ---
 layout: post
-cover: 'assets/images/shiva.jpg'
+cover: 'assets/images/crazy.png'
 title: Java Web
 date: 2021-2-1 12:00:00
-tags: sample
+tags: test
 author: sjh
 ---
 
