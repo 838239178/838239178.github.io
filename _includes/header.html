@@ -28,6 +28,17 @@
     </ul>
   </nav>
 
+  <ul class="ampstart-sidebar-faq list-reset m0">
+  {% if site.contact %}
+    <li class="ampstart-faq-item"><a href="{{ site.baseurl }}{{ site.contact }}" class="text-decoration-none">Contact</a></li>
+  {% endif %}
+  {% if site.privacy-policy %}
+    <li class="ampstart-faq-item"><a href="{{ site.baseurl }}{{ site.privacy-policy }}" class="text-decoration-none">Privacy Policy</a></li>
+  {% endif %}
+  {% if site.tags %}
+    <li class="ampstart-faq-item"><a href="{{ site.baseurl }}{{ site.tags }}" class="text-decoration-none">View By Tags</a></li>
+  {% endif %}
+  </ul>
 
   <ul class="ampstart-social-follow list-reset flex justify-around items-center flex-wrap m0 mb4">
     {% if site.twitter %}
@@ -47,12 +58,5 @@
     {% endif %}
   </ul>
 
-  <ul class="ampstart-sidebar-faq list-reset m0">
-  {% if site.contact %}
-    <li class="ampstart-faq-item"><a href="{{ site.baseurl }}{{ site.contact }}" class="text-decoration-none">Contact</a></li>
-  {% endif %}
-  {% if site.privacy-policy %}
-    <li class="ampstart-faq-item"><a href="{{ site.baseurl }}{{ site.privacy-policy }}" class="text-decoration-none">Privacy Policy</a></li>
-  {% endif %}
-  </ul>
+
 </amp-sidebar>

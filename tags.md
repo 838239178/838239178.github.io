@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tags
+title: View By Tags
 comments: false
 permalink: /tags/
 ---
