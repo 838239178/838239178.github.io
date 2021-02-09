@@ -35,12 +35,12 @@ permalink: /:title
 analytics_id: ""
 
 # Build settings
-markdown: Redcarpet
+markdown: kramdown
 
-# kramdown:
-#   parse_block_html: true
-#   auto_ids: true
-#   input: GFM
+kramdown:
+  parse_block_html: true
+  auto_ids: true
+  input: GFM
 
 plugins:
   - jekyll-paginate-v2
