@@ -39,6 +39,8 @@ markdown: kramdown
 
 kramdown:
   parse_block_html: true
+  auto_ids: true
+  input: GFM
 
 plugins:
   - jekyll-paginate-v2
