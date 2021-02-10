@@ -48,7 +48,8 @@ pagination:
           <div class="post-meta">
             {% for author in site.data.authors %}
               {% if author[1].username == post.author %}
-                {% if author[1].assets %}<amp-img width="24" height="24" class="author-thumb" layout="responsive" src="{{ site.baseurl }}{{author[1].assets}}" alt="{{author[1].name}}"/></amp-img>{% endif %}
+                {% if author[1].assets %}
+                <amp-img width="24" height="24" class="author-thumb" layout="responsive" src="{{ site.baseurl }}{{author[1].assets}}" alt="{{author[1].name}}"/></amp-img>{% endif %}
                 <a href="{{site.baseurl}}authors/#{{author[1].username}}">{{author[1].name}}</a>
               {% endif %}
             {% endfor %}
@@ -70,13 +71,7 @@ pagination:
     {% endfor %}
   </div>
 
-  <nav class="pagination" role="navigation">
-    {% if paginator.next_page %}
-      <a class="newer-posts" href="{{ site.baseurl }}page{{paginator.next_page}}">&larr; Older posts</a>
-    {% else %}
-      <a class="newer-posts disabled">&larr; Older posts</a>
-    {% endif %}
-    <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <nav class="pagination" role="navigation">    
     {% if paginator.previous_page %}
       {% if paginator.page == 2 %}
         <a class="older-posts" href="{{ site.baseurl }}">Newer posts &rarr;</a>
@@ -85,6 +80,12 @@ pagination:
       {% endif %}
     {% else %}
       <a class="older-posts disabled">Newer posts &rarr;</a>
+    {% endif %}    
+    <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+      <a class="newer-posts" href="{{ site.baseurl }}page{{paginator.next_page}}">&larr; Older posts</a>
+    {% else %}
+      <a class="newer-posts disabled">&larr; Older posts</a>
     {% endif %}
   </nav>
 
