@@ -58,6 +58,7 @@ kramdown:
 plugins:
   - jekyll-paginate-v2
   - jekll-admin
+  - jemoji
 
 
 # Settings for rake task

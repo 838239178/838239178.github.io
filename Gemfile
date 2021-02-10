@@ -5,4 +5,5 @@ gem 'jekyll-compose', group: [:jekyll_plugins]
 gem "github-pages", "~> 198"
 gem "rake", "~> 12.3.2"
 gem 'jekyll-paginate-v2'
-gem 'jekyll-admin', group: :jekyll_plugins
+gem 'jemoji'
+gem 'jekyll-admin', "~> 0.11.0"
