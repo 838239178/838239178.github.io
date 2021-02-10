@@ -79,7 +79,7 @@ pagination:
         <a class="older-posts" href="{{ site.baseurl }}page{{paginator.previous_page}}">&rarr; Older posts</a>
       {% endif %}
     {% else %}
-      <a class="older-posts disabled">Newer posts &rarr;</a>
+      <a class="older-posts disabled">&rarr; Older posts</a>
     {% endif %}    
     <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
     {% if paginator.next_page %}
