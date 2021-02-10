@@ -20,6 +20,14 @@ pagination:
   # 按时间逆序排列 终于给爷找到了！！
   sort_reverse: true
 
+jekyll_admin:
+  hidden_links:
+    - posts
+    - pages
+    - staticfiles
+    - datafiles
+    - configuration
+
 highlighter: rouge
 
 # Social
@@ -49,6 +57,7 @@ kramdown:
 
 plugins:
   - jekyll-paginate-v2
+  - jekll-admin
 
 
 # Settings for rake task
