@@ -20,6 +20,8 @@ pagination:
   # 按时间逆序排列 终于给爷找到了！！
   sort_reverse: true
 
+gems: jekyll-admin
+
 jekyll_admin:
   hidden_links:
     - posts
