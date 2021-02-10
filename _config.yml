@@ -57,7 +57,7 @@ kramdown:
 
 plugins:
   - jekyll-paginate-v2
-  - jekll-admin
+  - jekyll-admin
   - jemoji
 
 
