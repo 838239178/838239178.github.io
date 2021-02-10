@@ -36,7 +36,7 @@ pagination:
 <main id="content" role="main" class="content">
 
   <div class="cf frame">
-    {% for post in paginator.posts %}
+    {% for post in paginator.posts | sort: 'title', 'last' %}
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
         <div class="article-item">
           <header class="post-header">
