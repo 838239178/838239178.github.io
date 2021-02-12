@@ -5,7 +5,7 @@ import logging
 
 """
 读取文件内‘YAML Front Matter’中的‘date’标签，获取日期
-然后自动按’year-month-day-xxx.md‘重名命名文件
+然后自动按‘year-month-day-xxx.md’重名命名文件
 使用正则表达式排除已经已格式化的文件
 """
 

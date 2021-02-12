@@ -18,8 +18,10 @@ jobs:
           python-version: '3.8' 
           architecture: 'x64'   
 
-      - name: rename posts
-        run: python3 rename.py
+      - name: rename posts and push page to baidu
+        run: |
+          python3 rename.py
+          python3 push2baidu.py
       
       - name: Build & Deploy to GitHub Pages
         env: 
