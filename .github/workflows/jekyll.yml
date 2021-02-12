@@ -10,7 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2    
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    with:
+      python-version: '3.7' 
+      architecture: 'x64'   
+
+    - name: rename posts
+      run: python3 rename.py
     
     - name: Build & Deploy to GitHub Pages
       env: 
