@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/crazy.png'
 title: Java Simple Calculator
-date: 2020-11-18 12:00:00
+date: 2020-11-18
 tags: java swing
 author: sjh
 description: swing ui 编写、功能简单且存在一点瑕疵的计算器程序
