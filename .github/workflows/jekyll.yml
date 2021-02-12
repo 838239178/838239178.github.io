@@ -16,7 +16,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.8' 
-          architecture: 'x64'   
+          architecture: 'x64' 
+      - run: pip3 install requests  
 
       - name: rename posts and push page to baidu
         run: |
