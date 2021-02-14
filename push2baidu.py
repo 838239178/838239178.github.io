@@ -9,7 +9,7 @@ import requests
 """
 
 # 推送目录
-path = "./_posts"
+path = "." + os.sep + "_posts"
 
 # 获取目录的所有文件
 fileList = os.listdir(path)
@@ -29,8 +29,11 @@ def main():
     content=[]
     url='https://blog.pressed.top/'
     for f in fileList:
-        pageUrl = url + getPageName(f) + '.html '
-        content.append(pageUrl)
+        if re.match(r'.*-.*-.*-.*.md', f) is not None:
+            pageUrl = url + getPageName(f) + '.html '
+            content.append(pageUrl)
+        else:
+            logging.warning(f + "文件名格式错误，将不会被推送")
 
     """"
     requests模块post类型使用text/plain的方法：

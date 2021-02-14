@@ -1,6 +1,7 @@
 import os
 import time
 import re
+import sys
 import logging
 
 """
@@ -10,7 +11,7 @@ import logging
 """
 
 # 格式化目录
-path = "./_posts"
+path = "."  + os.sep + "_posts"
 
 # 获取目录的所有文件
 fileList = os.listdir(path)
@@ -20,9 +21,13 @@ ignoreList=[]
 
 # 获取文件中定义的日期
 def getDateStr(filePath: str) -> str:
-    with open(filePath, 'r') as file:
+    with open(filePath, 'r', encoding='utf-8') as file:
         content = file.read()
-    return re.search(r'(date: )(.*-.*-.*)', content).group(2)
+    try:
+        return re.search(r'(date: )(.*-.*-.*)', content).group(2)
+    except:
+        logging.error(filePath + " has not date text")
+        sys.exit(-1)
 
 # 初始化logger
 def initlogger():

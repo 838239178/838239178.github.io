@@ -1,5 +1,5 @@
-python3 rename.py
-python3 push2baidu.py
+python rename.py
+python push2baidu.py
 git add .
-git commit -m 'update'
+git commit -m "auto push: update"
 git push origin main
