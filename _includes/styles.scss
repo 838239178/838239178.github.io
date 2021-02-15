@@ -725,3 +725,12 @@ body > figure > figcaption > header > h2 {
 .ampstart-read-text{
     background:$theme-color
 }
+
+.accordion{
+    box-shadow: 0 2px 1px black;
+    background: #fff;
+    color: $theme-color;
+    position: fixed;
+    top: 50vh;
+    left: 15vw;
+}

@@ -24,25 +24,25 @@ description: 包含注册申请以及使用例！
 
 1. 登入控制台后会要求填写以下信息来激活账号，只需要填写`*`号信息栏。
 
-   ![#1](https://i.loli.net/2021/02/14/SK3zbi5NUAHoPOj.jpg)
+   <img src="https://i.loli.net/2021/02/14/SK3zbi5NUAHoPOj.jpg" alt="#1" style="zoom: 67%;" />
 
 2. 完成后点击左侧工具栏的文字识别，如下图所示
 
-   ![#2](https://i.loli.net/2021/02/14/bAF5XQBje4CSOHR.jpg)
+   <img src="https://i.loli.net/2021/02/14/bAF5XQBje4CSOHR.jpg" alt="#2" style="zoom: 50%;" />
 
 3. 点击**立即认证**，填入姓名和身份后点击下一步，无需刷脸验证，直接返回上一步的页面即可
 
-   ![#3](https://i.loli.net/2021/02/14/YUC32t7WH6xpiID.jpg)
+   <img src="https://i.loli.net/2021/02/14/YUC32t7WH6xpiID.jpg" alt="#3" style="zoom:80%;" />
 
 ### 创建文字识别应用
 
 1. 回到控制台后点击 **创建应用**，填一些信息，**不需要包名**并选择所属为**个人**
 
-   ![#4](https://i.loli.net/2021/02/14/uIH4jaeSwGJxEXp.jpg)
+   <img src="https://i.loli.net/2021/02/14/uIH4jaeSwGJxEXp.jpg" alt="#4"  />
 
 2. 创建完成后点击 **应用详情** ，进入页面后请记住`API Key`和`Secret Key`
 
-   ![#5](https://i.loli.net/2021/02/14/xZ8SFYnuoUJwRgp.jpg)
+   <img src="https://i.loli.net/2021/02/14/xZ8SFYnuoUJwRgp.jpg" alt="#5" style="zoom:80%;" />
 
 ## 调用API识别图片
 
