@@ -7,7 +7,7 @@ import time
 """
 读取文件内‘YAML Front Matter’中的‘date’标签，获取日期
 然后自动按‘year-month-day-xxx.md’重名命名文件
-使用正则表达式排除已经已格式化的文件
+如果文件名中的日期与文字内‘date’的日期不同，则会更改为date内的日期
 """
 
 # 格式化目录
@@ -43,19 +43,18 @@ def main():
     initlogger()
     for i in fileList:
         if not ignoreList.__contains__(i):
-            # timeStr = time.strftime("%Y-%m-%d", time.localtime())
             oldname = path + os.sep + i
             timeStr = getDateStr(oldname)
-            match = re.match(r'(.*-.*-.*)-(.*).md', i)
-            if  match is not None:
+            newname = path + os.sep + timeStr + '-' + i
+            match = re.match(r'(.*-.*-.*)-(.*.md)', i)
+            if match is not None:
                 titleTime, name = match.groups()
-                if(timeStr > titleTime):
+                if not timeStr.__eq__(titleTime):
                     newname = path + os.sep + timeStr + '-' + name
-                    print(newname)
-                    os.rename(oldname, newname)
-            else:
-                newname = path + os.sep + timeStr + '-' + i
-                os.rename(oldname, newname)
+                else:
+                    newname = oldname
+
+            os.rename(oldname, newname)
 
     logging.info('rename success')
 
