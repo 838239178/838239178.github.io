@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/crazy.png'
 title: 城市间紧急救援
-date: 2020-5-18
+date: 2020-05-18
 tags: algorithm c/c++
 author: sjh
 description: 来自PTA的一道最短路径算法题。

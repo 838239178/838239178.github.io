@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/tree.jpg'
 title: 角色与地图遮挡
-date: 2020-5-12
+date: 2020-05-12
 tags: cocos tiledmap
 author: sjh
 description: 曾经学习CocosCreater引擎时遇见的问题，现在已经放弃学习了
