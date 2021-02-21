@@ -9,8 +9,7 @@ description: 来自LintCode的一道动态规划算法题。
 ---
 
 
->题目来源：[领扣 | LintCode](https://www.lintcode.com/problem/backpack-ii/description)
->
+>题目来源：[LintCode](https://www.lintcode.com/problem/backpack-ii/description)
 >>有 i 个物品和一个总容量为 j 的背包. 给定数组 weight 表示每个物品的重量和数组 value 表示每个物品的价值，求最大价值。（物品不能分割）
 
 # 背包问题II
