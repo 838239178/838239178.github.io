@@ -15,7 +15,7 @@ pagination:
   # Set to 'true' to enable pagination debugging. This can be enabled in the site config or only for individual pagination pages
   debug: false
 
-  per_page: 5
+  per_page: 8
 
   # 按时间逆序排列 终于给爷找到了！！
   sort_reverse: true
