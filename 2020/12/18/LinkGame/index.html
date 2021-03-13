@@ -1,155 +1,240 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 <head>
-  
-  <title>LinkGame - ShiJh-Blog</title>
-  <meta charset="UTF-8">
-  <meta name="description" content="欢迎来到我的博客">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  
-  
-
-  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="Java课设作品，完成度较高，这里贴出设计方案！">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LinkGame">
-<meta property="og:url" content="https://blog.pressed.top/2020/12/18/LinkGame/">
-<meta property="og:site_name" content="ShiJh-Blog">
-<meta property="og:description" content="Java课设作品，完成度较高，这里贴出设计方案！">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png">
-<meta property="og:image" content="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png">
-<meta property="og:image" content="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png">
-<meta property="og:image" content="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png">
-<meta property="og:image" content="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png">
-<meta property="article:published_time" content="2020-12-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-13T04:38:22.080Z">
-<meta property="article:author" content="ShiJh">
-<meta property="article:tag" content="java swing">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
-  
-  <link rel="stylesheet" href="/css/style.css?v=1615614996171">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="blog">
+    <meta name="description" content="欢迎来到我的博客">
+    <meta name="author" content="ShiJh">
+    
+    <title>
+        
+            LinkGame |
+        
+        ShiJh|Blog
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body class="mdui-drawer-body-left">
-  
-  <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
-    <div class="mdui-appbar mdui-shadow-0">
-      <div class="mdui-toolbar">
-        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
-        <div class="mdui-toolbar-spacer"></div>
-        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="ShiJh" class="mdui-btn mdui-btn-icon"><img src="https://raw.githubusercontent.com/838239178/838239178.github.io/main/assets/images/myIcon.jpg" alt="ShiJh"></a>
-       </div>
-    </div>
-  </div>
-  <div id="nexmoe-header">
-      <div class="nexmoe-drawer mdui-drawer" id="drawer">
-    <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="ShiJh">
-            <img src="https://raw.githubusercontent.com/838239178/838239178.github.io/main/assets/images/myIcon.jpg" alt="ShiJh" alt="ShiJh">
-        </a>
-    </div>
-    <div class="nexmoe-count">
-        <div><span>文章</span>9</div>
-        <div><span>标签</span>5</div>
-        <div><span>分类</span>0</div>
-    </div>
-    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
-            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
-            <div class="mdui-list-item-content">
-                回到首页
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about" title="关于博客">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于博客
-            </div>
-        </a>
-        
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY" title="我的朋友">
-            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
-            <div class="mdui-list-item-content">
-                我的朋友
-            </div>
-        </a>
-        
-    </div>
-    <aside id="nexmoe-sidebar">
-  
-  <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-search">
-        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
-            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
-        </form>
-    </div>
-</div>
-  
-  <div class="nexmoe-widget-wrap">
-    <div class="nexmoe-widget nexmoe-social">
-        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=5CfKHun" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
-            <i class="nexmoefont icon-QQ"></i>
-        </a><a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
-            <i class="nexmoefont icon-bilibili"></i>
-        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
-            <i class="nexmoefont icon-github"></i>
-        </a>
-    </div>
-</div>
-  
-  
 
-  
-  
-  <div class="nexmoe-widget-wrap">
-    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/algorithm-c-c/" style="font-size: 15px;">algorithm c/c++</a> <a href="/tags/cocos-tiledmap/" style="font-size: 10px;">cocos tiledmap</a> <a href="/tags/java-swing/" style="font-size: 15px;">java swing</a> <a href="/tags/java-web/" style="font-size: 20px;">java web</a> <a href="/tags/web-ai/" style="font-size: 10px;">web ai</a>
-    </div>
+<body>
+<div class="progress-bar-container">
     
-  </div>
 
-  
-</aside>
-    <div class="nexmoe-copyright">
-        &copy; 2021 ShiJh
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
-        
-    </div>
-</div><!-- .nexmoe-drawer -->
-  </div>
-  <div id="nexmoe-content">
-    <div class="nexmoe-primary">
-        <div class="nexmoe-post">
-  
-      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-          <img data-src="/assets/images/radhakrishna.jpg" data-sizes="auto" alt="LinkGame" class="lazyload">
-          <h1>LinkGame</h1>
-      </div>
-  
-  
-  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年12月18日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.9k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
 </div>
 
-  <div class="nexmoe-post-right">
-    
-  </div>
 
-  <article>
-    <p>123</p>
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                ShiJh|Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">LinkGame</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ShiJh</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-12-18 00:00:00
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java-swing/">java swing</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>123</p>
 <span id="more"></span>
 
 <h1 id="《连连看》-Java课程设计方案"><a href="#《连连看》-Java课程设计方案" class="headerlink" title="《连连看》 Java课程设计方案"></a>《连连看》 Java课程设计方案</h1><blockquote>
@@ -165,7 +250,7 @@
 <h4 id="4-关于界面"><a href="#4-关于界面" class="headerlink" title="4.关于界面"></a>4.关于界面</h4><p>新的对话框，由菜单栏启动，内容应包含该项目的基本信息，包括作者、时间、项目名称、源码地址等。</p>
 <h4 id="5-欢迎界面"><a href="#5-欢迎界面" class="headerlink" title="5.欢迎界面"></a>5.欢迎界面</h4><p>可切换的界面，用于打开主界面。界面中应包括游戏标题、开始按钮、关于按钮和退出按钮。开始按钮点击后应显示难度选择按钮。</p>
 <h4 id="6-结算界面"><a href="#6-结算界面" class="headerlink" title="6.结算界面"></a>6.结算界面</h4><p>可切换的界面，显示得分和总消耗时间。包括退出、重开按钮。退出后显示欢迎界面。</p>
-<h4 id="界面结构图"><a href="#界面结构图" class="headerlink" title="界面结构图"></a>界面结构图</h4><div align=center><img data-fancybox="gallery" data-sizes="auto" data-src="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png" alt="界面结构" class="lazyload">
+<h4 id="界面结构图"><a href="#界面结构图" class="headerlink" title="界面结构图"></a>界面结构图</h4><div align=center><img src="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png" alt="界面结构" style="zoom:50%;" />
 
 
 <h3 id="类的封装"><a href="#类的封装" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="GameClient"><a href="#GameClient" class="headerlink" title="GameClient"></a>GameClient</h4><p><em>extends JFrame</em></p>
@@ -236,7 +321,7 @@
 <p>显示关于该游戏以及该项目的信息。</p>
 <h4 id="ScaleIcon"><a href="#ScaleIcon" class="headerlink" title="ScaleIcon"></a>ScaleIcon</h4><p><em>implements Icon</em></p>
 <p>实现图片随容器大小变化而变化</p>
-<h4 id="UMP类图"><a href="#UMP类图" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png" alt="类图1" class="lazyload"></p>
+<h4 id="UMP类图"><a href="#UMP类图" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png" alt="类图1"></p>
 <h2 id="游戏逻辑构建"><a href="#游戏逻辑构建" class="headerlink" title="游戏逻辑构建"></a>游戏逻辑构建</h2><p>游戏逻辑主要在于方块数据处理和判断两个方块是否能消去。</p>
 <h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><p>假设地图规模大小为<code>n*n</code>，方块种类为<code>i</code>种</p>
 <h4 id="1-记录方块分布数据"><a href="#1-记录方块分布数据" class="headerlink" title="1.记录方块分布数据"></a>1.记录方块分布数据</h4><p>一个二维数组，不同的ID对应不同的方块，同一个ID应成对出现。空白方块使用特殊标记。</p>
@@ -258,11 +343,11 @@
 <li>对找到的终点进行连通性判断，不需要额外记录。<em>（简单，相对慢一点，<strong>推荐</strong>）</em></li>
 </ol>
 <h4 id="5-数据随机"><a href="#5-数据随机" class="headerlink" title="5.数据随机"></a>5.数据随机</h4><p>将所有决定好的方块ID放入一个容器中进行混排，每次随机从容器中抛出一个ID设置在Map上，<strong>容器内的ID不能重复抛出</strong>。</p>
-<h4 id="判断流程图"><a href="#判断流程图" class="headerlink" title="判断流程图"></a>判断流程图</h4><div align=left><img data-fancybox="gallery" data-sizes="auto" data-src="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png" alt="判断顺序" class="lazyload">
+<h4 id="判断流程图"><a href="#判断流程图" class="headerlink" title="判断流程图"></a>判断流程图</h4><div align=left><img src="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png" alt="判断顺序" style="zoom:65%;" />
 
 
 
-<h4 id="连通示意图"><a href="#连通示意图" class="headerlink" title="连通示意图"></a>连通示意图</h4><div align=center><img data-fancybox="gallery" data-sizes="auto" data-src="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png" alt="判断顺序" class="lazyload">
+<h4 id="连通示意图"><a href="#连通示意图" class="headerlink" title="连通示意图"></a>连通示意图</h4><div align=center><img src="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png" alt="判断顺序" style="zoom:80%;" />
 
 <h3 id="类的封装-1"><a href="#类的封装-1" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="LinkType"><a href="#LinkType" class="headerlink" title="LinkType"></a>LinkType</h4><p>枚举类型，表示四种方块的连通方式（包括一种无法连通）。</p>
 <ul>
@@ -289,84 +374,316 @@
 <li>secondCorner</li>
 <li>linkType</li>
 </ul>
-<h4 id="UMP类图-1"><a href="#UMP类图-1" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png" alt="类图2" class="lazyload"></p>
+<h4 id="UMP类图-1"><a href="#UMP类图-1" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png" alt="类图2"></p>
 
-  </article>
+        </div>
 
-  
-    
-  <div class="nexmoe-post-copyright">
-    <strong>本文作者：</strong>ShiJh<br>
-    <strong>本文链接：</strong><a href="https://blog.pressed.top/2020/12/18/LinkGame/" title="https:&#x2F;&#x2F;blog.pressed.top&#x2F;2020&#x2F;12&#x2F;18&#x2F;LinkGame&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.pressed.top&#x2F;2020&#x2F;12&#x2F;18&#x2F;LinkGame&#x2F;</a><br>
-    
-      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-    
-  </div>
+        
 
-
-  
-  
-  <div class="nexmoe-post-meta nexmoe-rainbow">
-    
-    
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/java-swing/" rel="tag">java swing</a>
-    
-</div>
-
-  <div class="nexmoe-post-footer">
-    <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '80b2453b6d5f37ad6225',
-        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
-        id: window.location.pathname,
-        repo: 'nexmoe.github.io',
-        owner: 'nexmoe',
-        admin: 'nexmoe'
-    })
-    gitalk.render('gitalk')
-</script>
-</section>
-  </div>
-</div>
-        <div class="nexmoe-post-right">
-          <div class="nexmoe-fixed">
-            <div class="nexmoe-tool">
-              <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/02/14/signUpBaiduOcr/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用BaiduOcr识别图片文字</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/11/18/JavaSimpleCalculator/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java Simple Calculator</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
             </div>
-          </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '2982aa7bca818df9e147',
+                    clientSecret: '45eb0ac1328bfbca8db8c0340439fcce7e73d936',
+                    repo: '838239178.github.io',
+                    owner: '838239178',
+                    admin: ['838239178'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ShiJh</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
         </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8A%E8%BF%9E%E8%BF%9E%E7%9C%8B%E3%80%8B-Java%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-text">《连连看》 Java课程设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swing%E7%95%8C%E9%9D%A2%E7%BB%84%E6%88%90"><span class="nav-text">Swing界面组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E7%95%8C%E9%9D%A2"><span class="nav-text">1.核心界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BF%A1%E6%81%AF%E6%A0%8F"><span class="nav-text">2.信息栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%8F%9C%E5%8D%95%E6%A0%8F"><span class="nav-text">3.菜单栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B3%E4%BA%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">4.关于界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">5.欢迎界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%BB%93%E7%AE%97%E7%95%8C%E9%9D%A2"><span class="nav-text">6.结算界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">界面结构图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GameClient"><span class="nav-text">GameClient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EntryPanel"><span class="nav-text">EntryPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OverPanel"><span class="nav-text">OverPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MessagePanel"><span class="nav-text">MessagePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GamePanel"><span class="nav-text">GamePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Block"><span class="nav-text">Block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BlockFactory"><span class="nav-text">BlockFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sound"><span class="nav-text">Sound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AboutDialog"><span class="nav-text">AboutDialog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScaleIcon"><span class="nav-text">ScaleIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%9E%84%E5%BB%BA"><span class="nav-text">游戏逻辑构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-1"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%AE%B0%E5%BD%95%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">1.记录方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">2.操作方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">3.生成方块分布数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-text">核心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9B%B4%E6%8E%A5%E8%BF%9E%E9%80%9A"><span class="nav-text">1.直接连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8D%95%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">2.单拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%8C%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">3.双拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AF%BB%E6%89%BE%E8%BF%9E%E9%80%9A%E7%82%B9"><span class="nav-text">4.寻找连通点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-text">方案二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%95%B0%E6%8D%AE%E9%9A%8F%E6%9C%BA"><span class="nav-text">5.数据随机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">判断流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-text">连通示意图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85-1"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkType"><span class="nav-text">LinkType</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GameMap"><span class="nav-text">GameMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkResult"><span class="nav-text">LinkResult</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE-1"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
 <script>
-	hljs.initHighlightingOnLoad();
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1615614996172"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
-<script>
-	$(".justified-gallery").justifiedGallery({
-		rowHeight: 160,
-		margins: 10,
-	});
-</script>
-
-  
-
-
 
 
 
 </body>
-
 </html>
