@@ -1,7 +1,7 @@
 name: Jekyll site deploy
 
 on:
-  push:
+  # push:
     # branches: [ main ]
 
 jobs:
