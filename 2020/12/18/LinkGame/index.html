@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LinkGame | ShiJh-Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java课设作品，完成度较高，这里贴出设计方案！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinkGame">
+<meta property="og:url" content="https://blog.pressed.top/2020/12/18/LinkGame/">
+<meta property="og:site_name" content="ShiJh-Blog">
+<meta property="og:description" content="Java课设作品，完成度较高，这里贴出设计方案！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png">
+<meta property="og:image" content="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png">
+<meta property="og:image" content="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png">
+<meta property="og:image" content="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png">
+<meta property="article:published_time" content="2020-12-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-04T02:01:01.903Z">
+<meta property="article:author" content="ShiJh">
+<meta property="article:tag" content="java swing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ShiJh-Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ShiJh-Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.pressed.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LinkGame" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/18/LinkGame/" class="article-date">
+  <time class="dt-published" datetime="2020-12-17T16:00:00.000Z" itemprop="datePublished">2020-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      LinkGame
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="《连连看》-Java课程设计方案"><a href="#《连连看》-Java课程设计方案" class="headerlink" title="《连连看》 Java课程设计方案"></a>《连连看》 Java课程设计方案</h1><blockquote>
+<p>项目已开源，请点击：<a target="_blank" rel="noopener" href="https://github.com/838239178/linkgame">GithubHomePage</a></p>
+</blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>目录<br>{:toc}</li>
+</ul>
+<h2 id="Swing界面组成"><a href="#Swing界面组成" class="headerlink" title="Swing界面组成"></a>Swing界面组成</h2><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><h4 id="1-核心界面"><a href="#1-核心界面" class="headerlink" title="1.核心界面"></a>1.核心界面</h4><p>位于窗口中央，核心界面由n*n的方块组成，同种方块成对出现，并且是乱序的。每个方块一张图片，同类方块图片相同。方块间留足间隙满足观赏性。方块点击后应有方框标记。</p>
+<h4 id="2-信息栏"><a href="#2-信息栏" class="headerlink" title="2.信息栏"></a>2.信息栏</h4><p>位于窗口上方，提示栏包括游戏的标题和游戏的具体信息，包括游戏剩余时间(s)，时间进度条(%)和得分情况。</p>
+<p>得分：根据时间、重置次数、消去方块得出。其中消去方块分最多为<code>(n^4/2)</code>分，在此基础上除以<code>消耗时间/(n/4)*重置次数*(提示次数*5)*0.1</code>。</p>
+<h4 id="3-菜单栏"><a href="#3-菜单栏" class="headerlink" title="3.菜单栏"></a>3.菜单栏</h4><p>位于窗口最上方横条，菜单栏应包含游戏暂停、游戏重开、游戏退出、方块再次打乱、提示方块和“关于”界面的选项，应使用菜单和子菜单组合。游戏退出后显示欢迎界面。</p>
+<h4 id="4-关于界面"><a href="#4-关于界面" class="headerlink" title="4.关于界面"></a>4.关于界面</h4><p>新的对话框，由菜单栏启动，内容应包含该项目的基本信息，包括作者、时间、项目名称、源码地址等。</p>
+<h4 id="5-欢迎界面"><a href="#5-欢迎界面" class="headerlink" title="5.欢迎界面"></a>5.欢迎界面</h4><p>可切换的界面，用于打开主界面。界面中应包括游戏标题、开始按钮、关于按钮和退出按钮。开始按钮点击后应显示难度选择按钮。</p>
+<h4 id="6-结算界面"><a href="#6-结算界面" class="headerlink" title="6.结算界面"></a>6.结算界面</h4><p>可切换的界面，显示得分和总消耗时间。包括退出、重开按钮。退出后显示欢迎界面。</p>
+<h4 id="界面结构图"><a href="#界面结构图" class="headerlink" title="界面结构图"></a>界面结构图</h4><div align=center><img src="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png" alt="界面结构" style="zoom:50%;" />
+
+
+<h3 id="类的封装"><a href="#类的封装" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="GameClient"><a href="#GameClient" class="headerlink" title="GameClient"></a>GameClient</h4><p><em>extends JFrame</em></p>
+<p>界面程序的本体，用于联络各个组件，控制游戏开始结束。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>创建菜单栏、信息栏、游戏界面、关于界面、欢迎界面、结算界面。</li>
+<li>订阅组件的监听器，实现各种页面的切换。页面切换使用CardLayout实现。</li>
+<li>开始游戏和重开游戏，设定各个组件的初始参数。</li>
+</ul>
+<h4 id="EntryPanel"><a href="#EntryPanel" class="headerlink" title="EntryPanel"></a>EntryPanel</h4><p><em>extends JPanel</em></p>
+<p>退出或者开始。记录选择的难度（地图规模、方块类数）。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>提供获取所选难度的方法</li>
+<li>切换界面&gt;(GamePanel+MessagePanel)</li>
+</ul>
+<h4 id="OverPanel"><a href="#OverPanel" class="headerlink" title="OverPanel"></a>OverPanel</h4><p><em>extends JPanel</em></p>
+<p>结算界面，显示成功或者失败信息。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li><p>重开游戏&gt;GameClient(reopen)</p>
+</li>
+<li><p>切换界面&gt;EntryPanel</p>
+</li>
+<li><p>获取从MessagePanel中获取游戏信息</p>
+</li>
+</ul>
+<h4 id="MessagePanel"><a href="#MessagePanel" class="headerlink" title="MessagePanel"></a>MessagePanel</h4><p><em>extends JPanel</em></p>
+<p>显示信息栏界面的内容。主要用于记录分数和时间。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>各种参数的getter/setter方法。</li>
+<li>当<u>时间耗尽</u>时调用自定义监听器</li>
+</ul>
+<h4 id="GamePanel"><a href="#GamePanel" class="headerlink" title="GamePanel"></a>GamePanel</h4><p><em>extends JPanel</em></p>
+<p>使用Block对象填充GridLayout。根据GameMap对象提供的数据绘制Block，方块相消判定成功后绘制连线，记录数量。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>为每一个Block添加MouseClicked监听器：被点击时传递自身的引用给GamePanel。</li>
+<li>使用GameMap判断两个坐标是否能连通后，若成功则<u>画线</u>并检测是否消除完全，失败则改变所选取的Block状态，并删除其引用。</li>
+<li>画线：<ol>
+<li>直接连通：直接使用两方块坐标画线</li>
+<li>单拐点：两方块坐标以及一个拐点，用三个点画线段。</li>
+<li>双拐点：两方块坐标以及两个拐点，用四个点画线段，应注意线段总是在X或Y轴方向上。</li>
+</ol>
+</li>
+<li>刷新GameMap后，遍历Blocks，重置Blocks状态</li>
+<li>提示两个可以相消的方块。</li>
+<li>当<u>消除一次方块</u>后调用自定义监听器。</li>
+</ul>
+<h4 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h4><p><em>extends JComponent</em></p>
+<p>保存方块在Map上的下标。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>重置方块，包括图片、ID、状态（利用BlockFactory）</li>
+<li>被选取时，绘制方框</li>
+<li>id的getter</li>
+</ul>
+<h4 id="BlockFactory"><a href="#BlockFactory" class="headerlink" title="BlockFactory"></a>BlockFactory</h4><p>单例工厂类，用enum类型。</p>
+<p><strong>功能：</strong></p>
+<ul>
+<li>通过方块的id，生成一个带图片的Block对象。</li>
+<li>通过方块id，重置一个现成的Block对象。</li>
+</ul>
+<h4 id="Sound"><a href="#Sound" class="headerlink" title="Sound"></a>Sound</h4><p>音效对象，实现多线程播放音效。</p>
+<h4 id="AboutDialog"><a href="#AboutDialog" class="headerlink" title="AboutDialog"></a>AboutDialog</h4><p><em>extends JDialog</em></p>
+<p>显示关于该游戏以及该项目的信息。</p>
+<h4 id="ScaleIcon"><a href="#ScaleIcon" class="headerlink" title="ScaleIcon"></a>ScaleIcon</h4><p><em>implements Icon</em></p>
+<p>实现图片随容器大小变化而变化</p>
+<h4 id="UMP类图"><a href="#UMP类图" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png" alt="类图1"></p>
+<h2 id="游戏逻辑构建"><a href="#游戏逻辑构建" class="headerlink" title="游戏逻辑构建"></a>游戏逻辑构建</h2><p>游戏逻辑主要在于方块数据处理和判断两个方块是否能消去。</p>
+<h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><p>假设地图规模大小为<code>n*n</code>，方块种类为<code>i</code>种</p>
+<h4 id="1-记录方块分布数据"><a href="#1-记录方块分布数据" class="headerlink" title="1.记录方块分布数据"></a>1.记录方块分布数据</h4><p>一个二维数组，不同的ID对应不同的方块，同一个ID应成对出现。空白方块使用特殊标记。</p>
+<h4 id="2-操作方块分布数据"><a href="#2-操作方块分布数据" class="headerlink" title="2.操作方块分布数据"></a>2.操作方块分布数据</h4><p>重新打乱二维数组中的数据，应注意只能打乱非空白方块的数据，空白的位置应保持不变。</p>
+<p>判断两个方块是否能够相消，以何种方式相消。</p>
+<p>遍历查找两个可连通的点。</p>
+<p>传出和修改对应点的方块ID。</p>
+<h4 id="3-生成方块分布数据"><a href="#3-生成方块分布数据" class="headerlink" title="3.生成方块分布数据"></a>3.生成方块分布数据</h4><p>根据地图大小，创建一个二维数组，并在里面随机添加方块的ID。每种类型的方块添加<code>(n*n)/i</code>个，共<code>(n*n)/2i</code>组。根据需求<code>i == n</code></p>
+<h3 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h3><p>按照连连看规则——可连接的两个方块之间最多用三条直线相连——可以分类为三种判定方式。在判定过程中应注意边界问题。</p>
+<h4 id="1-直接连通"><a href="#1-直接连通" class="headerlink" title="1.直接连通"></a>1.直接连通</h4><p>即两个方块间可以用一条直线连接。处在同一行或者同一列且中间没有其他方块。</p>
+<h4 id="2-单拐点连通"><a href="#2-单拐点连通" class="headerlink" title="2.单拐点连通"></a>2.单拐点连通</h4><p>即两个方块间可以用两条线段连接。以两个方块为顶点得到一个矩形，矩形的另外两个顶点中，任意一个可以<strong>空白顶点</strong>，与这两个方块都可以<strong>直接连通</strong>，则可连接。</p>
+<h4 id="3-双拐点连通"><a href="#3-双拐点连通" class="headerlink" title="3.双拐点连通"></a>3.双拐点连通</h4><p>即两个方块间可以用三条线段连接。搜索其中一个方块周围四个方向空白的点，若任意一个可以<strong>直接连通</strong>点，能与另一个方块单拐点连通，则能够连通。</p>
+<h4 id="4-寻找连通点"><a href="#4-寻找连通点" class="headerlink" title="4.寻找连通点"></a>4.寻找连通点</h4><h5 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h5><p><em>暴力求解，<strong>不推荐</strong></em></p>
+<p>四重循环，遍历每一个方块，起点遍历一次，终点遍历一次，判断起点和终点的连通性。</p>
+<h5 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h5><p><em>广搜</em></p>
+<p>对每个方块进行广搜判断，两种判断方法</p>
+<ol>
+<li>方向改变不大于三次内可以找到的终点即可以连通，连通类型根据方向改变次数可以得出，拐点和方向改变次数每一次搜索都需要记录。<em>（稍微麻烦，但速度快一点）</em></li>
+<li>对找到的终点进行连通性判断，不需要额外记录。<em>（简单，相对慢一点，<strong>推荐</strong>）</em></li>
+</ol>
+<h4 id="5-数据随机"><a href="#5-数据随机" class="headerlink" title="5.数据随机"></a>5.数据随机</h4><p>将所有决定好的方块ID放入一个容器中进行混排，每次随机从容器中抛出一个ID设置在Map上，<strong>容器内的ID不能重复抛出</strong>。</p>
+<h4 id="判断流程图"><a href="#判断流程图" class="headerlink" title="判断流程图"></a>判断流程图</h4><div align=left><img src="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png" alt="判断顺序" style="zoom:65%;" />
+
+
+
+<h4 id="连通示意图"><a href="#连通示意图" class="headerlink" title="连通示意图"></a>连通示意图</h4><div align=center><img src="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png" alt="判断顺序" style="zoom:80%;" />
+
+<h3 id="类的封装-1"><a href="#类的封装-1" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="LinkType"><a href="#LinkType" class="headerlink" title="LinkType"></a>LinkType</h4><p>枚举类型，表示四种方块的连通方式（包括一种无法连通）。</p>
+<ul>
+<li>STRAIGHT_LINK</li>
+<li>SINGLECORNER_LINK</li>
+<li>DOUBLECORNER_LINK</li>
+<li>NO_LINK</li>
+</ul>
+<h4 id="GameMap"><a href="#GameMap" class="headerlink" title="GameMap"></a>GameMap</h4><p>保存方块数据的类。负责判断连通，提供数据和信号给界面程序。构造时应指定地图大小和方块ID最大值。</p>
+<p>接口：</p>
+<ul>
+<li>判断是否连通的方法，并记录所有拐点，返回<u>LinkResult</u>。</li>
+<li>地图数据的getter方法，返回方块ID。</li>
+<li>清空指定两个点的方法。</li>
+<li>判断并清空两个点的方法，返回布尔类型。</li>
+<li>重新随机地图的方法。</li>
+<li>自动寻找两个可相消的点。成功返回一个<u>LinkResult</u>，失败抛出RuntimException（或自定义一个Exception）。</li>
+</ul>
+<h4 id="LinkResult"><a href="#LinkResult" class="headerlink" title="LinkResult"></a>LinkResult</h4><p>自定义封装类，用于返回五个参数（初始化为null），为每个参数设置一个getter/setter。</p>
+<ul>
+<li>fristPoint</li>
+<li>secondPoint</li>
+<li>firstCorner</li>
+<li>secondCorner</li>
+<li>linkType</li>
+</ul>
+<h4 id="UMP类图-1"><a href="#UMP类图-1" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png" alt="类图2"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.pressed.top/2020/12/18/LinkGame/" data-id="ckm77mrj90005aghj3cmn5rfl" data-title="LinkGame" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-swing/" rel="tag">java swing</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/14/signUpBaiduOcr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          使用BaiduOcr识别图片文字
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/18/JavaSimpleCalculator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Java Simple Calculator</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm-c-c/" rel="tag">algorithm c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocos-tiledmap/" rel="tag">cocos tiledmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-swing/" rel="tag">java swing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/" rel="tag">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-ai/" rel="tag">web ai</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/algorithm-c-c/" style="font-size: 15px;">algorithm c/c++</a> <a href="/tags/cocos-tiledmap/" style="font-size: 10px;">cocos tiledmap</a> <a href="/tags/java-swing/" style="font-size: 15px;">java swing</a> <a href="/tags/java-web/" style="font-size: 20px;">java web</a> <a href="/tags/web-ai/" style="font-size: 10px;">web ai</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/12/myBatis/">MyBatis</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/12/javaweb/">Java Web</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/springTxError/">关于Spring事务管理失效问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/14/signUpBaiduOcr/">使用BaiduOcr识别图片文字</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/18/LinkGame/">LinkGame</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 ShiJh<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java Web | ShiJh-Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="从零开始学JAVA web，我学了些什么，这篇文章将会记录这一段学习历程。(暂告一段落 8288字)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Web">
+<meta property="og:url" content="https://blog.pressed.top/2021/03/12/javaweb/">
+<meta property="og:site_name" content="ShiJh-Blog">
+<meta property="og:description" content="从零开始学JAVA web，我学了些什么，这篇文章将会记录这一段学习历程。(暂告一段落 8288字)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/26/OyFfPTpuwKC7jEo.jpg">
+<meta property="article:published_time" content="2021-03-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-12T14:47:02.024Z">
+<meta property="article:author" content="ShiJh">
+<meta property="article:tag" content="java web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/26/OyFfPTpuwKC7jEo.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="ShiJh-Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ShiJh-Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学无止境</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.pressed.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-javaweb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/12/javaweb/" class="article-date">
+  <time class="dt-published" datetime="2021-03-11T16:00:00.000Z" itemprop="datePublished">2021-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java Web
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JavaWeb-Spring"><a href="#JavaWeb-Spring" class="headerlink" title="JavaWeb-Spring"></a>JavaWeb-Spring</h1><blockquote>
+<p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/838239178/SpringStudy">Spring学习过程中创建的项目，包含一些例子</a></p>
+</blockquote>
+<ul>
+<li>目录<br>{:toc}</li>
+</ul>
+<h2 id="一​、-walking-JavaSE"><a href="#一​、-walking-JavaSE" class="headerlink" title="一​、:walking:JavaSE"></a>一​、:walking:JavaSE</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> Java语言基础内容，已经掌握</li>
+</ul>
+<h2 id="二、-horse-JSP-Servlet"><a href="#二、-horse-JSP-Servlet" class="headerlink" title="二、:horse:JSP/Servlet"></a>二、:horse:JSP/Servlet</h2><p>主要以理解Tomcat中Servlet的运行原理为重点</p>
+<h3 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h3><p>Jsp本质是servlet，约等于分不清前后端，耦合性太强，已经被时代抛弃，大概了解即可，直接跳过学习。</p>
+<h4 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h4><p>JavaServer Pages Tag Library ：JSP标准标签库</p>
+<p>用于简化和替换jsp页面上的java 代码</p>
+<h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><ul>
+<li><p><strong>Servlet</strong>: </p>
+<p>注解声明<code>@WebServlet(&quot;path&quot;)</code></p>
+<p>tomcat服务器的核心，主要是理解Http协议、<code>HttpServletRequest</code>以及<code>HttpServletResponse</code>原理。req可以进行转发<code>forward</code>（服务器内servlet间转发），resp可以进行重定向<code>redirect</code>(由浏览器发送第二次请求，可跨服务器)</p>
+</li>
+<li><p><strong>Filter</strong>：</p>
+<p>注解声明<code>@WebFilter(&quot;path&quot;)</code></p>
+<p>过滤器，拦截request和response，可以对req和resp进行判断是否放行。</p>
+</li>
+<li><p><strong>Listener</strong>：</p>
+<p>注解声明<code>@WebListener</code></p>
+<p>监听器，<code>ServletContextListener</code>监听ServletContext对象的创建（服务器启动）和销毁（服务器关闭），该接口主要用于加载资源和释放资源等操作。除此之外还有其他监听器。</p>
+</li>
+<li><p>ServletContext： </p>
+<p>服务器内的一个全局上下文，可以从servlet或req中获取（单例类）。作用是获取服务器真实路径<code>getRealPath()</code>、设置和获取服务器内共享的数据域<code>set/getAttribute()</code>和获取Content-type<code>getMimeType(filename)</code>，通过配置<code>&lt;context-param&gt;</code>可以用<code>getInitParam()</code>来加载资源文件</p>
+</li>
+<li><p>Cookie：保存于浏览器的数据，用来识别身份，保存sessionid等。可以设置存活周期。</p>
+</li>
+</ul>
+<ul>
+<li>Session：保存于服务器的数据，用来记录每个浏览器特定的信息，由一个id对应。可以设置存活周期，服务器关闭后会<code>钝化</code>，再次开启后<code>活化</code></li>
+</ul>
+<h3 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h3><p>语法：<code>$&#123;expression&#125;</code></p>
+<ol>
+<li><p>运算</p>
+<p>算数运算、比较运算、逻辑运算、判空运算<code>empty</code></p>
+</li>
+<li><p><strong>获取值</strong></p>
+<p>从域对象中获取值<code>$&#123;域名称.keyName&#125;</code>、<code>$&#123;keyName&#125;</code></p>
+<table>
+<thead>
+<tr>
+<th>域名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pageScope</td>
+<td>从pageContext获取</td>
+</tr>
+<tr>
+<td>requestScope</td>
+<td>从request中获取</td>
+</tr>
+<tr>
+<td>sessionScope</td>
+<td>从session中获取</td>
+</tr>
+<tr>
+<td>applicationScope</td>
+<td>从ServletContext获取</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="ExtraDetail"><a href="#ExtraDetail" class="headerlink" title="ExtraDetail"></a>ExtraDetail</h3><p>这里记录在学习这个模块的过程中额外学习到的内容。</p>
+<h4 id="ProxyMode"><a href="#ProxyMode" class="headerlink" title="ProxyMode"></a>ProxyMode</h4><p>代理模式，软件设计模式的一种，通过中间代理执行方法，来达到增强的目的。后续框架中经常使用该模式。</p>
+<p>动态代理在Java中使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Proxy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader, Class&lt;?&gt;[] interfacies, InvocationHandler h)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>InvocationHandler</code>是抽象类，需实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过在该方法中调用<code>method.invoke(obj,args)</code>来执行被代理的对象的方法。可以<strong>修改返回值</strong>或者<strong>参数</strong>等手段来增强该方法，也可以在方法调用前和调用后增加其他类的方法。</p>
+<h4 id="MVC开发模式"><a href="#MVC开发模式" class="headerlink" title="MVC开发模式"></a>MVC开发模式</h4><ol>
+<li><p><strong>M:</strong> Model 模型 <code>JavaBean</code></p>
+<p>完成业务逻辑操作，如查询数据库、封装数据</p>
+</li>
+<li><p><strong>V:</strong> View 视图 <code>jsp</code></p>
+<p>展示数据</p>
+</li>
+<li><p><strong>C:</strong> Controller 控制器 <code>servlet</code></p>
+<p>分发工作，获取客户端的输入然后调用模型，将数据交给视图。</p>
+</li>
+</ol>
+<h4 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h4><ol>
+<li><p>界面层（表示层 web）<code>SpringMVC</code></p>
+<p>用户能够通过界面的组件和服务器进行交互，调用Service完成请求处理，转发jsp页面完成显示。</p>
+<ul>
+<li>控制器：servlet，接受用户请求并封装参数信息到Servic层</li>
+<li>视图：JSP，接受控制器提供的数据并展示出来给用户</li>
+</ul>
+</li>
+<li><p>业务逻辑层 (service) <code>Spring</code></p>
+<p>处理业务逻辑，组合DAO层的简单方法，组成各种复杂的业务功能。</p>
+</li>
+<li><p>数据访问层 (dao) <code>MyBatis</code></p>
+<p>操作数据存储文件，定义了对数据库最基本的CRUD操作</p>
+</li>
+</ol>
+<h4 id="Bootstrap-JQuery-AJAX"><a href="#Bootstrap-JQuery-AJAX" class="headerlink" title="Bootstrap/JQuery/AJAX"></a>Bootstrap/JQuery/AJAX</h4><p>皆为前端框架</p>
+<ul>
+<li><p>Boostrap</p>
+<p>提供丰富的html标签和css样式，具有响应式布局，配合JQuery/Vue使用。</p>
+</li>
+<li><p>JQuery</p>
+<p>对js的封装，提供了选择器等许多丰富API来帮助编写js动态生成页面。</p>
+</li>
+<li><p>AJAX</p>
+<p>异步的JavaScript和XML，用于向服务器发送异步请求，可以在JQuery/Vue中便捷使用。</p>
+</li>
+</ul>
+<h2 id="三​、-bike-JDBC-SQL"><a href="#三​、-bike-JDBC-SQL" class="headerlink" title="三​、:bike:JDBC/SQL"></a>三​、:bike:JDBC/SQL</h2><p>两者是数据库的重要内容，SQL有<code>MySQL、SQLserver</code>等，<code>JDBC</code>则是Java操作数据库SQL的重要API，都应熟练掌握并理解原理。</p>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>学会数据库增删查改等操作，熟练运用操控数据库的高级技巧，重点理解数据库原理，学会优化数据库。</p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><h5 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h5><p>事务指的是一个包含多个步骤的业务操作，如果这个操作被事务管理，则要么同时成功，要么同时失败。事务可以提供回滚操作，撤销出错的影响。</p>
+<ul>
+<li><code>ＳＴＡＲＴ　ＴＲＡＮＳＡＣＴＩＯＮ</code>　开启事务管理</li>
+<li><code>ＲＯＬＬＢＡＣＫ</code>　回滚</li>
+<li><code>ＣＯＭＭＩＴ</code>　提交事务</li>
+</ul>
+<p><code>SELECT @@autocommit</code> 查看是否为自动提交，修改后可以改变默认管理方式</p>
+<h5 id="四大特征"><a href="#四大特征" class="headerlink" title="四大特征"></a>四大特征</h5><ul>
+<li>原子性：数据库操作中不可分割的最小单位，要么同时成功，要么同时失败</li>
+<li>持久性：事务提交或回滚后，数据会持久化保存在数据库中</li>
+<li>隔离性：多个事务之间相互独立</li>
+<li>一致性：事务操作前后，数据总量不变</li>
+</ul>
+<h5 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h5><p>多个事务操作同一批数据会引发一些问题，通过设置隔离级别可以解决这些问题。</p>
+<ul>
+<li>脏读：一个事务，读取到另一个事务中没有提交的数据。</li>
+<li>不可重复读：同一个事务中，两次读取到的数据不一样（可能被另一个事务修改了）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55872397">MySql-MVCC原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%BB%E8%AF%BB/153502?fr=aladdin">幻读</a>：一个事务(同一个read view)在前后两次查询同一范围的时候，后一次查询看到了前一次查询没有看到的行。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>说明</th>
+<th>安全性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>read uncommitted</td>
+<td>读未提交，允许读取未提交的数据</td>
+<td>0</td>
+</tr>
+<tr>
+<td>read committed</td>
+<td>当前读、读已提交，只有已经提交的数据才能被读取</td>
+<td>1</td>
+</tr>
+<tr>
+<td>repeatable read</td>
+<td>可重复读，使一个事务周期内的数据不受其他事务影响</td>
+<td>2</td>
+</tr>
+<tr>
+<td>serializable</td>
+<td>串行化，锁定一张表，相当于单线程执行事务</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p><em>从小到大安全性越来越高，效率越来越低！不同的数据库隔离级别原理不同，如MySql的MMVC，因此能解决的问题也不同</em></p>
+<p>通过<code>SELECT @@tx_isolation</code>查询隔离级别，<code>SET GLOBAL TRANSACTION ISOLATION LEVEL 级别名</code>设置隔离级别 </p>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><p>JDBC是Java用来操作数据库的接口，具体实现由不同数据库公司实现，他的实现类被称为<strong>“驱动”（Driver）</strong>。</p>
+<p><strong>常见驱动类：</strong></p>
+<ul>
+<li>MySql：”com.mysql.jdbc.Driver”</li>
+<li>SqlServer：”com.microsoft.sqlserver.jdbc.SQLServerDriver”</li>
+</ul>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><ol>
+<li><p>注册驱动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 通过该方法把类加载到内存</span></span><br><span class="line"><span class="comment"> 驱动类来自每个不同的数据库公司，以下是mysql的驱动类</span></span><br><span class="line"><span class="comment"> 该方法执行时，类的静态代码块会被执行，Driver会使用registerDriver方法注册DriverManager</span></span><br><span class="line"><span class="comment"> mysql5以上的版本可以省略这个注册过程</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>获取数据库连接对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> url: 数据库地址 jdbc:mysql://域名:端口/dbName</span></span><br><span class="line"><span class="comment"> user: 管理员用户名</span></span><br><span class="line"><span class="comment"> pwd: 管理员密码</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Connection conn = DriverManager.getConnection(url,user,pwd);</span><br></pre></td></tr></table></figure></li>
+<li><p>定义sql语句<code>String</code></p>
+</li>
+<li><p>获取执行sql对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="comment">//satement 可以执行sql语句</span></span><br><span class="line">Statement stat = conn.createStatement();</span><br></pre></td></tr></table></figure></li>
+<li><p>执行sql获取返回结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sqlStr 为数据库执行语句，如DML(insert、update、delete)、DDL(create、alter、drop)</span></span><br><span class="line"><span class="comment">//返回影响的行数：可以通过这个值判断DML语句是否执行成功</span></span><br><span class="line">stat.excuteUpdate(sqlStr);</span><br></pre></td></tr></table></figure></li>
+<li><p>释放资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行对象释放</span></span><br><span class="line">stat.close();</span><br><span class="line"><span class="comment">//数据库连接释放</span></span><br><span class="line">conn.close();</span><br><span class="line"><span class="comment">//结果对象释放</span></span><br><span class="line">resultSet.close();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="常用对象详解"><a href="#常用对象详解" class="headerlink" title="常用对象详解"></a>常用对象详解</h4><p>   <strong>Connection：</strong></p>
+<ul>
+<li><p>获取sql对象</p>
+<p><code>createStatement()</code>、<code>preparedStatement(sqlStr)</code></p>
+</li>
+<li><p>管理事务</p>
+<p>关闭自动提交事务的功能即可开启手动事务管理</p>
+<p>开启：<code>setAutoCommit(false)</code>、提交：<code>commit()</code>、回滚：<code>rollback()</code></p>
+</li>
+</ul>
+<p>   <strong>Statement：</strong></p>
+<ul>
+<li><code>excuteUpdate(sql)</code>：执行DML(insert、update、delete)、DDL(create、alter、drop)，返回影响的行数</li>
+<li><code>executeQuery(sql)</code>：执行DQL(select)语句，返回<code>ResultSet</code></li>
+</ul>
+<p>   <strong>ResultSet：</strong></p>
+<ul>
+<li><p><code>next()</code>：移动游标到下一行，游标初始于第0行（表头），如果下一行没有数据则返回false</p>
+</li>
+<li><p><code>getXxx(int/str)</code>  </p>
+<p>获取当前行的数据，<code>Xxx</code>为数据类型名，返回类型为<code>Xxx</code></p>
+<p>方法指定参数为int时，表示columIndex获取第几列的数据</p>
+<p>方法指定参数为str时，表示columName获取名为str的列的数据 </p>
+</li>
+</ul>
+<p>   <strong>PreparedStatement：</strong></p>
+<ul>
+<li><p>解决SQL注入问题</p>
+<p>某些sql特殊关键字参与字符串拼接会造成安全性问题，如<code>WHERE</code>后存在恒等式则表示没有约束作用</p>
+</li>
+<li><p>预编译sql</p>
+<p>sql语句的参数使用<code>？</code>占位符，使用<code>setXxx(pos, value)</code>方法赋值，该方法传入占位符的位置（第几个）和值来进行sql参数补充，value类型为<code>Xxx</code></p>
+</li>
+<li><p><code>excuteUpdate()</code></p>
+</li>
+<li><p><code>executeQuery()</code></p>
+</li>
+</ul>
+<h4 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h4><p>事务指的是一个包含多个步骤的业务操作，如果这个操作被事务管理，则要么同时成功，要么同时失败。</p>
+<ul>
+<li>开启 提交 回滚 <a href="#%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3">使用Connection管理</a></li>
+</ul>
+<h5 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    conn.setAutoCommit(<span class="keyword">false</span>); <span class="comment">//open</span></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> do sql</span></span><br><span class="line">    conn.commit(); <span class="comment">//commit if no exception occur</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">    conn.rollback(); <span class="comment">//rollback if has any exception </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当<code>rollback()</code>执行时，刚刚执行的sql操作都会撤销。</p>
+<h4 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h4><p>优化Connection操作，提高数据库访问性能</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>使用连接对象容器管理Connection，从容器中获取，归还到容器中去，由容器管理是否断开连接。</p>
+<h5 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h5><p>*Interface <strong>DataSource</strong>：*由<a href="#JDBC">Driver</a>实现，Druid性能较高</p>
+<ol>
+<li><p><strong>C3P0</strong>：ComboPooledDataSource</p>
+<p>使用classpath:<code>c3p0.properties/c3p0-config.xml</code>配置参数</p>
+</li>
+<li><p><strong>Druid</strong>：DruidDataSourceFactory</p>
+<p>使用<code>druid.properties</code>配置参数，需要手动加载。通常封装成工具类静态加载配置文件。</p>
+</li>
+</ol>
+<h4 id="Spring-JdbcTemplete"><a href="#Spring-JdbcTemplete" class="headerlink" title="Spring JdbcTemplete"></a>Spring JdbcTemplete</h4><p>由Spring封装的JDBCUtils，简化操作。<a href="#Spring-JdbcTemplate">详细见下文</a></p>
+<h3 id="Junit4"><a href="#Junit4" class="headerlink" title="Junit4"></a>Junit4</h3><p>Junit单元测试属于白盒测试的一种。</p>
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Before</td>
+<td>在所有测试方法前执行</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>在所有测试方法后执行，无论是否存在异常</td>
+</tr>
+<tr>
+<td>@Test</td>
+<td>标注方法为测试方法</td>
+</tr>
+</tbody></table>
+<h4 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h4><p>所有测试方法都是无参的，测试方法内最好不要直接输出数值，应该尽量使用<code>assert</code>断言结果于预期是否相符合。对于测试期间出现的异常应该尽量捕获并写入文件中，标明异常方法和异常原因。</p>
+<h3 id="Redis-Jedis"><a href="#Redis-Jedis" class="headerlink" title="Redis/Jedis"></a>Redis/Jedis</h3><p>非关系型数据库，有缓存功能。。。</p>
+<h2 id="四、-car-SSM"><a href="#四、-car-SSM" class="headerlink" title="四、:car:SSM"></a>四、:car:SSM</h2><p>JavaWeb框架集合之一，由<code>Spring+SpringMVC+Mybatis</code>组成，适用于轻量级微服务开发，要深入理解原理。</p>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><p>Spring框架属于Service层框架，但是也管理了Web层和DAO层</p>
+<h4 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h4><h5 id="ioc容器"><a href="#ioc容器" class="headerlink" title="ioc容器"></a>ioc容器</h5><p>Bean容器，spring在内部创建Java类，我们或Spring可以从容器中取出Bean</p>
+<h5 id="XML式依赖注入"><a href="#XML式依赖注入" class="headerlink" title="XML式依赖注入"></a>XML式依赖注入</h5><p>对<code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;&lt;/bean&gt;</code>对象的属性进行配置</p>
+<p>分别为：对象注入<code>ref</code>、普通数据类型注入<code>value</code>、集合类型</p>
+<ul>
+<li><p>集合类型：配置文件使用<code>&lt;list&gt;&lt;value&gt;</code>、<code>&lt;map&gt;&lt;entry key=&quot;&quot; value-ref=&quot;&quot;&gt;</code>、<code>&lt;props&gt;&lt;prop key=&quot;&quot;&gt;</code>组合使用 </p>
+</li>
+<li><p>构造方法：有参构造，配置文件中使用<code>&lt;constructor-arg name=&quot;&quot; ref=&quot;&quot;/&gt;</code>注入</p>
+</li>
+<li><p>set方法：配置文件中使用<code>&lt;property name=&quot;&quot; ref=&quot;&quot;/&gt;</code>子标签标签设置属性值注入</p>
+</li>
+</ul>
+<p><strong>模块开发</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;applicationContext-xxx.xml&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="注解式依赖注入"><a href="#注解式依赖注入" class="headerlink" title="注解式依赖注入"></a>注解式依赖注入</h5><ol>
+<li><p><strong>原始注解</strong></p>
+<p>使用前须在配置文件中配置组件扫描，指定需要注解开发的包</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--用于排除不需要被扫描的类--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">&quot;&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@Component</td>
+<td>类上实例化Bean，代替Bean标签</td>
+</tr>
+<tr>
+<td align="left">@Controller</td>
+<td>web层类上实例化Bean</td>
+</tr>
+<tr>
+<td align="left">@Respository</td>
+<td>dao层上实例化Bean</td>
+</tr>
+<tr>
+<td align="left">@Service</td>
+<td>service层上实例化Bean</td>
+</tr>
+<tr>
+<td align="left">@Autowired</td>
+<td>依赖注入标签，加在成员变量/setter/构造方法</td>
+</tr>
+<tr>
+<td align="left">@Qualifier</td>
+<td>结合Autowired一起使用根据名称进行依赖注入</td>
+</tr>
+<tr>
+<td align="left">@Resource</td>
+<td>相当于前两者的结合，是javaEE的注解，不是Spring的注解</td>
+</tr>
+<tr>
+<td align="left">@Value</td>
+<td>注入普通属性（int等）</td>
+</tr>
+<tr>
+<td align="left">@PostConstruct</td>
+<td>声明Bean的初始化方法</td>
+</tr>
+<tr>
+<td align="left">@PreDestroy</td>
+<td>声明Bean的销毁方法</td>
+</tr>
+<tr>
+<td align="left">@Scope</td>
+<td>标志Bean的范围，singleton/prototype</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>新注解</strong></p>
+<p>可以完全替代xml配置文件</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Configuration</td>
+<td>指定类为配置类，创建容器时从该类上加载注解</td>
+</tr>
+<tr>
+<td>@ComponentScan</td>
+<td>指定要扫描的包，同<code>&lt;context:componnet-scan&gt;</code>，使用excludeFilters排除不需要被扫描的类</td>
+</tr>
+<tr>
+<td>@Bean</td>
+<td>标注方法的返回值储存于容器中</td>
+</tr>
+<tr>
+<td>@PropertySource</td>
+<td>用于加载<code>.properties</code>文件的配置</td>
+</tr>
+<tr>
+<td>@Import</td>
+<td>用于导入其他配置类</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h4 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>面向切面编程，是动态代理的规范化编程，动态代理如何增强方法见上文。SpringAOP底层使用的动态代理为以下两种：</p>
+<ol>
+<li><p>Java原生接口代理</p>
+<p>通过接口反射出代理对象，使用的是 <a href="#ProxyMode">ProxyMode</a></p>
+</li>
+<li><p>cglib子类代理</p>
+<p>外部的工具库，已经集成在springframework-core中，使用的是Enhancer类。通过指定父类反射出代理对象。</p>
+</li>
+</ol>
+<p>根据<u>目标对象</u><a href="%E8%A2%AB%E4%BB%A3%E7%90%86%E7%9A%84%E7%B1%BB">^目标对象</a>是否有接口来选择其中一个方法。</p>
+<p>[^切入点]: pointCut 目标对象的方法<br>[^连接点]: 目标对象被增强的方法<br>[^通知]: advice 用于增强连接点的方法</p>
+<h5 id="XML配置动态代理"><a href="#XML配置动态代理" class="headerlink" title="XML配置动态代理"></a>XML配置动态代理</h5><p>maven导入依赖<code>aspectjweaver</code>、<code>spring-aop</code></p>
+<ol>
+<li><p>配置目标对象和切面对象Bean</p>
+<p><strong>切面类和目标类都需要配置为Bean</strong>才能被Spring从IOC容器中取出来</p>
+</li>
+<li><p>配置织入（前置、后置……）</p>
+<p>使用命名空间<code>xmlns:aop</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line"> 	<span class="comment">&lt;!--声明切面类--&gt;</span>   </span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">&quot;beanName&quot;</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!--配置切面：切点+通知--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--类似的还有aop:after等等--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">&quot;adviceName&quot;</span> <span class="attr">pointcut</span>=<span class="string">&quot;execution(&#x27;方法声明&#x27;)&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>切面标签</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">前置通知</td>
+<td align="left">aop:before</td>
+<td>略</td>
+</tr>
+<tr>
+<td align="center">后置通知</td>
+<td align="left">aop:after-returning</td>
+<td>略</td>
+</tr>
+<tr>
+<td align="center">环绕通知</td>
+<td align="left">aop:around</td>
+<td>前后都执行，比前置更前，比后置更后</td>
+</tr>
+<tr>
+<td align="center">异常抛出通知</td>
+<td align="left">aop:throwing</td>
+<td>出现异常时执行</td>
+</tr>
+<tr>
+<td align="center">最终通知</td>
+<td align="left">aop:after</td>
+<td>最后执行，无论是否抛出异常</td>
+</tr>
+</tbody></table>
+<p>:information_source:<strong>环绕通知</strong>方法需要携带参数<code>ProceedingJoinPoint</code>表示连接点[^连接点]对象，要在方法中执行该对象的<code>proceed()</code>方法并<strong>return</strong>该方法的返回值。</p>
+<p>:warning:<strong>环绕通知</strong>方法的返回值都为<code>Object</code>，表示被增强的方法会返回一个对象或者<code>NULL</code>，因此需要注意被增强的方法不能返回<code>boolean</code>、<code>int</code>等基础类型，需要用对应的包装类替换！</p>
+</li>
+<li><p>切点表达式</p>
+<p><code>execution([修饰符] 返回值 包名.类名.方法(参数))</code></p>
+<ul>
+<li><p>修饰符可以省略（public、private……）</p>
+</li>
+<li><p>可以用通配符（*）代表任意</p>
+</li>
+<li><p>参数可以用<code>..</code>表示任意个数，任意类型的参数列表（可变参数）</p>
+</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execution(* cn.test.*.*(..)) <span class="comment">//cn.test包下任意类的任意方法</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>表达式抽取：</strong>替换<code>point-cut</code>为<code>point-cut-ref</code>，引用<code>&lt;aop:pointcut id=&quot;&quot; expression=&quot;&quot;/&gt;</code>标签设定好的表达式<u>id</u></p>
+</li>
+</ol>
+<h5 id="注解配置动态代理"><a href="#注解配置动态代理" class="headerlink" title="注解配置动态代理"></a>注解配置动态代理</h5><p>在配置文件中添加<code>&lt;aop:aspect-autoproxy /&gt;</code>自动代理aop</p>
+<p>或者在配置类上用<code>@EnableAspectJAutoProxy</code>标注</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Aspect</td>
+<td>标注为切面类</td>
+</tr>
+<tr>
+<td>@Before</td>
+<td>标志为前置通知，参数为execution表达式</td>
+</tr>
+<tr>
+<td>@AfterReturning</td>
+<td>标志为后置通知，参数为execution表达式</td>
+</tr>
+<tr>
+<td>@Around</td>
+<td>标志为环绕通知，参数为execution表达式</td>
+</tr>
+<tr>
+<td>@AfterThrowing</td>
+<td>标志为异常抛出通知，参数为execution表达式</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>标志为最终通知，参数为execution表达式</td>
+</tr>
+</tbody></table>
+<p><strong>切点[^切入点]表达式抽取：</strong>在切面类中定义空实现方法，在方法上用<code>@PointCut（’表达式‘）</code>标注，引用时按照<code>className.methodName()</code>来描述</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PointCut(&quot;excution(*.cn.shijh.*.*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myPointCut</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(Aspect.myPointCut())</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeEnhance</span><span class="params">()</span>    </span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Spring事务控制"><a href="#Spring事务控制" class="headerlink" title="Spring事务控制"></a>Spring事务控制</h4><p>底层基于<a href="#aop">AOP</a>实现事务管理，一般在Service层进行。</p>
+<p>切点：Service方法</p>
+<p>通知：事务管理</p>
+<hr>
+<p>:warning: :warning: :warning: <a href="https://blog.pressed.top/springTxError">关于这个问题的详细说明</a></p>
+<p><strong>Spring事务管理与AOP之间存在神坑，被环绕通知的方法是无法进行事务控制的！！！！坑了我两三个小时！原因是事务管理本身就是环绕通知！！解决办法：设定Aspect和advisor的Order，且事务控制的Order要比环绕通知的大，否则无法完成事务回滚</strong></p>
+<hr>
+<h5 id="编程式控制"><a href="#编程式控制" class="headerlink" title="编程式控制"></a>编程式控制</h5><ol>
+<li> <strong>PlatfromTransactionManager</strong></li>
+</ol>
+<p>   spring事务管理器的接口，依据不同Dao层技术使用不同的实现类。</p>
+<ul>
+<li> <em>DataSourceTransactionManager</em></li>
+</ul>
+<pre><code> Jdbc or MyBatis 对应的实现类。
+</code></pre>
+<ol start="2">
+<li> <strong>TransacitonDefinition</strong></li>
+</ol>
+<p>   事务的定义对象，封装事务的隔离级别、传播行为、超时时间等属性。</p>
+<ul>
+<li><p><a href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">隔离级别</a></p>
+<p><code>ISOLATION_DEFAULT</code>：数据库默认级别</p>
+<p><code>ISOLATION_READ_UNCOMMITTED</code></p>
+<p><code>ISOLATION_READ_COMMITTED</code></p>
+<p><code>ISOLATION_REPEATABLE_READ</code></p>
+<p><code>ISOLATION_SERIALIZABLE</code></p>
+</li>
+<li><p>传播行为</p>
+<p><code>REQUIRED</code>：默认值，防止嵌套的两个事务发生，后一个事务会加入到前一个事务中。</p>
+<p><code>SUPPORTS</code>：后一个事务将不会开启</p>
+<p><code>MANDATORY</code>：强制加进入前一个事务中，没有前一个事务就报错</p>
+</li>
+</ul>
+<ol start="3">
+<li><p><strong>TransactionStatus</strong></p>
+<p> 事务的运行状态对象。是否完成、是否回滚等状态。</p>
+</li>
+</ol>
+<h5 id="XML声明式控制"><a href="#XML声明式控制" class="headerlink" title="XML声明式控制"></a>XML声明式控制</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置事务管理的增强方法--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--name可以使用通配符‘*’和字符串组合使用</span></span><br><span class="line"><span class="comment">			如‘update*’表示以update开头的所有方法名--&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;methodName&quot;</span> <span class="attr">isolation</span>=<span class="string">&quot;&quot;</span> <span class="attr">propogation</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--transactionManager需要注入到IOC容器中--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置增强方法的织入，使用aop--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--事务管理增强专用标签--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;tx:advice&quot;</span> <span class="attr">pointcut</span>=<span class="string">&quot;execution&quot;</span>/&gt;</span>	</span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tx:advice</td>
+<td>配置事务管理的通知，需指定transactionManager</td>
+</tr>
+<tr>
+<td>tx:attributes</td>
+<td>配置<a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E6%8E%A7%E5%88%B6">事务的属性</a>，具体由多个<a href="tx:method">tx:method</a>配置</td>
+</tr>
+<tr>
+<td>tx:method</td>
+<td>指定一个方法名，配置一个业务方法的属性，包括隔离级别等</td>
+</tr>
+<tr>
+<td>aop:advisor</td>
+<td>用于事务管理的aop增强方法，引用配置好的<a href="tx:advice">tx:advice</a>作为通知</td>
+</tr>
+</tbody></table>
+<p><em>配置事务属性时，只需指定方法名，不需要指定包名类名等，具体位置在织入时配置</em></p>
+<h5 id="注解声明式控制"><a href="#注解声明式控制" class="headerlink" title="注解声明式控制"></a>注解声明式控制</h5><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@EnableTransactionManagement</td>
+<td>在配置类中标注，表示开启spring事务管理</td>
+</tr>
+<tr>
+<td>@Transactional</td>
+<td>在方法或者类上标注，表示类下的方法都会被spring事务进行管理，可以加参数来配置<a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E6%8E%A7%E5%88%B6">事务的属性</a></td>
+</tr>
+</tbody></table>
+<p><em>使用注解配置时，driver会由spring自动配置，只需要将transactionManager放到IOC容器中</em></p>
+<h4 id="Spring-Junit"><a href="#Spring-Junit" class="headerlink" title="Spring-Junit"></a>Spring-Junit</h4><p>通过注解集成Junit</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@RunWith</td>
+<td>指定使用Spring内置的测试类</td>
+</tr>
+<tr>
+<td>@ContextConfiguration</td>
+<td>指定Spring配置文件、配置类</td>
+</tr>
+<tr>
+<td>@AutoWired</td>
+<td>从IOC容器中注入测试对象</td>
+</tr>
+</tbody></table>
+<h4 id="Spring-JdbcTemplate"><a href="#Spring-JdbcTemplate" class="headerlink" title="Spring-JdbcTemplate"></a>Spring-JdbcTemplate</h4><p>对<a href="#jdbc">JDBC</a> API的封装，使调用更加简单</p>
+<p>maven需要导入依赖<code>spring-jdbc</code>和<code>spring-tx</code></p>
+<p><strong>常用方法</strong></p>
+<ol>
+<li><p><code>setDataSource()</code>：设置连接池对象</p>
+</li>
+<li><p><code>update()</code>、<code>query()</code>：执行sql语句</p>
+</li>
+<li><p><code>RowMapper&lt;T&gt;</code>可以自动完成数据封装的接口，是<code>query()</code>的方法参数，对应实现类有 <code>BeanPropertyRowMapper&lt;T&gt;</code>，需要构造参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BeanPropertyRowMapper&lt;JavaBean&gt;(JavaBean.class)</span><br></pre></td></tr></table></figure>
+
+<p><code>query()</code>将返回<code>List&lt;T&gt;</code>类型的集合</p>
+</li>
+<li><p><code>queryForObject()</code>同<code>query()</code>一样，但是只返回一个对象</p>
+</li>
+<li><p> 查询简单对象只需要传入<code>Class&lt;T&gt;</code></p>
+</li>
+</ol>
+<p>可以使用IOC容器来创建jdbcTemplate、dataSource对象，完成参数的注入。</p>
+<h4 id="Spring-web"><a href="#Spring-web" class="headerlink" title="Spring-web"></a>Spring-web</h4><p>用于集成web环境的maven依赖<code>spring-web</code>，提供获取应用上下文（ApplicationContext）的工具类和监听器。获取的原理是在服务器启动时创建上下文并放入ServletContext域中，即可在服务器共享。方便在 <code>Servlet</code>中获取应用上下文，且可以避免多次创建带来的性能开销。</p>
+<ol>
+<li><p>web.xml中配置监听器<code>ContextLoaderListener</code></p>
+</li>
+<li><p>配置<code>&lt;context-param&gt;</code>指定applicationContext.xml/.class的路径</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>xx.xx.xx.ClassName<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果使用类配置则一定要指定下面的参数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextClass<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>org.springframework.web.context.support.AnnotationConfigWebApplicationContext<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用<code>WebApplicationContextUtils</code>获取上下文</p>
+</li>
+</ol>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p><a target="_blank" rel="noopener" href="https://github.com/838239178/springdemo">Spring+SpringMvc Demo</a></p>
+<p>属于web层框架，提供轻量级的MVC开发 ，核心是用<code>servlet</code>实现的前端控制器。该控制器执行servlet的共有行为，并调用特有行为servlet，称为 <code>Controller</code></p>
+<h4 id="组件解析"><a href="#组件解析" class="headerlink" title="组件解析"></a>组件解析</h4><h5 id="原理图解"><a href="#原理图解" class="headerlink" title="原理图解"></a>原理图解</h5><p><img src="https://i.loli.net/2021/02/26/OyFfPTpuwKC7jEo.jpg"></p>
+<h5 id="组件详解"><a href="#组件详解" class="headerlink" title="组件详解"></a>组件详解</h5><ul>
+<li><p>HandlerMapping</p>
+</li>
+<li><p>HandlerAdaptor</p>
+<p>执行对应的Controller，并把Controller的返回值包装成ModelAndView对象。</p>
+</li>
+<li><p>ModelAndView</p>
+<ul>
+<li><code>setViewName()</code>设置页面跳转的页面名称</li>
+<li><code>addObject()</code>设置request域中的参数</li>
+<li><code>new ModelAndView(JsonView, ModelMap)</code>用一个Map和JsonView对象创建Json数据视图</li>
+</ul>
+</li>
+<li><p>ViewResolver</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zmx729618/article/details/51554762">参考地址</a></p>
+<p>视图解析器，SpringMvc内部有很多解析器，默认使用的 <code>InternalResourceViewResolver</code>。主要作用是把一个ModelAndView解析为一个真正的视图。</p>
+<p>其中一种视图解析使用了一种拼接url的方式，内部规定了前缀(prefix)、后缀(suffix)，与视图的名称，如”index”，拼接后就得到视图URL了。url方式可以在<code>ViewName</code>中加上前缀指定，有”redirect:”和”forward:”，表示重定向和转发。视图解析器会把这些包装成View对象返回前端控制器。</p>
+</li>
+<li><p>View</p>
+<p>由解析器产生的对象，分为URL(jsp, jstl)、文档(excel, pdf)、报表、JSON。</p>
+</li>
+</ul>
+<h4 id="XML配置"><a href="#XML配置" class="headerlink" title="XML配置"></a>XML配置</h4><ol>
+<li><p>在<code>web.xml</code>中配置前端控制器<code>DispatcherServlet</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--设定SpringMVC配置文件的地址 使用类配置时要指定contextClass类型，同spring-web--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>配置文件地址<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用独立的<code>spring-mvc.xml</code>配置SpringMVC的各种属性</p>
+<ul>
+<li><p>配置组件，ViewResolver、HandleAdapter等</p>
+<p>用<code>&lt;bean&gt;</code>标签配置，同Spring一样 </p>
+</li>
+</ul>
+</li>
+<li><p><code>&lt;mvc:annotation-driven&gt;</code> 自动配置一些组件的属性</p>
+</li>
+</ol>
+<h4 id="注解配置"><a href="#注解配置" class="headerlink" title="注解配置"></a>注解配置</h4><p><a href="#%E6%B3%A8%E8%A7%A3%E5%BC%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5">Spring新注解也通用于SpringMVC</a></p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+<th align="left">参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@EnableWebMvc</td>
+<td>启用mvc注解驱动</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td>@RequestMapping</td>
+<td>请求映射地址，用于类或方法中</td>
+<td align="left">value：路径；method：请求方式；params：限定请求参数</td>
+</tr>
+<tr>
+<td>@GetMapping</td>
+<td>Request的细分</td>
+<td align="left">value：路径</td>
+</tr>
+<tr>
+<td>@PostMapping</td>
+<td>同上</td>
+<td align="left">同上</td>
+</tr>
+<tr>
+<td>@ResponseBody</td>
+<td>标注返回值到content中</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td>@RequestParam</td>
+<td>取request的参数</td>
+<td align="left">value：所需参数的名称; require：强制要求？;defaultValue：默认值</td>
+</tr>
+<tr>
+<td>@RequestBody</td>
+<td>标注方法参数上，注入JSON请求参数</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td>@PathVariable</td>
+<td>标注方法参数上，用于restful风格的参数</td>
+<td align="left">value；require；defaultValue; 同RequestParam</td>
+</tr>
+<tr>
+<td>@RequstHeader</td>
+<td>获取请求头数据</td>
+<td align="left">value; require;</td>
+</tr>
+</tbody></table>
+<p><strong>WebMvcConfigurer</strong></p>
+<p>Mvc配置类需要实现的接口，用于配置更多SpringMvc的属性，如资源解析、拦截器等。</p>
+<h5 id="注解配置web-xml"><a href="#注解配置web-xml" class="headerlink" title="注解配置web.xml"></a>注解配置web.xml</h5><p>配置web.xml的类需要实现接口<code>AbstractAnnotationConfigDispatcherServletInitializer</code>，并实现其中方法，Spring会自动查找该实现类来代替web.xml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 指定 ContextLoaderListener 所需的配置类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 指定mvc的核心配置类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 等同于设置 DispatcherServlet 的 url-pattern</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> String[] getServletMappings() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置过滤器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Filter[]&#123;</span><br><span class="line">        <span class="keyword">new</span> CharacterEncodingFilter(<span class="string">&quot;UTF-8&quot;</span>),</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据响应"><a href="#数据响应" class="headerlink" title="数据响应"></a>数据响应</h4><p>服务的的数据响应分为页面跳转和回写数据。</p>
+<h5 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h5><ol>
+<li><p>直接返回字符串，如页面的名称”index”，默认为转发</p>
+</li>
+<li><p>返回ModelAndView对象</p>
+<p>通过<code>setViewName()</code>指定页面名称，<code>addObject()</code>保存数据供<code>JSP</code>调用</p>
+<p>ModelAndView对象可以放在形参中，Spring会自动注入一个空的对象。</p>
+</li>
+</ol>
+<h5 id="回写数据"><a href="#回写数据" class="headerlink" title="回写数据"></a>回写数据</h5><ol>
+<li><p>ModelAndView</p>
+<p>Json数据内容由<code>LinkedHashMap</code>转化而来，Json转化驱动可以是<code>jackjson</code>、<code>fastjson</code>，需要添加maven依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="keyword">new</span> FastJsonJsonView(), map);</span><br></pre></td></tr></table></figure></li>
+<li><p>字符串</p>
+<p>方法上标注<code>@ResponseBody</code>表示返回值直接写入response的content。Json也可以作为字符串直接返回，使用json驱动转化。</p>
+</li>
+<li><p>对象或集合</p>
+<p>通过配置消息转换器，可以直接返回集合或者对象自动转化成Json字符串，同时要在方法上标注<code>@ResponseBody</code>。</p>
+<ul>
+<li><p>XML</p>
+<p>配置<code>RequestMappingHandlerAdapter</code>bean标签，把Json转化驱动注入<code>messageConverters</code>中。</p>
+</li>
+<li><p>注解、类配置</p>
+<p>在Mvc配置类中继承<code>WebMvcConfigurer</code>接口，实现以下方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureMessageConverters</span><span class="params">(List&lt;HttpMessageConverter&lt;?&gt;&gt; converters)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 此处配置FastJson</span></span><br><span class="line">    FastJsonConfig config = <span class="keyword">new</span> FastJsonConfig();</span><br><span class="line">    FastJsonHttpMessageConverter converter = <span class="keyword">new</span> FastJsonHttpMessageConverter();</span><br><span class="line">    config.setSerializerFeatures(</span><br><span class="line">        SerializerFeature.DisableCircularReferenceDetect,</span><br><span class="line">        SerializerFeature.WriteMapNullValue,</span><br><span class="line">        SerializerFeature.WriteNullStringAsEmpty</span><br><span class="line">    );</span><br><span class="line">    converter.setFastJsonConfig(config);</span><br><span class="line">    converters.add(converter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><em>*返回Map集合时，最好使用<strong>LinkedHashMap</strong>来保证Json内数据顺序不会乱掉</em></p>
+</li>
+</ol>
+<h5 id="获得请求参数"><a href="#获得请求参数" class="headerlink" title="获得请求参数"></a>获得请求参数</h5><ol>
+<li><p>spring自动注入方法的参数中</p>
+<p>限制：基本类型、数组和 Javabea(POJO)。集合对象（List等）需要包装到Bean中才能自动注入。当方法参数名与请求参数名一致时不需要加<code>@RequestParam</code></p>
+</li>
+<li><p><code>@RequestBody</code>直接接收request的参数数据</p>
+<p>注释在参数上，一般用于非表单的数据，如<code>application/json</code>、<code>application/xml</code></p>
+<p>用Json格式的数组作为<strong>请求参数</strong>，可以通过该标签直接注入到集合类型的<strong>方法参数</strong>中。</p>
+</li>
+<li><p>获得<a href="#Restful">Restful</a>风格的请求参数</p>
+<p>使用<code>@PathVariable</code>获取，具体使用如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequsetMapping(&quot;/api/&#123;id&#125;/&#123;name&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testController</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> <span class="keyword">int</span> id, <span class="meta">@PathVariable(&quot;name&quot;)</span> Stirng name)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>获取<strong>请求头</strong></p>
+<p>使用<code>@RequstHeader(name)</code>在方法参数中注入。</p>
+<p><code>@CookieValue</code>直接获取Cookie数据。</p>
+</li>
+</ol>
+<h5 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h5><p>Post Content类型为 <code>Multipart/form-data</code>时，需要借助第三方工具简化获取参数的过程。</p>
+<p>导入maven依赖 <code>commons-io</code>、<code>commons-fileupload</code></p>
+<p>SpringMvc获取到上传的文件时，会打包成<code>MulitpartFile</code>对象，因此用于获取文件的Controller方法需要有此类型的参数。</p>
+<p><strong>MultipartFile</strong></p>
+<ul>
+<li><code>getOriginFilename()</code>获取文件名</li>
+<li><code>transferTo(File)</code>通过IO保存本地或其他服务器</li>
+</ul>
+<h5 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h5><p>实现 <code>Convert&lt;S,D&gt;</code> 接口，并配置到SpringMvc中。接口泛型分别为转换前类型和转换后类型。 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.context.support.ConversionServiceFactoryBean&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;converters&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="静态资源访问"><a href="#静态资源访问" class="headerlink" title="静态资源访问"></a>静态资源访问</h4><p>当 spring-mvc 的 dispatcher-servlet 路径配置为<code>/</code>，访问资源时也会去寻找Handler，无法访问到资源文件。解决方法有两种，第一种是配置资源文件的映射，第二种是交由tomcat来寻找资源文件。</p>
+<ul>
+<li><p>XML配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--1.配置资源文件的映射--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resource</span> <span class="attr">mapping</span>=<span class="string">&quot;url&quot;</span> <span class="attr">location</span>=<span class="string">&quot;path&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!--2.启用默认servlet-handler管理资源文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>注解、类配置 </p>
+<p>在Mvc配置类中继承<code>WebMvcConfigurer</code>接口，实现以下方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureDefaultServletHandling</span><span class="params">(DefaultServletHandlerConfigurer configurer)</span> </span>&#123;</span><br><span class="line">     configurer.enable();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Session管理"><a href="#Session管理" class="headerlink" title="Session管理"></a>Session管理</h4><p>SpringMvc可以使用注解对Session进行一些简单的管理操作，如向session域中存入数据等。</p>
+<ol>
+<li><p><strong>方法一：</strong></p>
+<p>在Controller方法中使用HttpSession对象作为参数，Spring会自动注入。HttpSession能够同时完成添加、删除、查询Attribute的功能。</p>
+</li>
+<li><p><strong>方法二：</strong></p>
+<p>在Controller类上使用<code>@SessionAttributes</code>并指定参数为该类需要使用的AttributeNames，然后方法上的参数就可以使用<code>@ModelAttribute(name)</code>注入Session域的数据。在方法参数中使用Model类型，Spring会把该类的所有Session注入到Model对象中，因此也能够获取Session中的值，同时能够<strong>向Session中添加值</strong>。需要注意的是，使用该方法清除Session时，需要使用SessionStatus（作为方法参数，spring自动注入）的<code>SetComplete()</code>来清除，并且只会清除<code>@SessionAttributes</code>中标记的键值对。</p>
+</li>
+</ol>
+<p>:hand:<em>Spring官方文档中提出，对于用户登录验证的session最好使用<strong>方法一</strong></em></p>
+<h4 id="拦截器-Interceptor"><a href="#拦截器-Interceptor" class="headerlink" title="拦截器 Interceptor"></a>拦截器 Interceptor</h4><p>与Filter过滤器类似，用于预处理和后处理，原理为<a href="#AOP">AOP</a>。<strong>只对控制器方法进行拦截，不拦截资源访问</strong></p>
+<h5 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h5><p>实现<code>HandlerInterceptor</code>接口，并进行配置。</p>
+<ul>
+<li><p>类配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span></span>&#123;</span><br><span class="line">    registry.addInterceptor(interceptor).addPathPatterns(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>xml配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">bean</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>HandlerInterceptor</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行前拦截</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(req, resp, handler)</span></span>;	</span><br><span class="line"><span class="comment">// 执行后，返回前拦截</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(req,resp, handler, modelAndView)</span></span>;</span><br><span class="line"><span class="comment">// 流程完毕后拦截</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(req, resp, handler, exception)</span></span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>preHandle</code>返回为 <code>True</code> 时，后续操作才能执行。</li>
+<li><code>Handler</code>为控制器方法执行对象（Method）</li>
+</ol>
+</li>
+</ul>
+<h5 id="拦截器执行顺序"><a href="#拦截器执行顺序" class="headerlink" title="拦截器执行顺序"></a>拦截器执行顺序</h5><p>多个拦截器执行时，并非串行，而是嵌套的，也就是说拦截器执行链最后执行的方法时第一个拦截器的<code>afterCompletion</code>。执行的顺序与配置的顺序有关，先配置先执行。</p>
+<h4 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h4><p>把异常处理抽取出来，通过异常处理组件统一解决，在SpringMvc中异常处理可以由<code>DispatcherServlet</code>调用响应组件处理。</p>
+<h5 id="异常处理器"><a href="#异常处理器" class="headerlink" title="异常处理器"></a>异常处理器</h5><p><em>HandlerExceptionResolver</em></p>
+<ul>
+<li><p><strong>SimpleMappingExceptionResolver</strong></p>
+<p>框架自带的实现类。Mapping——发生异常时跳转到异常视图，映射关系通过配置完成。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.xx.x.SimpleMappingExceptionResolver&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;defalutErrorView&quot;</span> <span class="attr">vlaue</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;exceptionMappings&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="自定义异常处理器"><a href="#自定义异常处理器" class="headerlink" title="自定义异常处理器"></a>自定义异常处理器</h5><ul>
+<li><p>异常处理方法</p>
+<p>使用注解<code>@ExceptionHanlder</code>标注在方法上时，该方法为所在类的异常处理方法。</p>
+</li>
+<li><p>异常处理类</p>
+<p>使用注解<code>@ControllerAdvice</code>标注在类上时，该类为全局的异常处理类。类内的方法使用<code>@ExceptionHandler</code>标注的方法将用于处理发生的异常。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@ExceptionHanlder</td>
+<td>用于方法上，异常处理方法</td>
+<td>可以指定异常类，表示只处理个别异常</td>
+</tr>
+<tr>
+<td>@ControllerAdvice</td>
+<td>用于类上，全局的异常处理类</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p><em>*异常处理方法，会被当做一个Controller处理，因此其返回值最终会包装成ModelAndView对象，所以可以使用 <code>@ResponseBody</code>注解</em></p>
+<h4 id="使用MockMvc集成Junit"><a href="#使用MockMvc集成Junit" class="headerlink" title="使用MockMvc集成Junit"></a>使用MockMvc集成Junit</h4><p>由于SpringMvc面向web层，因此无法直接调用Controller组件进行测试。</p>
+<h5 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h5><ol>
+<li>在Junit测试类上注解<code>@WebAppConfiguration</code>引入Web层配置文件</li>
+<li>使用IOC注入<code>WebApplicationContext</code>对象</li>
+<li>使用<strong>MockMvcBuilders</strong>创建<strong>MockMvc</strong>对象，需要传入WebApplicationContext初始化</li>
+<li>使用MockMvc进行测试</li>
+</ol>
+<h5 id="MockMvc"><a href="#MockMvc" class="headerlink" title="MockMvc"></a>MockMvc</h5><p>MockMvc主要使用<code>perform()</code>方法向Controller发出请求，无需启动Tomcat服务器。<code>perfrom</code>方法的参数由<code>MockMvcRequestBuilders</code>创建，并返回一个<code>ResultActions</code>对象。</p>
+<ul>
+<li><code>MockMvcRequestBuilders</code>：创建一个模拟请求，有get或post类型，能够设置请求体和请求头参数</li>
+<li><code>ResultActions</code>：通常使用<code>andDo</code>方法输出请求和响应的所有信息，执行<code>andReturn</code>返回<code>MvcResult</code>结果对象</li>
+<li><code>MvcResult</code>：结果对象，包含request和response信息</li>
+</ul>
+<p><strong>测试样例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    MvcResult res = mockMvc.perform(</span><br><span class="line">        MockMvcRequestBuilders</span><br><span class="line">        .post(<span class="string">&quot;/user/login&quot;</span>)</span><br><span class="line">        .contentType(MediaType.APPLICATION_FORM_URLENCODED)</span><br><span class="line">        .characterEncoding(<span class="string">&quot;UTF-8&quot;</span>)</span><br><span class="line">        .param(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;zhangsan&quot;</span>)</span><br><span class="line">        .param(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;123&quot;</span>)</span><br><span class="line">    ).andDo(MockMvcResultHandlers.print()).andReturn();</span><br><span class="line">    System.out.println(res.getResponse().getContentAsString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mybatis-Spring"><a href="#Mybatis-Spring" class="headerlink" title="Mybatis-Spring"></a>Mybatis-Spring</h3><p>前置-关于Mybatis的详细内容：<a href="https://blog.pressed.top/myBatis">Mybatis原始教程</a></p>
+<p><strong>Maven</strong>：mybatis-spring</p>
+<h4 id="IOC注入"><a href="#IOC注入" class="headerlink" title="IOC注入"></a>IOC注入</h4><p>将Mybatis的<code>SqlSessionFactory</code>等对象配置到SpringIOC容器中。</p>
+<ol>
+<li><p>配置<code>SqlSessionFactory</code>，主要是配置其数据源<code>dataSource</code>和核心配置文件<code>configLocation</code>（非必须）</p>
+</li>
+<li><p>mapper组件扫描</p>
+<p>注解方式：</p>
+<ul>
+<li><code>@MapperScan(basepackage=&quot;&quot;)</code></li>
+</ul>
+<p>简洁方式：</p>
+<ul>
+<li><code>&lt;mybatis:scan base-package=&quot;&quot; /&gt;</code>，这个方式不需要额外注解，但是也支持配置自定义注解来限制其扫描范围，指定<code>annotation</code>为自定义的注解即可。以上两种方法将映射器(DAO)z注入到SpringIOC时，默认使用首字母小写作为Bean的名称，可以在自定义注解中设置<code>org.springframework.stereotype.Component</code> 这样的注解既可以作为标记，也可以作为一个名字提供器来使用了。</li>
+</ul>
+<p>经典方式（不推荐使用了）：</p>
+<ul>
+<li><pre><code class="xml">&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+    &lt;property name=&quot;basePackage&quot; value=&quot;xx.xx&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<p>配置完毕后即可使用依赖注入直接创建<code>DAO/Mapper</code>接口对象。</p>
+<h4 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h4><p>配置事务管理器<code>transactionManager</code>和事务增强，同样可以使用注解，<a href="#Spring%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6">同上文</a>。配置完成后就可以像使用JdbcTempelate一样进行事务管理。</p>
+<h3 id="ExtraDetail-1"><a href="#ExtraDetail-1" class="headerlink" title="ExtraDetail"></a>ExtraDetail</h3><h4 id="Properties-ResourceBundle"><a href="#Properties-ResourceBundle" class="headerlink" title="Properties/ResourceBundle"></a>Properties/ResourceBundle</h4><p>properties是一种键值对<code>key=value</code>储存文件，Java中自带的Properties类可以简单的读写properties文件，但是ResourceBundle类更好的支持了不同的语言，比前者要好一点。</p>
+<h4 id="Restful"><a href="#Restful" class="headerlink" title="Restful"></a>Restful</h4><p>Restful是一种软件架构、设计风格，提供了一些原则和约束，可以帮助软件设计变得更加简介有层次，更易于实现缓存机制等。Restful风格表现为“url+请求方式”来表现一次HTTP请求，特点是请求参数用<code>/</code>接在url后面，而不再使用<code>?</code>来表示请求参数。如：<code>http://url/api?id=1</code>使用restful风格后应该是<code>http://url/api/1</code>。</p>
+<p>Restful规定请求方式具有如下几个含义:</p>
+<ul>
+<li>GET 表示获取</li>
+<li>POST 表示新建</li>
+<li>PUT 表示更新</li>
+<li>DELETE 表示删除</li>
+</ul>
+<h4 id="FastJson"><a href="#FastJson" class="headerlink" title="FastJson"></a>FastJson</h4><p>由阿里巴巴开发的Json转化驱动。其中<code>FastJsonHttpMessageConverter</code>可以用于SpringMvc的消息转换器中。</p>
+<ul>
+<li><code>@JSONType</code>: 可以标注在类上，通过指定orders参数可以决定转化该类时解析属性的顺序。</li>
+<li><code>@JSONFiled</code>: 标注在成员变量上，可以指定转化后名称以及转化顺序。</li>
+</ul>
+<h2 id="五、-boat-SpringBoot"><a href="#五、-boat-SpringBoot" class="headerlink" title="五、:boat:SpringBoot"></a>五、:boat:SpringBoot</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.pressed.top/2021/03/12/javaweb/" data-id="ckm77mrjv000naghjdp7adno3" data-title="Java Web" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-web/" rel="tag">java web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/12/myBatis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          MyBatis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/21/springTxError/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">关于Spring事务管理失效问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm-c-c/" rel="tag">algorithm c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocos-tiledmap/" rel="tag">cocos tiledmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-swing/" rel="tag">java swing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/" rel="tag">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-ai/" rel="tag">web ai</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/algorithm-c-c/" style="font-size: 15px;">algorithm c/c++</a> <a href="/tags/cocos-tiledmap/" style="font-size: 10px;">cocos tiledmap</a> <a href="/tags/java-swing/" style="font-size: 15px;">java swing</a> <a href="/tags/java-web/" style="font-size: 20px;">java web</a> <a href="/tags/web-ai/" style="font-size: 10px;">web ai</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/12/myBatis/">MyBatis</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/12/javaweb/">Java Web</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/21/springTxError/">关于Spring事务管理失效问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/14/signUpBaiduOcr/">使用BaiduOcr识别图片文字</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/18/LinkGame/">LinkGame</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 ShiJh<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
