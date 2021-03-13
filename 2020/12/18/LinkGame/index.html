@@ -11,7 +11,7 @@
         
             LinkGame |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/java-swing/">java swing</a>&nbsp;
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/swing/">swing</a>&nbsp;
                     </li>
                 
             </ul>
@@ -236,24 +240,35 @@
         <div class="article-content markdown-body">
             <p>123</p>
 <span id="more"></span>
-
-<h1 id="《连连看》-Java课程设计方案"><a href="#《连连看》-Java课程设计方案" class="headerlink" title="《连连看》 Java课程设计方案"></a>《连连看》 Java课程设计方案</h1><blockquote>
-<p>项目已开源，请点击：<a target="_blank" rel="noopener" href="https://github.com/838239178/linkgame">GithubHomePage</a></p>
+<h1>《连连看》 Java课程设计方案</h1>
+<blockquote>
+<p>项目已开源，请点击：<a class="link"   target="_blank" rel="noopener" href="https://github.com/838239178/linkgame" >GithubHomePage<i class="fas fa-external-link-alt"></i></a></p>
 </blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li>目录<br>{:toc}</li>
+<h2 id="目录"><a class="header-anchor" href="#目录">○</a>目录</h2>
+<ul>
+<li>目录<br>
+{:toc}</li>
 </ul>
-<h2 id="Swing界面组成"><a href="#Swing界面组成" class="headerlink" title="Swing界面组成"></a>Swing界面组成</h2><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><h4 id="1-核心界面"><a href="#1-核心界面" class="headerlink" title="1.核心界面"></a>1.核心界面</h4><p>位于窗口中央，核心界面由n*n的方块组成，同种方块成对出现，并且是乱序的。每个方块一张图片，同类方块图片相同。方块间留足间隙满足观赏性。方块点击后应有方框标记。</p>
-<h4 id="2-信息栏"><a href="#2-信息栏" class="headerlink" title="2.信息栏"></a>2.信息栏</h4><p>位于窗口上方，提示栏包括游戏的标题和游戏的具体信息，包括游戏剩余时间(s)，时间进度条(%)和得分情况。</p>
+<h2 id="Swing界面组成"><a class="header-anchor" href="#Swing界面组成">○</a>Swing界面组成</h2>
+<h3 id="需求分析"><a class="header-anchor" href="#需求分析">○</a>需求分析</h3>
+<h4 id="1-核心界面"><a class="header-anchor" href="#1-核心界面">○</a>1.核心界面</h4>
+<p>位于窗口中央，核心界面由n*n的方块组成，同种方块成对出现，并且是乱序的。每个方块一张图片，同类方块图片相同。方块间留足间隙满足观赏性。方块点击后应有方框标记。</p>
+<h4 id="2-信息栏"><a class="header-anchor" href="#2-信息栏">○</a>2.信息栏</h4>
+<p>位于窗口上方，提示栏包括游戏的标题和游戏的具体信息，包括游戏剩余时间(s)，时间进度条(%)和得分情况。</p>
 <p>得分：根据时间、重置次数、消去方块得出。其中消去方块分最多为<code>(n^4/2)</code>分，在此基础上除以<code>消耗时间/(n/4)*重置次数*(提示次数*5)*0.1</code>。</p>
-<h4 id="3-菜单栏"><a href="#3-菜单栏" class="headerlink" title="3.菜单栏"></a>3.菜单栏</h4><p>位于窗口最上方横条，菜单栏应包含游戏暂停、游戏重开、游戏退出、方块再次打乱、提示方块和“关于”界面的选项，应使用菜单和子菜单组合。游戏退出后显示欢迎界面。</p>
-<h4 id="4-关于界面"><a href="#4-关于界面" class="headerlink" title="4.关于界面"></a>4.关于界面</h4><p>新的对话框，由菜单栏启动，内容应包含该项目的基本信息，包括作者、时间、项目名称、源码地址等。</p>
-<h4 id="5-欢迎界面"><a href="#5-欢迎界面" class="headerlink" title="5.欢迎界面"></a>5.欢迎界面</h4><p>可切换的界面，用于打开主界面。界面中应包括游戏标题、开始按钮、关于按钮和退出按钮。开始按钮点击后应显示难度选择按钮。</p>
-<h4 id="6-结算界面"><a href="#6-结算界面" class="headerlink" title="6.结算界面"></a>6.结算界面</h4><p>可切换的界面，显示得分和总消耗时间。包括退出、重开按钮。退出后显示欢迎界面。</p>
-<h4 id="界面结构图"><a href="#界面结构图" class="headerlink" title="界面结构图"></a>界面结构图</h4><div align=center><img src="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png" alt="界面结构" style="zoom:50%;" />
-
-
-<h3 id="类的封装"><a href="#类的封装" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="GameClient"><a href="#GameClient" class="headerlink" title="GameClient"></a>GameClient</h4><p><em>extends JFrame</em></p>
+<h4 id="3-菜单栏"><a class="header-anchor" href="#3-菜单栏">○</a>3.菜单栏</h4>
+<p>位于窗口最上方横条，菜单栏应包含游戏暂停、游戏重开、游戏退出、方块再次打乱、提示方块和“关于”界面的选项，应使用菜单和子菜单组合。游戏退出后显示欢迎界面。</p>
+<h4 id="4-关于界面"><a class="header-anchor" href="#4-关于界面">○</a>4.关于界面</h4>
+<p>新的对话框，由菜单栏启动，内容应包含该项目的基本信息，包括作者、时间、项目名称、源码地址等。</p>
+<h4 id="5-欢迎界面"><a class="header-anchor" href="#5-欢迎界面">○</a>5.欢迎界面</h4>
+<p>可切换的界面，用于打开主界面。界面中应包括游戏标题、开始按钮、关于按钮和退出按钮。开始按钮点击后应显示难度选择按钮。</p>
+<h4 id="6-结算界面"><a class="header-anchor" href="#6-结算界面">○</a>6.结算界面</h4>
+<p>可切换的界面，显示得分和总消耗时间。包括退出、重开按钮。退出后显示欢迎界面。</p>
+<h4 id="界面结构图"><a class="header-anchor" href="#界面结构图">○</a>界面结构图</h4>
+<div align=center><img src="http://assets.processon.com/chart_image/5fbe6589079129461564cb97.png" alt="界面结构" style="zoom:50%;" />
+<h3 id="类的封装"><a class="header-anchor" href="#类的封装">○</a>类的封装</h3>
+<h4 id="GameClient"><a class="header-anchor" href="#GameClient">○</a>GameClient</h4>
+<p><em>extends JFrame</em></p>
 <p>界面程序的本体，用于联络各个组件，控制游戏开始结束。</p>
 <p><strong>功能：</strong></p>
 <ul>
@@ -261,38 +276,46 @@
 <li>订阅组件的监听器，实现各种页面的切换。页面切换使用CardLayout实现。</li>
 <li>开始游戏和重开游戏，设定各个组件的初始参数。</li>
 </ul>
-<h4 id="EntryPanel"><a href="#EntryPanel" class="headerlink" title="EntryPanel"></a>EntryPanel</h4><p><em>extends JPanel</em></p>
+<h4 id="EntryPanel"><a class="header-anchor" href="#EntryPanel">○</a>EntryPanel</h4>
+<p><em>extends JPanel</em></p>
 <p>退出或者开始。记录选择的难度（地图规模、方块类数）。</p>
 <p><strong>功能：</strong></p>
 <ul>
 <li>提供获取所选难度的方法</li>
 <li>切换界面&gt;(GamePanel+MessagePanel)</li>
 </ul>
-<h4 id="OverPanel"><a href="#OverPanel" class="headerlink" title="OverPanel"></a>OverPanel</h4><p><em>extends JPanel</em></p>
+<h4 id="OverPanel"><a class="header-anchor" href="#OverPanel">○</a>OverPanel</h4>
+<p><em>extends JPanel</em></p>
 <p>结算界面，显示成功或者失败信息。</p>
 <p><strong>功能：</strong></p>
 <ul>
-<li><p>重开游戏&gt;GameClient(reopen)</p>
+<li>
+<p>重开游戏&gt;GameClient(reopen)</p>
 </li>
-<li><p>切换界面&gt;EntryPanel</p>
+<li>
+<p>切换界面&gt;EntryPanel</p>
 </li>
-<li><p>获取从MessagePanel中获取游戏信息</p>
+<li>
+<p>获取从MessagePanel中获取游戏信息</p>
 </li>
 </ul>
-<h4 id="MessagePanel"><a href="#MessagePanel" class="headerlink" title="MessagePanel"></a>MessagePanel</h4><p><em>extends JPanel</em></p>
+<h4 id="MessagePanel"><a class="header-anchor" href="#MessagePanel">○</a>MessagePanel</h4>
+<p><em>extends JPanel</em></p>
 <p>显示信息栏界面的内容。主要用于记录分数和时间。</p>
 <p><strong>功能：</strong></p>
 <ul>
 <li>各种参数的getter/setter方法。</li>
 <li>当<u>时间耗尽</u>时调用自定义监听器</li>
 </ul>
-<h4 id="GamePanel"><a href="#GamePanel" class="headerlink" title="GamePanel"></a>GamePanel</h4><p><em>extends JPanel</em></p>
+<h4 id="GamePanel"><a class="header-anchor" href="#GamePanel">○</a>GamePanel</h4>
+<p><em>extends JPanel</em></p>
 <p>使用Block对象填充GridLayout。根据GameMap对象提供的数据绘制Block，方块相消判定成功后绘制连线，记录数量。</p>
 <p><strong>功能：</strong></p>
 <ul>
 <li>为每一个Block添加MouseClicked监听器：被点击时传递自身的引用给GamePanel。</li>
 <li>使用GameMap判断两个坐标是否能连通后，若成功则<u>画线</u>并检测是否消除完全，失败则改变所选取的Block状态，并删除其引用。</li>
-<li>画线：<ol>
+<li>画线：
+<ol>
 <li>直接连通：直接使用两方块坐标画线</li>
 <li>单拐点：两方块坐标以及一个拐点，用三个点画线段。</li>
 <li>双拐点：两方块坐标以及两个拐点，用四个点画线段，应注意线段总是在X或Y轴方向上。</li>
@@ -302,7 +325,8 @@
 <li>提示两个可以相消的方块。</li>
 <li>当<u>消除一次方块</u>后调用自定义监听器。</li>
 </ul>
-<h4 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h4><p><em>extends JComponent</em></p>
+<h4 id="Block"><a class="header-anchor" href="#Block">○</a>Block</h4>
+<p><em>extends JComponent</em></p>
 <p>保存方块在Map上的下标。</p>
 <p><strong>功能：</strong></p>
 <ul>
@@ -310,53 +334,72 @@
 <li>被选取时，绘制方框</li>
 <li>id的getter</li>
 </ul>
-<h4 id="BlockFactory"><a href="#BlockFactory" class="headerlink" title="BlockFactory"></a>BlockFactory</h4><p>单例工厂类，用enum类型。</p>
+<h4 id="BlockFactory"><a class="header-anchor" href="#BlockFactory">○</a>BlockFactory</h4>
+<p>单例工厂类，用enum类型。</p>
 <p><strong>功能：</strong></p>
 <ul>
 <li>通过方块的id，生成一个带图片的Block对象。</li>
 <li>通过方块id，重置一个现成的Block对象。</li>
 </ul>
-<h4 id="Sound"><a href="#Sound" class="headerlink" title="Sound"></a>Sound</h4><p>音效对象，实现多线程播放音效。</p>
-<h4 id="AboutDialog"><a href="#AboutDialog" class="headerlink" title="AboutDialog"></a>AboutDialog</h4><p><em>extends JDialog</em></p>
+<h4 id="Sound"><a class="header-anchor" href="#Sound">○</a>Sound</h4>
+<p>音效对象，实现多线程播放音效。</p>
+<h4 id="AboutDialog"><a class="header-anchor" href="#AboutDialog">○</a>AboutDialog</h4>
+<p><em>extends JDialog</em></p>
 <p>显示关于该游戏以及该项目的信息。</p>
-<h4 id="ScaleIcon"><a href="#ScaleIcon" class="headerlink" title="ScaleIcon"></a>ScaleIcon</h4><p><em>implements Icon</em></p>
+<h4 id="ScaleIcon"><a class="header-anchor" href="#ScaleIcon">○</a>ScaleIcon</h4>
+<p><em>implements Icon</em></p>
 <p>实现图片随容器大小变化而变化</p>
-<h4 id="UMP类图"><a href="#UMP类图" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png" alt="类图1"></p>
-<h2 id="游戏逻辑构建"><a href="#游戏逻辑构建" class="headerlink" title="游戏逻辑构建"></a>游戏逻辑构建</h2><p>游戏逻辑主要在于方块数据处理和判断两个方块是否能消去。</p>
-<h3 id="需求分析-1"><a href="#需求分析-1" class="headerlink" title="需求分析"></a>需求分析</h3><p>假设地图规模大小为<code>n*n</code>，方块种类为<code>i</code>种</p>
-<h4 id="1-记录方块分布数据"><a href="#1-记录方块分布数据" class="headerlink" title="1.记录方块分布数据"></a>1.记录方块分布数据</h4><p>一个二维数组，不同的ID对应不同的方块，同一个ID应成对出现。空白方块使用特殊标记。</p>
-<h4 id="2-操作方块分布数据"><a href="#2-操作方块分布数据" class="headerlink" title="2.操作方块分布数据"></a>2.操作方块分布数据</h4><p>重新打乱二维数组中的数据，应注意只能打乱非空白方块的数据，空白的位置应保持不变。</p>
+<h4 id="UMP类图"><a class="header-anchor" href="#UMP类图">○</a>UMP类图</h4>
+<p><img src="http://assets.processon.com/chart_image/5fe47efae401fd549c80026b.png" alt="类图1"></p>
+<h2 id="游戏逻辑构建"><a class="header-anchor" href="#游戏逻辑构建">○</a>游戏逻辑构建</h2>
+<p>游戏逻辑主要在于方块数据处理和判断两个方块是否能消去。</p>
+<h3 id="需求分析-v2"><a class="header-anchor" href="#需求分析-v2">○</a>需求分析</h3>
+<p>假设地图规模大小为<code>n*n</code>，方块种类为<code>i</code>种</p>
+<h4 id="1-记录方块分布数据"><a class="header-anchor" href="#1-记录方块分布数据">○</a>1.记录方块分布数据</h4>
+<p>一个二维数组，不同的ID对应不同的方块，同一个ID应成对出现。空白方块使用特殊标记。</p>
+<h4 id="2-操作方块分布数据"><a class="header-anchor" href="#2-操作方块分布数据">○</a>2.操作方块分布数据</h4>
+<p>重新打乱二维数组中的数据，应注意只能打乱非空白方块的数据，空白的位置应保持不变。</p>
 <p>判断两个方块是否能够相消，以何种方式相消。</p>
 <p>遍历查找两个可连通的点。</p>
 <p>传出和修改对应点的方块ID。</p>
-<h4 id="3-生成方块分布数据"><a href="#3-生成方块分布数据" class="headerlink" title="3.生成方块分布数据"></a>3.生成方块分布数据</h4><p>根据地图大小，创建一个二维数组，并在里面随机添加方块的ID。每种类型的方块添加<code>(n*n)/i</code>个，共<code>(n*n)/2i</code>组。根据需求<code>i == n</code></p>
-<h3 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h3><p>按照连连看规则——可连接的两个方块之间最多用三条直线相连——可以分类为三种判定方式。在判定过程中应注意边界问题。</p>
-<h4 id="1-直接连通"><a href="#1-直接连通" class="headerlink" title="1.直接连通"></a>1.直接连通</h4><p>即两个方块间可以用一条直线连接。处在同一行或者同一列且中间没有其他方块。</p>
-<h4 id="2-单拐点连通"><a href="#2-单拐点连通" class="headerlink" title="2.单拐点连通"></a>2.单拐点连通</h4><p>即两个方块间可以用两条线段连接。以两个方块为顶点得到一个矩形，矩形的另外两个顶点中，任意一个可以<strong>空白顶点</strong>，与这两个方块都可以<strong>直接连通</strong>，则可连接。</p>
-<h4 id="3-双拐点连通"><a href="#3-双拐点连通" class="headerlink" title="3.双拐点连通"></a>3.双拐点连通</h4><p>即两个方块间可以用三条线段连接。搜索其中一个方块周围四个方向空白的点，若任意一个可以<strong>直接连通</strong>点，能与另一个方块单拐点连通，则能够连通。</p>
-<h4 id="4-寻找连通点"><a href="#4-寻找连通点" class="headerlink" title="4.寻找连通点"></a>4.寻找连通点</h4><h5 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h5><p><em>暴力求解，<strong>不推荐</strong></em></p>
+<h4 id="3-生成方块分布数据"><a class="header-anchor" href="#3-生成方块分布数据">○</a>3.生成方块分布数据</h4>
+<p>根据地图大小，创建一个二维数组，并在里面随机添加方块的ID。每种类型的方块添加<code>(n*n)/i</code>个，共<code>(n*n)/2i</code>组。根据需求<code>i == n</code></p>
+<h3 id="核心算法"><a class="header-anchor" href="#核心算法">○</a>核心算法</h3>
+<p>按照连连看规则——可连接的两个方块之间最多用三条直线相连——可以分类为三种判定方式。在判定过程中应注意边界问题。</p>
+<h4 id="1-直接连通"><a class="header-anchor" href="#1-直接连通">○</a>1.直接连通</h4>
+<p>即两个方块间可以用一条直线连接。处在同一行或者同一列且中间没有其他方块。</p>
+<h4 id="2-单拐点连通"><a class="header-anchor" href="#2-单拐点连通">○</a>2.单拐点连通</h4>
+<p>即两个方块间可以用两条线段连接。以两个方块为顶点得到一个矩形，矩形的另外两个顶点中，任意一个可以<strong>空白顶点</strong>，与这两个方块都可以<strong>直接连通</strong>，则可连接。</p>
+<h4 id="3-双拐点连通"><a class="header-anchor" href="#3-双拐点连通">○</a>3.双拐点连通</h4>
+<p>即两个方块间可以用三条线段连接。搜索其中一个方块周围四个方向空白的点，若任意一个可以<strong>直接连通</strong>点，能与另一个方块单拐点连通，则能够连通。</p>
+<h4 id="4-寻找连通点"><a class="header-anchor" href="#4-寻找连通点">○</a>4.寻找连通点</h4>
+<h5 id="方案一"><a class="header-anchor" href="#方案一">○</a>方案一</h5>
+<p><em>暴力求解，<strong>不推荐</strong></em></p>
 <p>四重循环，遍历每一个方块，起点遍历一次，终点遍历一次，判断起点和终点的连通性。</p>
-<h5 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h5><p><em>广搜</em></p>
+<h5 id="方案二"><a class="header-anchor" href="#方案二">○</a>方案二</h5>
+<p><em>广搜</em></p>
 <p>对每个方块进行广搜判断，两种判断方法</p>
 <ol>
 <li>方向改变不大于三次内可以找到的终点即可以连通，连通类型根据方向改变次数可以得出，拐点和方向改变次数每一次搜索都需要记录。<em>（稍微麻烦，但速度快一点）</em></li>
 <li>对找到的终点进行连通性判断，不需要额外记录。<em>（简单，相对慢一点，<strong>推荐</strong>）</em></li>
 </ol>
-<h4 id="5-数据随机"><a href="#5-数据随机" class="headerlink" title="5.数据随机"></a>5.数据随机</h4><p>将所有决定好的方块ID放入一个容器中进行混排，每次随机从容器中抛出一个ID设置在Map上，<strong>容器内的ID不能重复抛出</strong>。</p>
-<h4 id="判断流程图"><a href="#判断流程图" class="headerlink" title="判断流程图"></a>判断流程图</h4><div align=left><img src="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png" alt="判断顺序" style="zoom:65%;" />
-
-
-
-<h4 id="连通示意图"><a href="#连通示意图" class="headerlink" title="连通示意图"></a>连通示意图</h4><div align=center><img src="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png" alt="判断顺序" style="zoom:80%;" />
-
-<h3 id="类的封装-1"><a href="#类的封装-1" class="headerlink" title="类的封装"></a>类的封装</h3><h4 id="LinkType"><a href="#LinkType" class="headerlink" title="LinkType"></a>LinkType</h4><p>枚举类型，表示四种方块的连通方式（包括一种无法连通）。</p>
+<h4 id="5-数据随机"><a class="header-anchor" href="#5-数据随机">○</a>5.数据随机</h4>
+<p>将所有决定好的方块ID放入一个容器中进行混排，每次随机从容器中抛出一个ID设置在Map上，<strong>容器内的ID不能重复抛出</strong>。</p>
+<h4 id="判断流程图"><a class="header-anchor" href="#判断流程图">○</a>判断流程图</h4>
+<div align=left><img src="http://assets.processon.com/chart_image/5fb9fe8b6376895bf97aa12a.png" alt="判断顺序" style="zoom:65%;" />
+<h4 id="连通示意图"><a class="header-anchor" href="#连通示意图">○</a>连通示意图</h4>
+<div align=center><img src="https://i.loli.net/2020/11/22/mxpfO8b29MYSCET.png" alt="判断顺序" style="zoom:80%;" />
+<h3 id="类的封装-v2"><a class="header-anchor" href="#类的封装-v2">○</a>类的封装</h3>
+<h4 id="LinkType"><a class="header-anchor" href="#LinkType">○</a>LinkType</h4>
+<p>枚举类型，表示四种方块的连通方式（包括一种无法连通）。</p>
 <ul>
 <li>STRAIGHT_LINK</li>
 <li>SINGLECORNER_LINK</li>
 <li>DOUBLECORNER_LINK</li>
 <li>NO_LINK</li>
 </ul>
-<h4 id="GameMap"><a href="#GameMap" class="headerlink" title="GameMap"></a>GameMap</h4><p>保存方块数据的类。负责判断连通，提供数据和信号给界面程序。构造时应指定地图大小和方块ID最大值。</p>
+<h4 id="GameMap"><a class="header-anchor" href="#GameMap">○</a>GameMap</h4>
+<p>保存方块数据的类。负责判断连通，提供数据和信号给界面程序。构造时应指定地图大小和方块ID最大值。</p>
 <p>接口：</p>
 <ul>
 <li>判断是否连通的方法，并记录所有拐点，返回<u>LinkResult</u>。</li>
@@ -366,7 +409,8 @@
 <li>重新随机地图的方法。</li>
 <li>自动寻找两个可相消的点。成功返回一个<u>LinkResult</u>，失败抛出RuntimException（或自定义一个Exception）。</li>
 </ul>
-<h4 id="LinkResult"><a href="#LinkResult" class="headerlink" title="LinkResult"></a>LinkResult</h4><p>自定义封装类，用于返回五个参数（初始化为null），为每个参数设置一个getter/setter。</p>
+<h4 id="LinkResult"><a class="header-anchor" href="#LinkResult">○</a>LinkResult</h4>
+<p>自定义封装类，用于返回五个参数（初始化为null），为每个参数设置一个getter/setter。</p>
 <ul>
 <li>fristPoint</li>
 <li>secondPoint</li>
@@ -374,7 +418,8 @@
 <li>secondCorner</li>
 <li>linkType</li>
 </ul>
-<h4 id="UMP类图-1"><a href="#UMP类图-1" class="headerlink" title="UMP类图"></a>UMP类图</h4><p><img src="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png" alt="类图2"></p>
+<h4 id="UMP类图-v2"><a class="header-anchor" href="#UMP类图-v2">○</a>UMP类图</h4>
+<p><img src="http://assets.processon.com/chart_image/5fed810ff346fb432bcf475a.png" alt="类图2"></p>
 
         </div>
 
@@ -589,7 +634,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8A%E8%BF%9E%E8%BF%9E%E7%9C%8B%E3%80%8B-Java%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-text">《连连看》 Java课程设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swing%E7%95%8C%E9%9D%A2%E7%BB%84%E6%88%90"><span class="nav-text">Swing界面组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E7%95%8C%E9%9D%A2"><span class="nav-text">1.核心界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BF%A1%E6%81%AF%E6%A0%8F"><span class="nav-text">2.信息栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%8F%9C%E5%8D%95%E6%A0%8F"><span class="nav-text">3.菜单栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B3%E4%BA%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">4.关于界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">5.欢迎界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%BB%93%E7%AE%97%E7%95%8C%E9%9D%A2"><span class="nav-text">6.结算界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">界面结构图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GameClient"><span class="nav-text">GameClient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EntryPanel"><span class="nav-text">EntryPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OverPanel"><span class="nav-text">OverPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MessagePanel"><span class="nav-text">MessagePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GamePanel"><span class="nav-text">GamePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Block"><span class="nav-text">Block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BlockFactory"><span class="nav-text">BlockFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sound"><span class="nav-text">Sound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AboutDialog"><span class="nav-text">AboutDialog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScaleIcon"><span class="nav-text">ScaleIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%9E%84%E5%BB%BA"><span class="nav-text">游戏逻辑构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-1"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%AE%B0%E5%BD%95%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">1.记录方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">2.操作方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">3.生成方块分布数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-text">核心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9B%B4%E6%8E%A5%E8%BF%9E%E9%80%9A"><span class="nav-text">1.直接连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8D%95%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">2.单拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%8C%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">3.双拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AF%BB%E6%89%BE%E8%BF%9E%E9%80%9A%E7%82%B9"><span class="nav-text">4.寻找连通点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-text">方案二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%95%B0%E6%8D%AE%E9%9A%8F%E6%9C%BA"><span class="nav-text">5.数据随机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">判断流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-text">连通示意图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85-1"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkType"><span class="nav-text">LinkType</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GameMap"><span class="nav-text">GameMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkResult"><span class="nav-text">LinkResult</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE-1"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">《连连看》 Java课程设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swing%E7%95%8C%E9%9D%A2%E7%BB%84%E6%88%90"><span class="nav-text">Swing界面组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E7%95%8C%E9%9D%A2"><span class="nav-text">1.核心界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BF%A1%E6%81%AF%E6%A0%8F"><span class="nav-text">2.信息栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%8F%9C%E5%8D%95%E6%A0%8F"><span class="nav-text">3.菜单栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B3%E4%BA%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">4.关于界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2"><span class="nav-text">5.欢迎界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%BB%93%E7%AE%97%E7%95%8C%E9%9D%A2"><span class="nav-text">6.结算界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">界面结构图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GameClient"><span class="nav-text">GameClient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EntryPanel"><span class="nav-text">EntryPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OverPanel"><span class="nav-text">OverPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MessagePanel"><span class="nav-text">MessagePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GamePanel"><span class="nav-text">GamePanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Block"><span class="nav-text">Block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BlockFactory"><span class="nav-text">BlockFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sound"><span class="nav-text">Sound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AboutDialog"><span class="nav-text">AboutDialog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScaleIcon"><span class="nav-text">ScaleIcon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%9E%84%E5%BB%BA"><span class="nav-text">游戏逻辑构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90-v2"><span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%AE%B0%E5%BD%95%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">1.记录方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">2.操作方块分布数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90%E6%96%B9%E5%9D%97%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE"><span class="nav-text">3.生成方块分布数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-text">核心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9B%B4%E6%8E%A5%E8%BF%9E%E9%80%9A"><span class="nav-text">1.直接连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8D%95%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">2.单拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%8C%E6%8B%90%E7%82%B9%E8%BF%9E%E9%80%9A"><span class="nav-text">3.双拐点连通</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AF%BB%E6%89%BE%E8%BF%9E%E9%80%9A%E7%82%B9"><span class="nav-text">4.寻找连通点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80"><span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C"><span class="nav-text">方案二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%95%B0%E6%8D%AE%E9%9A%8F%E6%9C%BA"><span class="nav-text">5.数据随机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">判断流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-text">连通示意图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B0%81%E8%A3%85-v2"><span class="nav-text">类的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkType"><span class="nav-text">LinkType</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GameMap"><span class="nav-text">GameMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkResult"><span class="nav-text">LinkResult</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UMP%E7%B1%BB%E5%9B%BE-v2"><span class="nav-text">UMP类图</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -641,6 +686,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 

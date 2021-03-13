@@ -11,7 +11,7 @@
         
             关于Spring事务管理失效问题 |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/java-web/">java web</a>&nbsp;
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/web/">web</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>895 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>904 字</span>
         </span>
     
     
@@ -234,38 +238,35 @@
         
 
         <div class="article-content markdown-body">
-            <p>123</p>
+            <p>spring事务管理与AOP中的神坑</p>
 <span id="more"></span>
 <h1>关于Spring事务管理失效问题</h1>
-<h2 id="前言">前言</h2>
+<h2 id="前言"><a class="header-anchor" href="#前言">○</a>前言</h2>
 <p>学习 <a href="https://blog.pressed.top/javaweb">Java Web</a>学到了Spring的事务管理，在实际使用过程中发现，<code>@Transcational</code>与 <code>@EnableTranscationManagement</code> 组合使用时，出现了事务管理失效、无法回滚的问题，在网上搜索一番依然无法得到答案，后来在自己的冥思苦想下联想起Spring事务管理本质时AOP的结论时恍然大悟，于是通过逐个注释来测试其他切面的方法终于得到答案——环绕通知导致了无法进行事务回滚！</p>
-<h2 id="原因分析">原因分析</h2>
+<h2 id="原因分析"><a class="header-anchor" href="#原因分析">○</a>原因分析</h2>
 <p>得知无法进行事务管理的原因是环绕通知时，我开始思考原因，通过查阅网上资料，得知Spring执行AOP切面遵循着一定的顺序，而这个顺序是由 <code>Order</code> 属性决定的！然后我就通过更改<code>Order</code>的方式对环绕通知的切面和事务管理切面进行测试，最终得出原因为<strong>事务切面的优先级高于环绕通知切面的优先级时，事务管理无法执行（回滚）</strong></p>
-<h2 id="解决办法">解决办法</h2>
-<h3 id="快速解决办法">快速解决办法</h3>
+<h2 id="解决办法"><a class="header-anchor" href="#解决办法">○</a>解决办法</h2>
+<h3 id="快速解决办法"><a class="header-anchor" href="#快速解决办法">○</a>快速解决办法</h3>
 <p>解决办法由上文非常容易得知，需要通过以下方法修改<code>Order</code>的值，需要注意的是该值越大，优先级越低，而事务切面默认值为<code>Integer.MAX_VALUE</code>，默认是优先级最低的，但是同样的其他Aspect默认值也是<code>Integral.MAX_VALAUE</code>，具体原因本人愚昧未知。所以说以下配置可以忽略事务管理切面的优先级Order的配置，只更改其他Aspect的Order。</p>
-<h4 id="XML式配置">XML式配置</h4>
+<h4 id="XML式配置"><a class="header-anchor" href="#XML式配置">○</a>XML式配置</h4>
 <p>在以下两个标签中添加配置order属性值</p>
-<pre><code class="language-xml">&lt;aop:advisor order=&quot;&quot; /&gt;
-&lt;aop:around order=&quot;&quot; /&gt;
-</code></pre>
-<h4 id="注解式配置">注解式配置</h4>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span>
+<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span></code></pre>
+<h4 id="注解式配置"><a class="header-anchor" href="#注解式配置">○</a>注解式配置</h4>
 <p>普通切面类通过<code>@Order</code> 注释传入一个<code>int</code>值即可</p>
-<pre><code class="language-java">@Component
-@Aspect
-@Order(10086)
-public class MyAspect &#123;&#125;
-</code></pre>
+<pre><code class="highlight java"><span class="meta">@Component</span>
+<span class="meta">@Aspect</span>
+<span class="meta">@Order(10086)</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;&#125;</code></pre>
 <p>事务管理切面需要在<code>@EnableTranscationManagement</code>中配置<code>order</code>参数</p>
-<pre><code class="language-java">@EnableTransactionManagement(order = 1008611)
-@Configuration
-public class SpringConfiguration &#123;&#125;
-</code></pre>
-<h3 id="优雅的解决办法">优雅的解决办法</h3>
+<pre><code class="highlight java"><span class="meta">@EnableTransactionManagement(order = 1008611)</span>
+<span class="meta">@Configuration</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>&#123;&#125;</code></pre>
+<h3 id="优雅的解决办法"><a class="header-anchor" href="#优雅的解决办法">○</a>优雅的解决办法</h3>
 <p>如果按照以上方法配置Order难免会在项目越来越大的情况变得难以管理，因为是耦合在代码上的所以不利于管理，所以我们最优雅的解决办法是使用.<code>properties</code>配置文件。</p>
-<h4 id="XML配置">XML配置</h4>
+<h4 id="XML配置"><a class="header-anchor" href="#XML配置">○</a>XML配置</h4>
 <p>这个就是引用properties罢了，没什么好讲的，学过Spring XML配置都应该知道如何引入properties文件然后通过<code>$&#123;keyName&#125;</code>访问。</p>
-<h4 id="注解配置">注解配置</h4>
+<h4 id="注解配置"><a class="header-anchor" href="#注解配置">○</a>注解配置</h4>
 <p>因为注解配置使用的是<code>Java</code>代码，且本人暂未发现Spring框架本身对Order批量管理的支持，所以只好自己想一套简单但又良好的方法，从贴合框架啊本身的角度来讲，使用XML配置更符合🍃Spring框架的生态。</p>
 <ol>
 <li>
@@ -273,21 +274,20 @@ public class SpringConfiguration &#123;&#125;
 </li>
 <li>
 <p>让你的Aspect类继承<code>org.springframework.core.Ordered</code>接口并按照如下来实现接口方法</p>
-<pre><code class="language-java">@Component
-@Aspect
-public class MyAspect implements Ordered &#123;
-    @Value(&quot;$&#123;keyName&#125;&quot;)
-    private int order;
+<pre><code class="highlight java"><span class="meta">@Component</span>
+<span class="meta">@Aspect</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> <span class="keyword">implements</span> <span class="title">Ordered</span> </span>&#123;
+    <span class="meta">@Value(&quot;$&#123;keyName&#125;&quot;)</span>
+    <span class="keyword">private</span> <span class="keyword">int</span> order;
 
-    @Override
-    public int getOrder() &#123;
-        return this.order;
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">return</span> <span class="keyword">this</span>.order;
     &#125;
-&#125;
-</code></pre>
+&#125;</code></pre>
 </li>
 </ol>
-<h4 id="关于解决方法">关于解决方法</h4>
+<h4 id="关于解决方法"><a class="header-anchor" href="#关于解决方法">○</a>关于解决方法</h4>
 <p>注解配置的解决方法可能不够完美，但是也很好的进行解耦了，还有一些比较方便的方法但是实现难度较大，比如动态代理注解，用类名代替注解内的参数，来避免每次创建类都要用<code>@Value</code>注入order，然后就可以再配置文件中直接使用类名作为<code>key</code>配置Order了，目前动态代理注释的方法仍不清楚，所以暂时放弃这种方案。</p>
 
         </div>
@@ -555,6 +555,8 @@ public class MyAspect implements Ordered &#123;
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 

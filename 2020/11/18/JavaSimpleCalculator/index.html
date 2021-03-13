@@ -11,7 +11,7 @@
         
             Java Simple Calculator |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/java-swing/">java swing</a>&nbsp;
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/swing/">swing</a>&nbsp;
                     </li>
                 
             </ul>
@@ -236,160 +240,168 @@
         <div class="article-content markdown-body">
             <p>123</p>
 <span id="more"></span>
-
-
-<h1 id="简易计算器"><a href="#简易计算器" class="headerlink" title="简易计算器"></a>简易计算器</h1><h2 id="程序解释"><a href="#程序解释" class="headerlink" title="程序解释"></a>程序解释</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><p>从类的设计的角度上来讲，计算器应该是界面与操作分离，由界面程序获取操作数并传递给计算程序，从计算程序中获取结果。</p>
-<h3 id="类的设计"><a href="#类的设计" class="headerlink" title="类的设计"></a>类的设计</h3><ol>
-<li><p>Calculator</p>
+<h1>简易计算器</h1>
+<h2 id="程序解释"><a class="header-anchor" href="#程序解释">○</a>程序解释</h2>
+<h3 id="原理详解"><a class="header-anchor" href="#原理详解">○</a>原理详解</h3>
+<p>从类的设计的角度上来讲，计算器应该是界面与操作分离，由界面程序获取操作数并传递给计算程序，从计算程序中获取结果。</p>
+<h3 id="类的设计"><a class="header-anchor" href="#类的设计">○</a>类的设计</h3>
+<ol>
+<li>
+<p>Calculator</p>
 <p>用于计算的类，传入操作数和操作符后可获取结果，运算错误抛出异常。</p>
 </li>
-<li><p>Calculator Frame</p>
+<li>
+<p>Calculator Frame</p>
 <p>计算器的界面类，提供操作数和操作符。</p>
 </li>
 </ol>
-<h2 id="结构解析"><a href="#结构解析" class="headerlink" title="结构解析"></a>结构解析</h2><p>Calculator类采用两个堆栈分别存放运算数和操作符，在计算时从中抛出操作数与操作符。对小数和负数，采用标记位进行判断。</p>
+<h2 id="结构解析"><a class="header-anchor" href="#结构解析">○</a>结构解析</h2>
+<p>Calculator类采用两个堆栈分别存放运算数和操作符，在计算时从中抛出操作数与操作符。对小数和负数，采用标记位进行判断。</p>
 <p>小数：当输入了小数点“.“后，记录接下来输入数字的个数，在数字输入结束后（即输入操作符）时，将栈中的第一位数抛出并转化为小数</p>
-<p>负数：当输入了”neg”标记后，同上，在同一时刻转化成负数</p>
+<p>负数：当输入了”neg&quot;标记后，同上，在同一时刻转化成负数</p>
 <p>输入数字或者操作符后，自动检查堆栈元素进行计算，因此这个简易计算器在按下“=”前，在特定情况下，会先计算部分算式；</p>
-<p><del><em>另一种思路：输入的任何符号都先记录起来等按下“=”时再进行读取数字和操作符进行运算</em></del></p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>因为即时运算的原因，计算器无法实现单步删除功能，只能直接清空重置计算器。代码可拓展性差，添加新的操作符运算可能需要改动部分原有逻辑。</p>
-<p><del>要不要改？卧槽，我懒啊！</del></p>
-<h3 id="源码展示"><a href="#源码展示" class="headerlink" title="源码展示"></a>源码展示</h3><h6 id="Calculator-java"><a href="#Calculator-java" class="headerlink" title="Calculator.java"></a>Calculator.java</h6><pre><code class="java">package calculator;
+<p><s><em>另一种思路：输入的任何符号都先记录起来等按下“=”时再进行读取数字和操作符进行运算</em></s></p>
+<h3 id="缺点"><a class="header-anchor" href="#缺点">○</a>缺点</h3>
+<p>因为即时运算的原因，计算器无法实现单步删除功能，只能直接清空重置计算器。代码可拓展性差，添加新的操作符运算可能需要改动部分原有逻辑。</p>
+<p><s>要不要改？卧槽，我懒啊！</s></p>
+<h3 id="源码展示"><a class="header-anchor" href="#源码展示">○</a>源码展示</h3>
+<h6 id="Calculator-java"><a class="header-anchor" href="#Calculator-java">○</a>Calculator.java</h6>
+<pre><code class="highlight java"><span class="keyword">package</span> calculator;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
+<span class="keyword">import</span> com.sun.xml.internal.ws.api.ha.StickyFeature;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+<span class="keyword">import</span> java.math.BigDecimal;
+<span class="keyword">import</span> java.util.Arrays;
+<span class="keyword">import</span> java.util.HashMap;
+<span class="keyword">import</span> java.util.LinkedList;
+<span class="keyword">import</span> java.util.List;
 
-public class Calculator &#123;
-    private final HashMap&lt;String, Integer&gt; operatorPriority;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;
+    <span class="keyword">private</span> <span class="keyword">final</span> HashMap&lt;String, Integer&gt; operatorPriority;
 
-    private final LinkedList&lt;Double&gt; numberStack;
-    private final LinkedList&lt;String&gt; operatorStack;
+    <span class="keyword">private</span> <span class="keyword">final</span> LinkedList&lt;Double&gt; numberStack;
+    <span class="keyword">private</span> <span class="keyword">final</span> LinkedList&lt;String&gt; operatorStack;
 
-    /**
-     * 是否开始输入下一个数字
-     */
-    private boolean nextNum;
-    /**
-     * 是否已经完成了一次计算
-     */
-    private boolean calculated;
-    /**
-     * 是否输入了小数
-     */
-    private boolean decimal;
-    private int decimalDigits;
-    /**
-     * 是否输入了负数
-     */
-    private boolean negative;
+    <span class="comment">/**</span>
+<span class="comment">     * 是否开始输入下一个数字</span>
+<span class="comment">     */</span>
+    <span class="keyword">private</span> <span class="keyword">boolean</span> nextNum;
+    <span class="comment">/**</span>
+<span class="comment">     * 是否已经完成了一次计算</span>
+<span class="comment">     */</span>
+    <span class="keyword">private</span> <span class="keyword">boolean</span> calculated;
+    <span class="comment">/**</span>
+<span class="comment">     * 是否输入了小数</span>
+<span class="comment">     */</span>
+    <span class="keyword">private</span> <span class="keyword">boolean</span> decimal;
+    <span class="keyword">private</span> <span class="keyword">int</span> decimalDigits;
+    <span class="comment">/**</span>
+<span class="comment">     * 是否输入了负数</span>
+<span class="comment">     */</span>
+    <span class="keyword">private</span> <span class="keyword">boolean</span> negative;
 
-    public Calculator() &#123;
-        operatorPriority = new HashMap&lt;&gt;();
-        numberStack = new LinkedList&lt;&gt;();
-        operatorStack = new LinkedList&lt;&gt;();
+    <span class="function"><span class="keyword">public</span> <span class="title">Calculator</span><span class="params">()</span> </span>&#123;
+        operatorPriority = <span class="keyword">new</span> HashMap&lt;&gt;();
+        numberStack = <span class="keyword">new</span> LinkedList&lt;&gt;();
+        operatorStack = <span class="keyword">new</span> LinkedList&lt;&gt;();
 
-        List&lt;String&gt; level1 = Arrays.asList(&quot;+&quot;, &quot;-&quot;);
-        List&lt;String&gt; level2 = Arrays.asList(&quot;*&quot;, &quot;/&quot;, &quot;%&quot;);
-        level1.forEach(op -&gt; operatorPriority.put(op, 1));
-        level2.forEach(op -&gt; operatorPriority.put(op, 2));
+        List&lt;String&gt; level1 = Arrays.asList(<span class="string">&quot;+&quot;</span>, <span class="string">&quot;-&quot;</span>);
+        List&lt;String&gt; level2 = Arrays.asList(<span class="string">&quot;*&quot;</span>, <span class="string">&quot;/&quot;</span>, <span class="string">&quot;%&quot;</span>);
+        level1.forEach(op -&gt; operatorPriority.put(op, <span class="number">1</span>));
+        level2.forEach(op -&gt; operatorPriority.put(op, <span class="number">2</span>));
 
 
         reset();
     &#125;
 
-    public void reset() &#123;
-        calculated = true;
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span> </span>&#123;
+        calculated = <span class="keyword">true</span>;
         numberStack.clear();
         operatorStack.clear();
-        numberStack.push(0.0);
-        nextNum = true;
-        negative = false;
-        decimal = false;
-        decimalDigits = 0;
+        numberStack.push(<span class="number">0.0</span>);
+        nextNum = <span class="keyword">true</span>;
+        negative = <span class="keyword">false</span>;
+        decimal = <span class="keyword">false</span>;
+        decimalDigits = <span class="number">0</span>;
     &#125;
 
-    /**
-     * 是否已经完成了一次计算
-     */
-    public boolean isCalculated() &#123;
-        return this.calculated;
+    <span class="comment">/**</span>
+<span class="comment">     * 是否已经完成了一次计算</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isCalculated</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">return</span> <span class="keyword">this</span>.calculated;
     &#125;
 
-    /**
-     * 获得计算结果
-     *
-     * @return 计算结果
-     * @throws ArithmeticException 如果输入不合法运算公式则抛出这个异常
-     */
-    public double getResult() throws ArithmeticException &#123;
+    <span class="comment">/**</span>
+<span class="comment">     * 获得计算结果</span>
+<span class="comment">     *</span>
+<span class="comment">     * <span class="doctag">@return</span> 计算结果</span>
+<span class="comment">     * <span class="doctag">@throws</span> ArithmeticException 如果输入不合法运算公式则抛出这个异常</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> <span class="keyword">throws</span> ArithmeticException </span>&#123;
         tryDecimal();
         tryNegative();
 
-        while (!numberStack.isEmpty() &amp;&amp; !operatorStack.isEmpty()) &#123;
-            double num2 = numberStack.pop();
-            double num1 = numberStack.pop();
+        <span class="keyword">while</span> (!numberStack.isEmpty() &amp;&amp; !operatorStack.isEmpty()) &#123;
+            <span class="keyword">double</span> num2 = numberStack.pop();
+            <span class="keyword">double</span> num1 = numberStack.pop();
             String operator = operatorStack.pop();
             numberStack.push(calculate(num1, num2, operator));
         &#125;
 
-        calculated = true;
+        calculated = <span class="keyword">true</span>;
 
-        if (numberStack.isEmpty()) &#123;
-            return 0.0;
-        &#125; else &#123;
-            return numberStack.peek();
+        <span class="keyword">if</span> (numberStack.isEmpty()) &#123;
+            <span class="keyword">return</span> <span class="number">0.0</span>;
+        &#125; <span class="keyword">else</span> &#123;
+            <span class="keyword">return</span> numberStack.peek();
         &#125;
     &#125;
 
-    /**
-     * 输入一个操作数
-     *
-     * @param value 整数
-     */
-    public void inputNum(int value) &#123;
-        double number = value;
-        if (!nextNum) &#123;
+    <span class="comment">/**</span>
+<span class="comment">     * 输入一个操作数</span>
+<span class="comment">     *</span>
+<span class="comment">     * <span class="doctag">@param</span> value 整数</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inputNum</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;
+        <span class="keyword">double</span> number = value;
+        <span class="keyword">if</span> (!nextNum) &#123;
             number = numberStack.pop();
-            number = number * 10 + value;
-            if (decimal) decimalDigits++;
+            number = number * <span class="number">10</span> + value;
+            <span class="keyword">if</span> (decimal) decimalDigits++;
         &#125;
         numberStack.push(number);
 
-        //开始输入当前这个数字
-        nextNum = false;
-        //还未完成一次计算
-        calculated = false;
+        <span class="comment">//开始输入当前这个数字</span>
+        nextNum = <span class="keyword">false</span>;
+        <span class="comment">//还未完成一次计算</span>
+        calculated = <span class="keyword">false</span>;
     &#125;
 
-    /**
-     * 输入一个运算符号
-     *
-     * @param op 运算符号，目前仅支持“+、-、*、/“，支持小数和负数
-     * @throws ArithmeticException 如果输入不合法运算公式则抛出这个异常
-     */
-    public void inputOperator(String op) throws ArithmeticException &#123;
-        //输入运算符时意味着正在进行运算（即未完成）
-        calculated = false;
+    <span class="comment">/**</span>
+<span class="comment">     * 输入一个运算符号</span>
+<span class="comment">     *</span>
+<span class="comment">     * <span class="doctag">@param</span> op 运算符号，目前仅支持“+、-、*、/“，支持小数和负数</span>
+<span class="comment">     * <span class="doctag">@throws</span> ArithmeticException 如果输入不合法运算公式则抛出这个异常</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inputOperator</span><span class="params">(String op)</span> <span class="keyword">throws</span> ArithmeticException </span>&#123;
+        <span class="comment">//输入运算符时意味着正在进行运算（即未完成）</span>
+        calculated = <span class="keyword">false</span>;
 
-        if (op.equals(&quot;.&quot;)) &#123;
-            decimal = true;
-            return;
+        <span class="keyword">if</span> (op.equals(<span class="string">&quot;.&quot;</span>)) &#123;
+            decimal = <span class="keyword">true</span>;
+            <span class="keyword">return</span>;
         &#125;
 
-        if(op.equals(&quot;neg&quot;))&#123;
+        <span class="keyword">if</span>(op.equals(<span class="string">&quot;neg&quot;</span>))&#123;
             negative = !negative;
-            return;
+            <span class="keyword">return</span>;
         &#125;
 
         tryDecimal();
         tryNegative();
 
-        while (!operatorStack.isEmpty() &amp;&amp; compareOperator(op, operatorStack.peek()) &lt; 0) &#123;
+        <span class="keyword">while</span> (!operatorStack.isEmpty() &amp;&amp; compareOperator(op, operatorStack.peek()) &lt; <span class="number">0</span>) &#123;
             Double num2 = numberStack.pop();
             Double num1 = numberStack.pop();
             String operator = operatorStack.pop();
@@ -398,142 +410,142 @@ public class Calculator &#123;
 
         operatorStack.push(op);
 
-        //输运算符后意味着开始输入下一个数字
-        nextNum = true;
+        <span class="comment">//输运算符后意味着开始输入下一个数字</span>
+        nextNum = <span class="keyword">true</span>;
     &#125;
 
-    /**
-     * 检验是否输入了小数
-     */
-    private boolean tryDecimal() &#123;
-        //如果刚刚输入的数字（即栈顶）是小数
-        if (decimal) &#123;
-            double top = numberStack.pop();
-            top *= Math.pow(10, -1 * decimalDigits);
+    <span class="comment">/**</span>
+<span class="comment">     * 检验是否输入了小数</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">tryDecimal</span><span class="params">()</span> </span>&#123;
+        <span class="comment">//如果刚刚输入的数字（即栈顶）是小数</span>
+        <span class="keyword">if</span> (decimal) &#123;
+            <span class="keyword">double</span> top = numberStack.pop();
+            top *= Math.pow(<span class="number">10</span>, -<span class="number">1</span> * decimalDigits);
             numberStack.push(top);
 
-            //下一个数字不一定是小数，重置小数参数
-            decimal = false;
-            decimalDigits = 0;
+            <span class="comment">//下一个数字不一定是小数，重置小数参数</span>
+            decimal = <span class="keyword">false</span>;
+            decimalDigits = <span class="number">0</span>;
 
-            return true;
+            <span class="keyword">return</span> <span class="keyword">true</span>;
         &#125;
-        return false;
+        <span class="keyword">return</span> <span class="keyword">false</span>;
     &#125;
 
-    private boolean tryNegative() &#123;
-        if(negative)&#123;
-            double top = numberStack.pop();
+    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">tryNegative</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">if</span>(negative)&#123;
+            <span class="keyword">double</span> top = numberStack.pop();
             numberStack.push(-top);
 
-            //重置标记
-            negative = false;
+            <span class="comment">//重置标记</span>
+            negative = <span class="keyword">false</span>;
 
-            return true;
+            <span class="keyword">return</span> <span class="keyword">true</span>;
         &#125;
-        return false;
+        <span class="keyword">return</span> <span class="keyword">false</span>;
     &#125;
 
-    private double calculate(double num1, double num2, String op) &#123;
-        //使用string类型消除double精度误差
-        BigDecimal bigNum1 = new BigDecimal(String.valueOf(num1));
-        BigDecimal bigNum2 = new BigDecimal(String.valueOf(num2));
+    <span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">calculate</span><span class="params">(<span class="keyword">double</span> num1, <span class="keyword">double</span> num2, String op)</span> </span>&#123;
+        <span class="comment">//使用string类型消除double精度误差</span>
+        BigDecimal bigNum1 = <span class="keyword">new</span> BigDecimal(String.valueOf(num1));
+        BigDecimal bigNum2 = <span class="keyword">new</span> BigDecimal(String.valueOf(num2));
         BigDecimal result;
-        switch (op) &#123;
-            case &quot;+&quot;:
+        <span class="keyword">switch</span> (op) &#123;
+            <span class="keyword">case</span> <span class="string">&quot;+&quot;</span>:
                 result = bigNum1.add(bigNum2);
-                break;
-            case &quot;-&quot;:
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">&quot;-&quot;</span>:
                 result = bigNum1.subtract(bigNum2);
-                break;
-            case &quot;*&quot;:
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">&quot;*&quot;</span>:
                 result = bigNum1.multiply(bigNum2);
-                break;
-            case &quot;/&quot;:
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="string">&quot;/&quot;</span>:
                 result = bigNum1.divide(bigNum2, BigDecimal.ROUND_HALF_UP);
-                break;
-            default:
-                throw new ArithmeticException();
+                <span class="keyword">break</span>;
+            <span class="keyword">default</span>:
+                <span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException();
         &#125;
 
-        return result.doubleValue();
+        <span class="keyword">return</span> result.doubleValue();
     &#125;
 
-    private int compareOperator(String op1, String op2) &#123;
-        int op1Level = 0, op2Level = 0;
+    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">compareOperator</span><span class="params">(String op1, String op2)</span> </span>&#123;
+        <span class="keyword">int</span> op1Level = <span class="number">0</span>, op2Level = <span class="number">0</span>;
 
         op1Level = operatorPriority.get(op1);
         op2Level = operatorPriority.get(op2);
 
-        return op1Level - op2Level;
+        <span class="keyword">return</span> op1Level - op2Level;
     &#125;
 
-&#125;
-</code></pre>
-<h6 id="CalculatorFrame-java"><a href="#CalculatorFrame-java" class="headerlink" title="CalculatorFrame.java"></a>CalculatorFrame.java</h6><pre><code class="java">package calculator;
+&#125;</code></pre>
+<h6 id="CalculatorFrame-java"><a class="header-anchor" href="#CalculatorFrame-java">○</a>CalculatorFrame.java</h6>
+<pre><code class="highlight java"><span class="keyword">package</span> calculator;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+<span class="keyword">import</span> javax.swing.*;
+<span class="keyword">import</span> java.awt.*;
+<span class="keyword">import</span> java.awt.event.ActionEvent;
+<span class="keyword">import</span> java.awt.event.ActionListener;
 
-public class CalculatorFrame extends JFrame &#123;
-    //region -JComponents-
-    private JPanel northPanel;
-    private JPanel centerPanel;
-    private JPanel numberPanel;
-    private JPanel operatorPanel;
-    private JPanel southPanel;
-    private JPanel westPanel;
-    private JPanel eastPanel;
-    private JTextField textArea;
-    private JButton[] numberBtn;
-    private JButton[] operatorBtn;
-    private JButton point;
-    private JButton delete;
-    private JButton neg;
-    //endregion
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span> </span>&#123;
+    <span class="comment">//region -JComponents-</span>
+    <span class="keyword">private</span> JPanel northPanel;
+    <span class="keyword">private</span> JPanel centerPanel;
+    <span class="keyword">private</span> JPanel numberPanel;
+    <span class="keyword">private</span> JPanel operatorPanel;
+    <span class="keyword">private</span> JPanel southPanel;
+    <span class="keyword">private</span> JPanel westPanel;
+    <span class="keyword">private</span> JPanel eastPanel;
+    <span class="keyword">private</span> JTextField textArea;
+    <span class="keyword">private</span> JButton[] numberBtn;
+    <span class="keyword">private</span> JButton[] operatorBtn;
+    <span class="keyword">private</span> JButton point;
+    <span class="keyword">private</span> JButton delete;
+    <span class="keyword">private</span> JButton neg;
+    <span class="comment">//endregion</span>
 
-    private Calculator calculator;
+    <span class="keyword">private</span> Calculator calculator;
 
-    private void initComponent() &#123;
-        this.setLayout(new BorderLayout(10, 10));
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initComponent</span><span class="params">()</span> </span>&#123;
+        <span class="keyword">this</span>.setLayout(<span class="keyword">new</span> BorderLayout(<span class="number">10</span>, <span class="number">10</span>));
 
-        centerPanel = new JPanel(new BorderLayout(10, 6));
-        numberPanel = new JPanel(new GridLayout(4, 4, 10, 10));
-        operatorPanel = new JPanel(new GridLayout(6, 1, 10, 6));
+        centerPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> BorderLayout(<span class="number">10</span>, <span class="number">6</span>));
+        numberPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridLayout(<span class="number">4</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">10</span>));
+        operatorPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridLayout(<span class="number">6</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">6</span>));
 
-        northPanel = new JPanel();
-        southPanel = new JPanel();
-        eastPanel = new JPanel();
-        westPanel = new JPanel();
+        northPanel = <span class="keyword">new</span> JPanel();
+        southPanel = <span class="keyword">new</span> JPanel();
+        eastPanel = <span class="keyword">new</span> JPanel();
+        westPanel = <span class="keyword">new</span> JPanel();
 
-        textArea = new JTextField(&quot;0&quot;, 1);
+        textArea = <span class="keyword">new</span> JTextField(<span class="string">&quot;0&quot;</span>, <span class="number">1</span>);
 
-        numberBtn = new JButton[10];
-        operatorBtn = new JButton[5];
-        delete = new JButton(&quot;AC&quot;);
-        point = new JButton(&quot;.&quot;);
-        neg = new JButton(&quot;neg&quot;);
+        numberBtn = <span class="keyword">new</span> JButton[<span class="number">10</span>];
+        operatorBtn = <span class="keyword">new</span> JButton[<span class="number">5</span>];
+        delete = <span class="keyword">new</span> JButton(<span class="string">&quot;AC&quot;</span>);
+        point = <span class="keyword">new</span> JButton(<span class="string">&quot;.&quot;</span>);
+        neg = <span class="keyword">new</span> JButton(<span class="string">&quot;neg&quot;</span>);
 
-        textArea.setEditable(false);
-        textArea.setFont(new Font(&quot;微软雅黑&quot;, Font.BOLD, 24));
+        textArea.setEditable(<span class="keyword">false</span>);
+        textArea.setFont(<span class="keyword">new</span> Font(<span class="string">&quot;微软雅黑&quot;</span>, Font.BOLD, <span class="number">24</span>));
         textArea.setHorizontalAlignment(SwingConstants.TRAILING);
 
-        point.setFont(new Font(&quot;黑体&quot;, Font.BOLD, 18));
-        delete.setFont(new Font(&quot;黑体&quot;, Font.BOLD, 15));
+        point.setFont(<span class="keyword">new</span> Font(<span class="string">&quot;黑体&quot;</span>, Font.BOLD, <span class="number">18</span>));
+        delete.setFont(<span class="keyword">new</span> Font(<span class="string">&quot;黑体&quot;</span>, Font.BOLD, <span class="number">15</span>));
 
         delete.addActionListener(event -&gt; &#123;
-            textArea.setText(&quot;0&quot;);
+            textArea.setText(<span class="string">&quot;0&quot;</span>);
             calculator.reset();
         &#125;);
-        point.addActionListener(new OperatorButtonListener(&quot;.&quot;));
-        neg.addActionListener(new OperatorButtonListener(&quot;neg&quot;));
+        point.addActionListener(<span class="keyword">new</span> OperatorButtonListener(<span class="string">&quot;.&quot;</span>));
+        neg.addActionListener(<span class="keyword">new</span> OperatorButtonListener(<span class="string">&quot;neg&quot;</span>));
 
-        for (int i = 0; i &lt; 10; i++) &#123;
-            numberBtn[i] = new JButton(String.valueOf(i));
-            numberBtn[i].addActionListener(new NumberButtonListener(i));
-            numberBtn[i].setFont(new Font(&quot;黑体&quot;, Font.BOLD, 18));
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;
+            numberBtn[i] = <span class="keyword">new</span> JButton(String.valueOf(i));
+            numberBtn[i].addActionListener(<span class="keyword">new</span> NumberButtonListener(i));
+            numberBtn[i].setFont(<span class="keyword">new</span> Font(<span class="string">&quot;黑体&quot;</span>, Font.BOLD, <span class="number">18</span>));
             numberPanel.add(numberBtn[i]);
         &#125;
 
@@ -542,11 +554,11 @@ public class CalculatorFrame extends JFrame &#123;
 
         operatorPanel.add(neg);
 
-        String[] temp = &#123;&quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;, &quot;=&quot;&#125;;
-        for (int i = 0; i &lt; operatorBtn.length; i++) &#123;
-            operatorBtn[i] = new JButton(temp[i]);
-            operatorBtn[i].setFont(new Font(&quot;黑体&quot;, Font.BOLD, 18));
-            operatorBtn[i].addActionListener(new OperatorButtonListener(temp[i]));
+        String[] temp = &#123;<span class="string">&quot;+&quot;</span>, <span class="string">&quot;-&quot;</span>, <span class="string">&quot;*&quot;</span>, <span class="string">&quot;/&quot;</span>, <span class="string">&quot;=&quot;</span>&#125;;
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; operatorBtn.length; i++) &#123;
+            operatorBtn[i] = <span class="keyword">new</span> JButton(temp[i]);
+            operatorBtn[i].setFont(<span class="keyword">new</span> Font(<span class="string">&quot;黑体&quot;</span>, Font.BOLD, <span class="number">18</span>));
+            operatorBtn[i].addActionListener(<span class="keyword">new</span> OperatorButtonListener(temp[i]));
             operatorPanel.add(operatorBtn[i]);
         &#125;
 
@@ -555,40 +567,40 @@ public class CalculatorFrame extends JFrame &#123;
         centerPanel.add(BorderLayout.CENTER, numberPanel);
         centerPanel.add(BorderLayout.EAST, operatorPanel);
 
-        this.add(BorderLayout.NORTH, northPanel);
-        this.add(BorderLayout.CENTER, centerPanel);
-        this.add(BorderLayout.SOUTH, southPanel);
-        this.add(BorderLayout.EAST, eastPanel);
-        this.add(BorderLayout.WEST, westPanel);
+        <span class="keyword">this</span>.add(BorderLayout.NORTH, northPanel);
+        <span class="keyword">this</span>.add(BorderLayout.CENTER, centerPanel);
+        <span class="keyword">this</span>.add(BorderLayout.SOUTH, southPanel);
+        <span class="keyword">this</span>.add(BorderLayout.EAST, eastPanel);
+        <span class="keyword">this</span>.add(BorderLayout.WEST, westPanel);
 
-        this.pack();
-        this.setSize(300, 300);
+        <span class="keyword">this</span>.pack();
+        <span class="keyword">this</span>.setSize(<span class="number">300</span>, <span class="number">300</span>);
     &#125;
 
-    public CalculatorFrame() &#123;
+    <span class="function"><span class="keyword">public</span> <span class="title">CalculatorFrame</span><span class="params">()</span> </span>&#123;
         initComponent();
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setTitle(&quot;简易计算器&quot;);
+        <span class="keyword">this</span>.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        <span class="keyword">this</span>.setLocationRelativeTo(<span class="keyword">null</span>);
+        <span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);
+        <span class="keyword">this</span>.setTitle(<span class="string">&quot;简易计算器&quot;</span>);
 
-        calculator = new Calculator();
+        calculator = <span class="keyword">new</span> Calculator();
     &#125;
 
-    private class NumberButtonListener implements ActionListener &#123;
-        private final int value;
+    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NumberButtonListener</span> <span class="keyword">implements</span> <span class="title">ActionListener</span> </span>&#123;
+        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;
 
-        public NumberButtonListener(int value) &#123;
-            this.value = value;
+        <span class="function"><span class="keyword">public</span> <span class="title">NumberButtonListener</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;
+            <span class="keyword">this</span>.value = value;
         &#125;
 
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            if (calculator.isCalculated()) &#123;
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;
+            <span class="keyword">if</span> (calculator.isCalculated()) &#123;
                 calculator.reset();
                 textArea.setText(String.valueOf(value));
-            &#125; else &#123;
+            &#125; <span class="keyword">else</span> &#123;
                 textArea.setText(textArea.getText() + value);
             &#125;
 
@@ -596,39 +608,38 @@ public class CalculatorFrame extends JFrame &#123;
         &#125;
     &#125;
 
-    private class OperatorButtonListener implements ActionListener &#123;
-        private final String value;
+    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">OperatorButtonListener</span> <span class="keyword">implements</span> <span class="title">ActionListener</span> </span>&#123;
+        <span class="keyword">private</span> <span class="keyword">final</span> String value;
 
-        public OperatorButtonListener(String value) &#123;
-            this.value = value;
+        <span class="function"><span class="keyword">public</span> <span class="title">OperatorButtonListener</span><span class="params">(String value)</span> </span>&#123;
+            <span class="keyword">this</span>.value = value;
         &#125;
 
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            try &#123;
-                if (value.equals(&quot;=&quot;)) &#123;
+        <span class="meta">@Override</span>
+        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;
+            <span class="keyword">try</span> &#123;
+                <span class="keyword">if</span> (value.equals(<span class="string">&quot;=&quot;</span>)) &#123;
                     textArea.setText(String.valueOf(calculator.getResult()));
-                &#125; else &#123;
-                    if (value.equals(&quot;neg&quot;) &amp;&amp; calculator.isCalculated()) &#123;
+                &#125; <span class="keyword">else</span> &#123;
+                    <span class="keyword">if</span> (value.equals(<span class="string">&quot;neg&quot;</span>) &amp;&amp; calculator.isCalculated()) &#123;
                         textArea.setText(“neg”);
-                    &#125; else &#123;
+                    &#125; <span class="keyword">else</span> &#123;
                         textArea.setText(textArea.getText() + value);
                     &#125;
                     calculator.inputOperator(value);
                 &#125;
-            &#125; catch (ArithmeticException arithmeticException) &#123;
+            &#125; <span class="keyword">catch</span> (ArithmeticException arithmeticException) &#123;
                 calculator.reset();
-                textArea.setText(&quot;Error Input&quot;);
+                textArea.setText(<span class="string">&quot;Error Input&quot;</span>);
             &#125;
         &#125;
     &#125;
 
-    public static void main(String[] args) &#123;
-        new CalculatorFrame();
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;
+        <span class="keyword">new</span> CalculatorFrame();
     &#125;
 &#125;
 </code></pre>
-
         </div>
 
         
@@ -842,7 +853,7 @@ public class CalculatorFrame extends JFrame &#123;
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8"><span class="nav-text">简易计算器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A7%A3%E9%87%8A"><span class="nav-text">程序解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3"><span class="nav-text">原理详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">类的设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="nav-text">结构解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%B1%95%E7%A4%BA"><span class="nav-text">源码展示</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Calculator-java"><span class="nav-text">Calculator.java</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CalculatorFrame-java"><span class="nav-text">CalculatorFrame.java</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">简易计算器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A7%A3%E9%87%8A"><span class="nav-text">程序解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3"><span class="nav-text">原理详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">类的设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="nav-text">结构解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%B1%95%E7%A4%BA"><span class="nav-text">源码展示</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Calculator-java"><span class="nav-text">Calculator.java</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CalculatorFrame-java"><span class="nav-text">CalculatorFrame.java</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -894,6 +905,8 @@ public class CalculatorFrame extends JFrame &#123;
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 

@@ -11,7 +11,7 @@
         
             城市间紧急救援 |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/algorithm-c-c/">algorithm c/c++</a>&nbsp;
+                        <a href="/tags/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/c-c/">c/c++</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>966 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>978 字</span>
         </span>
     
     
@@ -234,62 +238,69 @@
         
 
         <div class="article-content markdown-body">
-            <p>123</p>
+            <p>来自PTA的一道最短路径算法题</p>
 <span id="more"></span>
-
-<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>作为一个城市的应急救援队伍的负责人，你有一张特殊的全国地图。在地图上显示有多个分散的城市和一些连接城市的快速道路。每个城市的救援队数量和每一条连接两个城市的快速道路长度都标在地图上。<br>当其他城市有紧急求助电话给你的时候，你的任务是带领你的救援队尽快赶往事发地，同时，一路上召集尽可能多的救援队。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式:"></a>输入格式:</h4><p>输入第一行给出4个正整数N、M、S、D，其中N（2≤N≤500）是城市的个数，顺便假设城市的编号为0 ~ (N−1)；M是快速道路的条数；S是出发地的城市编号；D是目的地的城市编号。<br>第二行给出N个正整数，其中第i个数是第i个城市的救援队的数目，数字间以空格分隔。随后的M行中，每行给出一条快速道路的信息，分别是：城市1、城市2、快速道路的长度，中间用空格分开，数字均为整数且不超过500。输入保证救援可行且最优解唯一。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式:"></a>输出格式:</h4><p>第一行输出最短路径的条数和能够召集的最多的救援队数量。第二行输出从S到D的路径中经过的城市编号。数字间以空格分隔，输出结尾不能有多余空格。</p>
-<h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例:"></a>输入样例:</h4><p>4 5 0 3</p>
+<h2 id="题目要求"><a class="header-anchor" href="#题目要求">○</a>题目要求</h2>
+<p>作为一个城市的应急救援队伍的负责人，你有一张特殊的全国地图。在地图上显示有多个分散的城市和一些连接城市的快速道路。每个城市的救援队数量和每一条连接两个城市的快速道路长度都标在地图上。<br>
+当其他城市有紧急求助电话给你的时候，你的任务是带领你的救援队尽快赶往事发地，同时，一路上召集尽可能多的救援队。</p>
+<h4 id="输入格式"><a class="header-anchor" href="#输入格式">○</a>输入格式:</h4>
+<p>输入第一行给出4个正整数N、M、S、D，其中N（2≤N≤500）是城市的个数，顺便假设城市的编号为0 ~ (N−1)；M是快速道路的条数；S是出发地的城市编号；D是目的地的城市编号。<br>
+第二行给出N个正整数，其中第i个数是第i个城市的救援队的数目，数字间以空格分隔。随后的M行中，每行给出一条快速道路的信息，分别是：城市1、城市2、快速道路的长度，中间用空格分开，数字均为整数且不超过500。输入保证救援可行且最优解唯一。</p>
+<h4 id="输出格式"><a class="header-anchor" href="#输出格式">○</a>输出格式:</h4>
+<p>第一行输出最短路径的条数和能够召集的最多的救援队数量。第二行输出从S到D的路径中经过的城市编号。数字间以空格分隔，输出结尾不能有多余空格。</p>
+<h4 id="输入样例"><a class="header-anchor" href="#输入样例">○</a>输入样例:</h4>
+<p>4 5 0 3</p>
 <p>20 30 40 10</p>
 <p>0 1 1</p>
 <p>1 3 2</p>
 <p>0 3 3</p>
 <p>0 2 2</p>
 <p>2 3 2</p>
-<h4 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例:"></a>输出样例:</h4><p>2 60</p>
+<h4 id="输出样例"><a class="header-anchor" href="#输出样例">○</a>输出样例:</h4>
+<p>2 60</p>
 <p>0 1 3</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>利用Dijsktra算法进行变式，因为题目要求的权值有两种，且长度优先级大于救援人数，因此自定义一个类/结构体来表示dist[]，并按照需求重载操作符。</p>
-<pre><code class="c++">class node
-&#123;
-public:
-    int dis;
-    int manNum;
-    node(int a = INF, int b = 0):dis(a),manNum(b)&#123;&#125;
-    bool operator &lt; (const node &amp; a) &#123;
-        if (dis == a.dis)
-            return manNum &gt; a.manNum;
-        else
-            return dis &lt; a.dis;
-    &#125;
-    bool operator &gt; (const node&amp; a) &#123;
-        return !(*this &lt; a);
-    &#125;
-    node operator + (const node&amp; a) &#123;
-        return node&#123; dis + a.dis, manNum + a.manNum &#125;;
-    &#125;
-&#125;;
-</code></pre>
+<h2 id="解题思路"><a class="header-anchor" href="#解题思路">○</a>解题思路</h2>
+<p>利用Dijsktra算法进行变式，因为题目要求的权值有两种，且长度优先级大于救援人数，因此自定义一个类/结构体来表示dist[]，并按照需求重载操作符。</p>
+<pre><code class="highlight c++"><span class="class"><span class="keyword">class</span> <span class="title">node</span></span>
+<span class="class">&#123;</span>
+<span class="keyword">public</span>:
+	<span class="keyword">int</span> dis;
+	<span class="keyword">int</span> manNum;
+	node(<span class="keyword">int</span> a = INF, <span class="keyword">int</span> b = <span class="number">0</span>):dis(a),manNum(b)&#123;&#125;
+	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> node &amp; a) &#123;
+		<span class="keyword">if</span> (dis == a.dis)
+			<span class="keyword">return</span> manNum &gt; a.manNum;
+		<span class="keyword">else</span>
+			<span class="keyword">return</span> dis &lt; a.dis;
+	&#125;
+	<span class="keyword">bool</span> <span class="keyword">operator</span> &gt; (<span class="keyword">const</span> node&amp; a) &#123;
+		<span class="keyword">return</span> !(*<span class="keyword">this</span> &lt; a);
+	&#125;
+	node <span class="keyword">operator</span> + (<span class="keyword">const</span> node&amp; a) &#123;
+		<span class="keyword">return</span> node&#123; dis + a.dis, manNum + a.manNum &#125;;
+	&#125;
+&#125;;</code></pre>
 <p>本题重点是<strong>最短路径条数</strong>，要想到如 a-&gt;b-&gt;c , a-&gt;c的条数等于a-&gt;b的条数加上b-&gt;c的条数这个递推思想，具体实现方法就是数组再每次遍历邻接点的时候进行判断。</p>
-<pre><code class="c++">//entry 入口
-//pathchoice entry-&gt;每个点的最短路径条数
-pathchoice[entry] = 1;
-//访问v的每一个邻接点w
-for (int w = 0; w &lt; n; w++) &#123;
-    if (!visted[w] &amp;&amp; mg[v][w] != INF) &#123;
-        node temp = node&#123; mg[v][w],rescue[w] &#125;;                
-        if (dist[w].dis == temp.dis + dist[v].dis)            //1.如果entry-&gt;w的最短距离和entry-&gt;v-&gt;w的距离相等，则entry-&gt;w的条数就要进行递推
-            pathchoice[w] += pathchoice[v];
-        if (dist[w] &gt; dist[v] + temp) &#123;
-            dist[w] = dist[v] + temp;
-            path[w] = v;
-            pathchoice[w] = max(pathchoice[w],pathchoice[v]);      //2.真正要保留的是最短路径的条数
-        &#125;                
-    &#125;
-&#125;
-</code></pre>
-<p>这里要解释一下为什么1，2两点是分开且顺序不能颠倒。因为最短路径条数不同于最优路径，最短路径不需要考虑救援人数，如果颠倒了顺序就可能会导致最短路径条数因为最优路径的关系先一步发生变化。<br>然后<strong>2</strong>的地方用了一个<code>max()</code>，是因为即使满足<strong>1</strong>也有可能进入这个if(详见claass node中重载的运算符), 本来pathchoice[w] = pathchoice[v] 应该是第一次遍历到做的赋值，但是可能在前几次遍历中已经经过了<strong>1</strong>，<br>所以应该保留最大的哪个数才是最短路径的条数。</p>
-<p><em>AC代码参考:</em> <a target="_blank" rel="noopener" href="https://github.com/838239178/just-Quiz/blob/master/%E5%9B%BE-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84-%E5%9F%8E%E5%B8%82%E9%97%B4%E7%B4%A7%E6%80%A5%E6%95%91%E6%8F%B4">github</a></p>
+<pre><code class="highlight c++"><span class="comment">//entry 入口</span>
+<span class="comment">//pathchoice entry-&gt;每个点的最短路径条数</span>
+pathchoice[entry] = <span class="number">1</span>;
+<span class="comment">//访问v的每一个邻接点w</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> w = <span class="number">0</span>; w &lt; n; w++) &#123;
+	<span class="keyword">if</span> (!visted[w] &amp;&amp; mg[v][w] != INF) &#123;
+		node temp = node&#123; mg[v][w],rescue[w] &#125;;				
+		<span class="keyword">if</span> (dist[w].dis == temp.dis + dist[v].dis)            <span class="comment">//1.如果entry-&gt;w的最短距离和entry-&gt;v-&gt;w的距离相等，则entry-&gt;w的条数就要进行递推</span>
+			pathchoice[w] += pathchoice[v];
+		<span class="keyword">if</span> (dist[w] &gt; dist[v] + temp) &#123;
+			dist[w] = dist[v] + temp;
+			path[w] = v;
+			pathchoice[w] = max(pathchoice[w],pathchoice[v]);      <span class="comment">//2.真正要保留的是最短路径的条数</span>
+		&#125;				
+	&#125;
+&#125;</code></pre>
+<p>这里要解释一下为什么1，2两点是分开且顺序不能颠倒。因为最短路径条数不同于最优路径，最短路径不需要考虑救援人数，如果颠倒了顺序就可能会导致最短路径条数因为最优路径的关系先一步发生变化。<br>
+然后<strong>2</strong>的地方用了一个<code>max()</code>，是因为即使满足<strong>1</strong>也有可能进入这个if(详见claass node中重载的运算符), 本来pathchoice[w] = pathchoice[v] 应该是第一次遍历到做的赋值，但是可能在前几次遍历中已经经过了<strong>1</strong>，<br>
+所以应该保留最大的哪个数才是最短路径的条数。</p>
+<p><em>AC代码参考:</em> <a class="link"   target="_blank" rel="noopener" href="https://github.com/838239178/just-Quiz/blob/master/%E5%9B%BE-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84-%E5%9F%8E%E5%B8%82%E9%97%B4%E7%B4%A7%E6%80%A5%E6%95%91%E6%8F%B4" >github<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -556,6 +567,8 @@ for (int w = 0; w &lt; n; w++) &#123;
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 

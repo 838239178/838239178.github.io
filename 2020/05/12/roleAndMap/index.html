@@ -11,7 +11,7 @@
         
             角色与地图遮挡 |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/cocos-tiledmap/">cocos tiledmap</a>&nbsp;
+                        <a href="/tags/cocos/">cocos</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/tiledmap/">tiledmap</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>625 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>626 字</span>
         </span>
     
     
@@ -236,12 +240,27 @@
         <div class="article-content markdown-body">
             <p>123</p>
 <span id="more"></span>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2d地图与角色的互相遮挡是我在短暂的学习过程中遇到的第一个难点，即使cocos creator（以下简称 cc）的<strong>TiledMap</strong>组件提供了<code>addUserNode</code>这个方法，但是实际效果不尽人意，经常穿模。在官方社区寻找解决办法的时候我了解到了一种比较高级的做法，大概就是动态的提取和加载地图块来形成互相遮挡，但是实现难度较大，涉及cc引擎的修改，于是乎我就自己想了这个方法。</p>
-<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>这个方法很简单就是利用<code>addUserNode</code>把角色添加到地图的某一层中，但是那一层的图片本身不能让角色碰撞到，不然还是会穿模。在该层中的图片（包括添加进去的角色）都是遵循Tiledmap里面图层之间的关系的，所以可以把地图总体的分成三个部分，一个是需要被角色遮挡的部分，一个是需要遮挡角色的部分，以及角色所在的部分，这三个的顺序是固定的如图所示。<br><img src="https://img-blog.csdnimg.cn/20200512132607699.png" alt="图0-1 图层顺序"></p>
-<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><p>首先就是要把地图按照这个模式去制作，然后重点是如上图所示的npc层要在地图均匀的添加2~4个地图块（尽可能的替换其他层中不会与角色产生碰撞的地方）不然游戏中添加进去的角色无法显示在在地图上层，具体原因不明，涉及<code>addUserNode</code>的算法。然后如果你是使用如上图的meta层去记录障碍物信息的话  最好把角色的Anchor设为（0.5,0）以免发生如下情况：<br>Anchor为（0.5,0.5）：<br><img src="https://img-blog.csdnimg.cn/20200512133754104.png" alt="图0-2"><br>Anchor为（0.5,0）：<br><img src="https://img-blog.csdnimg.cn/20200512133833631.png" alt="图0-3"><br><strong>图片中建筑的上部分为（cover）层，下部分为（becover）层且有meta障碍物信息。</strong><br>如果使用碰撞体组件的就不会有这种情况。</p>
-<h2 id="缺点和瑕疵"><a href="#缺点和瑕疵" class="headerlink" title="缺点和瑕疵"></a>缺点和瑕疵</h2><p>如果使用的时meta层判断障碍物的话会放生以下比较尴尬的情况：<br>1.因为Anchor的x是图片中间，判断的时候是使用Anchor的坐标<br><img src="https://img-blog.csdnimg.cn/20200512134538731.png" alt="在这里插入图片描述"><br>2.当Anchor的位置产生阻挡时角色似乎念在了墙壁上<br><img src="https://img-blog.csdnimg.cn/20200512134639514.png" alt="在这里插入图片描述"><br><strong>以上情况使用碰撞体组件时都不会发生，如果改进meta层判断的算法可能可以避免</strong></p>
-<p><em>本人是初学者，如有错误和改进方法还请指出</em> </p>
+<h2 id="前言"><a class="header-anchor" href="#前言">○</a>前言</h2>
+<p>2d地图与角色的互相遮挡是我在短暂的学习过程中遇到的第一个难点，即使cocos creator（以下简称 cc）的<strong>TiledMap</strong>组件提供了<code>addUserNode</code>这个方法，但是实际效果不尽人意，经常穿模。在官方社区寻找解决办法的时候我了解到了一种比较高级的做法，大概就是动态的提取和加载地图块来形成互相遮挡，但是实现难度较大，涉及cc引擎的修改，于是乎我就自己想了这个方法。</p>
+<h2 id="实现原理"><a class="header-anchor" href="#实现原理">○</a>实现原理</h2>
+<p>这个方法很简单就是利用<code>addUserNode</code>把角色添加到地图的某一层中，但是那一层的图片本身不能让角色碰撞到，不然还是会穿模。在该层中的图片（包括添加进去的角色）都是遵循Tiledmap里面图层之间的关系的，所以可以把地图总体的分成三个部分，一个是需要被角色遮挡的部分，一个是需要遮挡角色的部分，以及角色所在的部分，这三个的顺序是固定的如图所示。<br>
+<img src="https://img-blog.csdnimg.cn/20200512132607699.png" alt="图0-1 图层顺序"></p>
+<h2 id="实现方法"><a class="header-anchor" href="#实现方法">○</a>实现方法</h2>
+<p>首先就是要把地图按照这个模式去制作，然后重点是如上图所示的npc层要在地图均匀的添加2~4个地图块（尽可能的替换其他层中不会与角色产生碰撞的地方）不然游戏中添加进去的角色无法显示在在地图上层，具体原因不明，涉及<code>addUserNode</code>的算法。然后如果你是使用如上图的meta层去记录障碍物信息的话  最好把角色的Anchor设为（0.5,0）以免发生如下情况：<br>
+Anchor为（0.5,0.5）：<br>
+<img src="https://img-blog.csdnimg.cn/20200512133754104.png" alt="图0-2"><br>
+Anchor为（0.5,0）：<br>
+<img src="https://img-blog.csdnimg.cn/20200512133833631.png" alt="图0-3"><br>
+<strong>图片中建筑的上部分为（cover）层，下部分为（becover）层且有meta障碍物信息。</strong><br>
+如果使用碰撞体组件的就不会有这种情况。</p>
+<h2 id="缺点和瑕疵"><a class="header-anchor" href="#缺点和瑕疵">○</a>缺点和瑕疵</h2>
+<p>如果使用的时meta层判断障碍物的话会放生以下比较尴尬的情况：<br>
+1.因为Anchor的x是图片中间，判断的时候是使用Anchor的坐标<br>
+<img src="https://img-blog.csdnimg.cn/20200512134538731.png" alt="在这里插入图片描述"><br>
+2.当Anchor的位置产生阻挡时角色似乎念在了墙壁上<br>
+<img src="https://img-blog.csdnimg.cn/20200512134639514.png" alt="在这里插入图片描述"><br>
+<strong>以上情况使用碰撞体组件时都不会发生，如果改进meta层判断的算法可能可以避免</strong></p>
+<p><em>本人是初学者，如有错误和改进方法还请指出</em></p>
 
         </div>
 
@@ -508,6 +527,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 

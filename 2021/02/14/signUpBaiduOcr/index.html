@@ -11,7 +11,7 @@
         
             使用BaiduOcr识别图片文字 |
         
-        ShiJh|Blog
+        ShiJhBlogs
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/images/logo.svg">
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -50,7 +50,7 @@
     <div class="header-content">
         <div class="left">
             <a class="logo-title" href="/">
-                ShiJh|Blog
+                ShiJhBlogs
             </a>
         </div>
 
@@ -182,7 +182,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/web-ai/">web ai</a>&nbsp;
+                        <a href="/tags/web/">web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ai/">ai</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>801 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>877 字</span>
         </span>
     
     
@@ -234,57 +238,79 @@
         
 
         <div class="article-content markdown-body">
-            <p>123</p>
+            <p>百度AI平台提供了很多AI接口，大部分都提供了免费的调用额度，如果是个人使用可以获得很大的便利，这里将介绍如何使用百度提供的文字识别接口。包含注册申请以及使用例！</p>
 <span id="more"></span>
-
-<h1 id="使用BaiduOcr识别图片文字"><a href="#使用BaiduOcr识别图片文字" class="headerlink" title="使用BaiduOcr识别图片文字"></a>使用BaiduOcr识别图片文字</h1><p>百度AI平台提供了很多AI接口，大部分都提供了免费的调用额度，如果是个人使用可以获得很大的便利，这里将介绍如何使用百度提供的文字识别接口。</p>
-<h2 id="注册并申请使用权"><a href="#注册并申请使用权" class="headerlink" title="注册并申请使用权"></a>注册并申请使用权</h2><p><a target="_blank" rel="noopener" href="https://ai.baidu.com/">BaiduAI官网</a>进入后点击右上角控制台进行登录</p>
-<h3 id="注册百度账号"><a href="#注册百度账号" class="headerlink" title="注册百度账号"></a>注册百度账号</h3><p>百度账号注册这里不再赘述，进入控制台登陆时即可注册。</p>
-<h3 id="实名认证"><a href="#实名认证" class="headerlink" title="实名认证"></a>实名认证</h3><ol>
-<li><p>登入控制台后会要求填写以下信息来激活账号，只需要填写<code>*</code>号信息栏。</p>
-<img src="https://i.loli.net/2021/02/14/SK3zbi5NUAHoPOj.jpg" alt="#1" style="zoom: 67%;" /></li>
-<li><p>完成后点击左侧工具栏的文字识别，如下图所示</p>
-<img src="https://i.loli.net/2021/02/14/bAF5XQBje4CSOHR.jpg" alt="#2" style="zoom: 50%;" /></li>
-<li><p>点击<strong>立即认证</strong>，填入姓名和身份后点击下一步，无需刷脸验证，直接返回上一步的页面即可</p>
-<img src="https://i.loli.net/2021/02/14/YUC32t7WH6xpiID.jpg" alt="#3" style="zoom:80%;" /></li>
+<h1>使用BaiduOcr识别图片文字</h1>
+<p>百度AI平台提供了很多AI接口，大部分都提供了免费的调用额度，如果是个人使用可以获得很大的便利，这里将介绍如何使用百度提供的文字识别接口。</p>
+<h2 id="注册并申请使用权"><a class="header-anchor" href="#注册并申请使用权">○</a>注册并申请使用权</h2>
+<p><a class="link"   target="_blank" rel="noopener" href="https://ai.baidu.com/" >BaiduAI官网<i class="fas fa-external-link-alt"></i></a>进入后点击右上角控制台进行登录</p>
+<h3 id="注册百度账号"><a class="header-anchor" href="#注册百度账号">○</a>注册百度账号</h3>
+<p>百度账号注册这里不再赘述，进入控制台登陆时即可注册。</p>
+<h3 id="实名认证"><a class="header-anchor" href="#实名认证">○</a>实名认证</h3>
+<ol>
+<li>
+<p>登入控制台后会要求填写以下信息来激活账号，只需要填写<code>*</code>号信息栏。</p>
+<img src="https://i.loli.net/2021/02/14/SK3zbi5NUAHoPOj.jpg" alt="#1" style="zoom: 67%;" />
+</li>
+<li>
+<p>完成后点击左侧工具栏的文字识别，如下图所示</p>
+<img src="https://i.loli.net/2021/02/14/bAF5XQBje4CSOHR.jpg" alt="#2" style="zoom: 50%;" />
+</li>
+<li>
+<p>点击<strong>立即认证</strong>，填入姓名和身份后点击下一步，无需刷脸验证，直接返回上一步的页面即可</p>
+<img src="https://i.loli.net/2021/02/14/YUC32t7WH6xpiID.jpg" alt="#3" style="zoom:80%;" />
+</li>
 </ol>
-<h3 id="创建文字识别应用"><a href="#创建文字识别应用" class="headerlink" title="创建文字识别应用"></a>创建文字识别应用</h3><ol>
-<li><p>回到控制台后点击 <strong>创建应用</strong>，填一些信息，<strong>不需要包名</strong>并选择所属为<strong>个人</strong></p>
-<img src="https://i.loli.net/2021/02/14/uIH4jaeSwGJxEXp.jpg" alt="#4"  /></li>
-<li><p>创建完成后点击 <strong>应用详情</strong> ，进入页面后请记住<code>API Key</code>和<code>Secret Key</code></p>
-<img src="https://i.loli.net/2021/02/14/xZ8SFYnuoUJwRgp.jpg" alt="#5" style="zoom:80%;" /></li>
+<h3 id="创建文字识别应用"><a class="header-anchor" href="#创建文字识别应用">○</a>创建文字识别应用</h3>
+<ol>
+<li>
+<p>回到控制台后点击 <strong>创建应用</strong>，填一些信息，<strong>不需要包名</strong>并选择所属为<strong>个人</strong></p>
+<img src="https://i.loli.net/2021/02/14/uIH4jaeSwGJxEXp.jpg" alt="#4"  />
+</li>
+<li>
+<p>创建完成后点击 <strong>应用详情</strong> ，进入页面后请记住<code>API Key</code>和<code>Secret Key</code></p>
+<img src="https://i.loli.net/2021/02/14/xZ8SFYnuoUJwRgp.jpg" alt="#5" style="zoom:80%;" />
+</li>
 </ol>
-<h2 id="调用API识别图片"><a href="#调用API识别图片" class="headerlink" title="调用API识别图片"></a>调用API识别图片</h2><h3 id="获取Token"><a href="#获取Token" class="headerlink" title="获取Token"></a>获取Token</h3><p>每隔一段时间使用前都需要获取<code>Token</code>，一个Token的有效期为30分钟</p>
+<h2 id="调用API识别图片"><a class="header-anchor" href="#调用API识别图片">○</a>调用API识别图片</h2>
+<h3 id="获取Token"><a class="header-anchor" href="#获取Token">○</a>获取Token</h3>
+<p>每隔一段时间使用前都需要获取<code>Token</code>，一个Token的有效期为30分钟</p>
 <p>通过发送<code>HTTP Get</code>请求token：</p>
 <ul>
-<li><p>url：<code>https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=&#123;API_Key&#125;&amp;client_secret=&#123;Secret_Key&#125;</code></p>
+<li>
+<p>url：<code>https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=&#123;API_Key&#125;&amp;client_secret=&#123;Secret_Key&#125;</code></p>
 </li>
-<li><p>请求中携带参数API_key和Secret_key替换为你刚才申请的两个值，当然<code>&#123;&#125;</code>需要删除！</p>
+<li>
+<p>请求中携带参数API_key和Secret_key替换为你刚才申请的两个值，当然<code>&#123;&#125;</code>需要删除！</p>
 </li>
-<li><p>请求成功将获得一串<code>Json</code>，例如</p>
-<pre><code class="json">&#123;
-  &quot;refresh_token&quot;: &quot;25.b55fe1d287227ca97aab219bb249b8ab.315360000.1798284651.282335-8574074&quot;,
-  &quot;expires_in&quot;: 2592000,
-  &quot;scope&quot;: &quot;public wise_adapt&quot;,
-  &quot;session_key&quot;: &quot;9mzdDZXu3dENdFZQurfg0Vz8slgSgvvOAUebNFzyzcpQ5EnbxbF+hfG9DQkpUVQdh4p6HbQcAiz5RmuBAja1JJGgIdJI&quot;,
-  &quot;access_token&quot;: &quot;24.6c5e1ff107f0e8bcef8c46d3424a0e78.2592000.1485516651.282335-8574074&quot;,
-  &quot;session_secret&quot;: &quot;dfac94a3489fe9fca7c3221cbf7525ff&quot;
-&#125;
-</code></pre>
+<li>
+<p>请求成功将获得一串<code>Json</code>，例如</p>
+<pre><code class="highlight json">&#123;
+  <span class="attr">&quot;refresh_token&quot;</span>: <span class="string">&quot;25.b55fe1d287227ca97aab219bb249b8ab.315360000.1798284651.282335-8574074&quot;</span>,
+  <span class="attr">&quot;expires_in&quot;</span>: <span class="number">2592000</span>,
+  <span class="attr">&quot;scope&quot;</span>: <span class="string">&quot;public wise_adapt&quot;</span>,
+  <span class="attr">&quot;session_key&quot;</span>: <span class="string">&quot;9mzdDZXu3dENdFZQurfg0Vz8slgSgvvOAUebNFzyzcpQ5EnbxbF+hfG9DQkpUVQdh4p6HbQcAiz5RmuBAja1JJGgIdJI&quot;</span>,
+  <span class="attr">&quot;access_token&quot;</span>: <span class="string">&quot;24.6c5e1ff107f0e8bcef8c46d3424a0e78.2592000.1485516651.282335-8574074&quot;</span>,
+  <span class="attr">&quot;session_secret&quot;</span>: <span class="string">&quot;dfac94a3489fe9fca7c3221cbf7525ff&quot;</span>
+&#125;</code></pre>
 <p>我们只需要获取<code>access_token</code>即可</p>
 <p>若返回失败则会得到包含<code>error_description</code>的<code>Json</code>信息</p>
 </li>
 </ul>
-<h3 id="调用所需接口"><a href="#调用所需接口" class="headerlink" title="调用所需接口"></a>调用所需接口</h3><p>文字识别分为通用文字识别、通用文字识别（高精度），不同的接口有不同的免费额度</p>
+<h3 id="调用所需接口"><a class="header-anchor" href="#调用所需接口">○</a>调用所需接口</h3>
+<p>文字识别分为通用文字识别、通用文字识别（高精度），不同的接口有不同的免费额度</p>
 <p>通过发送<code>HTTP POST</code>上传图片数据或者地址进行文字识别</p>
 <ul>
-<li><p>url：<code>https://aip.baidubce.com/rest/2.0/ocr/v1/&#123;ocr_type&#125;?access_token=&#123;token&#125;</code></p>
+<li>
+<p>url：<code>https://aip.baidubce.com/rest/2.0/ocr/v1/&#123;ocr_type&#125;?access_token=&#123;token&#125;</code></p>
 <p>此处ocr_type根据不同的识别方式变化，可以用“general_basic”或者“accurate_basic”替换.</p>
 <p>token是上一步获取的<code>access_token</code></p>
 </li>
-<li><p>post的请求体为表单类型，分为两种方式</p>
+<li>
+<p>post的请求体为表单类型，分为两种方式</p>
 <ol>
-<li><p>图片数据</p>
+<li>
+<p>图片数据</p>
 <p>图片数据必须使用Base64编码，并用以下格式作为请求体</p>
 <table>
 <thead>
@@ -293,13 +319,16 @@
 <th>value</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>image</td>
 <td>base64数组</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </li>
-<li><p>图片地址</p>
+<li>
+<p>图片地址</p>
 <table>
 <thead>
 <tr>
@@ -307,30 +336,34 @@
 <th>value</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>url</td>
 <td>url字符串</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>仅<code>general_basic</code>支持用网络图片</p>
 </li>
 </ol>
 </li>
-<li><p>请求完成后将返回 Json 数据</p>
-<pre><code class="json">&#123;
-    &quot;log_id&quot;: 2471272194,
-    &quot;words_result_num&quot;: 2,
-    &quot;words_result&quot;: [
-        &#123;&quot;words&quot;: &quot; example&quot;&#125;,
-        &#123;&quot;words&quot;: &quot;helloworld&quot;&#125;
+<li>
+<p>请求完成后将返回 Json 数据</p>
+<pre><code class="highlight json">&#123;
+    <span class="attr">&quot;log_id&quot;</span>: <span class="number">2471272194</span>,
+    <span class="attr">&quot;words_result_num&quot;</span>: <span class="number">2</span>,
+    <span class="attr">&quot;words_result&quot;</span>: [
+        &#123;<span class="attr">&quot;words&quot;</span>: <span class="string">&quot; example&quot;</span>&#125;,
+        &#123;<span class="attr">&quot;words&quot;</span>: <span class="string">&quot;helloworld&quot;</span>&#125;
     ]
-&#125;
-</code></pre>
-<p>出错则会返回包含<code>err_msg</code>的 Json 数据，具体错误类型可见<a target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/dkibizxnx">官方文档</a></p>
+&#125;</code></pre>
+<p>出错则会返回包含<code>err_msg</code>的 Json 数据，具体错误类型可见<a class="link"   target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/dkibizxnx" >官方文档<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 </ul>
-<h3 id="Python使用例"><a href="#Python使用例" class="headerlink" title="Python使用例"></a>Python使用例</h3><p><a target="_blank" rel="noopener" href="https://github.com/838239178/tk-auto-study/blob/master/ocr.py">点此到Github中查看</a>上述介绍的内容分别对应<code>def _get_token()</code>和<code>def general_ocr(img_b64)</code></p>
-<h3 id="额外选择"><a href="#额外选择" class="headerlink" title="额外选择"></a>额外选择</h3><p>百度ocr还包含很多种类型具体请查看 <a target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/1k3h7y3db">官方文档</a>，调用api时也可传入其他参数，如是否检测图片方向、图片需要识别的语言等，这里就不多介绍，入门后看官方文档就没有任何问题了。</p>
+<h3 id="Python使用例"><a class="header-anchor" href="#Python使用例">○</a>Python使用例</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/838239178/tk-auto-study/blob/master/ocr.py" >点此到Github中查看<i class="fas fa-external-link-alt"></i></a>上述介绍的内容分别对应<code>def _get_token()</code>和<code>def general_ocr(img_b64)</code></p>
+<h3 id="额外选择"><a class="header-anchor" href="#额外选择">○</a>额外选择</h3>
+<p>百度ocr还包含很多种类型具体请查看 <a class="link"   target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/1k3h7y3db" >官方文档<i class="fas fa-external-link-alt"></i></a>，调用api时也可传入其他参数，如是否检测图片方向、图片需要识别的语言等，这里就不多介绍，入门后看官方文档就没有任何问题了。</p>
 
         </div>
 
@@ -545,7 +578,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8BaiduOcr%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97"><span class="nav-text">使用BaiduOcr识别图片文字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%94%B3%E8%AF%B7%E4%BD%BF%E7%94%A8%E6%9D%83"><span class="nav-text">注册并申请使用权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BE%E5%BA%A6%E8%B4%A6%E5%8F%B7"><span class="nav-text">注册百度账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-text">实名认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E5%BA%94%E7%94%A8"><span class="nav-text">创建文字识别应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8API%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87"><span class="nav-text">调用API识别图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Token"><span class="nav-text">获取Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%89%80%E9%9C%80%E6%8E%A5%E5%8F%A3"><span class="nav-text">调用所需接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E4%BD%BF%E7%94%A8%E4%BE%8B"><span class="nav-text">Python使用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E9%80%89%E6%8B%A9"><span class="nav-text">额外选择</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">使用BaiduOcr识别图片文字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%94%B3%E8%AF%B7%E4%BD%BF%E7%94%A8%E6%9D%83"><span class="nav-text">注册并申请使用权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BE%E5%BA%A6%E8%B4%A6%E5%8F%B7"><span class="nav-text">注册百度账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-text">实名认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E5%BA%94%E7%94%A8"><span class="nav-text">创建文字识别应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8API%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87"><span class="nav-text">调用API识别图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Token"><span class="nav-text">获取Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%89%80%E9%9C%80%E6%8E%A5%E5%8F%A3"><span class="nav-text">调用所需接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E4%BD%BF%E7%94%A8%E4%BE%8B"><span class="nav-text">Python使用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E9%80%89%E6%8B%A9"><span class="nav-text">额外选择</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -597,6 +630,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
 
 
 
