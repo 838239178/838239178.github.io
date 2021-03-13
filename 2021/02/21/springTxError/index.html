@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
+
 <head>
-  <meta charset="utf-8">
+  
+  <title>关于Spring事务管理失效问题 - ShiJh-Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="欢迎来到我的博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
-  <title>关于Spring事务管理失效问题 | ShiJh-Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
   <meta name="description" content="spring事务管理与AOP中的神坑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Spring事务管理失效问题">
@@ -14,259 +20,261 @@
 <meta property="og:description" content="spring事务管理与AOP中的神坑">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-07T03:12:07.990Z">
+<meta property="article:modified_time" content="2021-03-13T04:39:09.783Z">
 <meta property="article:author" content="ShiJh">
 <meta property="article:tag" content="java web">
 <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-    <link rel="alternate" href="/atom.xml" title="ShiJh-Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
+  <link rel="stylesheet" href="/css/style.css?v=1615612224446">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ShiJh-Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">学无止境</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.pressed.top"></form>
-      </div>
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/cover/5c3aec85a4343.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="ShiJh" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="ShiJh"></a>
+       </div>
     </div>
   </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-springTxError" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/02/21/springTxError/" class="article-date">
-  <time class="dt-published" datetime="2021-02-20T16:00:00.000Z" itemprop="datePublished">2021-02-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      关于Spring事务管理失效问题
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="关于Spring事务管理失效问题"><a href="#关于Spring事务管理失效问题" class="headerlink" title="关于Spring事务管理失效问题"></a>关于Spring事务管理失效问题</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习 <a href="https://blog.pressed.top/javaweb">Java Web</a>学到了Spring的事务管理，在实际使用过程中发现，<code>@Transcational</code>与 <code>@EnableTranscationManagement</code> 组合使用时，出现了事务管理失效、无法回滚的问题，在网上搜索一番依然无法得到答案，后来在自己的冥思苦想下联想起Spring事务管理本质时AOP的结论时恍然大悟，于是通过逐个注释来测试其他切面的方法终于得到答案——环绕通知导致了无法进行事务回滚！</p>
-<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>得知无法进行事务管理的原因是环绕通知时，我开始思考原因，通过查阅网上资料，得知Spring执行AOP切面遵循着一定的顺序，而这个顺序是由 <code>Order</code> 属性决定的！然后我就通过更改<code>Order</code>的方式对环绕通知的切面和事务管理切面进行测试，最终得出原因为<strong>事务切面的优先级高于环绕通知切面的优先级时，事务管理无法执行（回滚）</strong></p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="快速解决办法"><a href="#快速解决办法" class="headerlink" title="快速解决办法"></a>快速解决办法</h3><p>解决办法由上文非常容易得知，需要通过以下方法修改<code>Order</code>的值，需要注意的是该值越大，优先级越低，而事务切面默认值为<code>Integer.MAX_VALUE</code>，默认是优先级最低的，但是同样的其他Aspect默认值也是<code>Integral.MAX_VALAUE</code>，具体原因本人愚昧未知。所以说以下配置可以忽略事务管理切面的优先级Order的配置，只更改其他Aspect的Order。</p>
-<h4 id="XML式配置"><a href="#XML式配置" class="headerlink" title="XML式配置"></a>XML式配置</h4><p>在以下两个标签中添加配置order属性值</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="注解式配置"><a href="#注解式配置" class="headerlink" title="注解式配置"></a>注解式配置</h4><p>普通切面类通过<code>@Order</code> 注释传入一个<code>int</code>值即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order(10086)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>事务管理切面需要在<code>@EnableTranscationManagement</code>中配置<code>order</code>参数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableTransactionManagement(order = 1008611)</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="优雅的解决办法"><a href="#优雅的解决办法" class="headerlink" title="优雅的解决办法"></a>优雅的解决办法</h3><p>如果按照以上方法配置Order难免会在项目越来越大的情况变得难以管理，因为是耦合在代码上的所以不利于管理，所以我们最优雅的解决办法是使用.<code>properties</code>配置文件。</p>
-<h4 id="XML配置"><a href="#XML配置" class="headerlink" title="XML配置"></a>XML配置</h4><p>这个就是引用properties罢了，没什么好讲的，学过Spring XML配置都应该知道如何引入properties文件然后通过<code>$&#123;keyName&#125;</code>访问。</p>
-<h4 id="注解配置"><a href="#注解配置" class="headerlink" title="注解配置"></a>注解配置</h4><p>因为注解配置使用的是<code>Java</code>代码，且本人暂未发现Spring框架本身对Order批量管理的支持，所以只好自己想一套简单但又良好的方法，从贴合框架啊本身的角度来讲，使用XML配置更符合:leaves:Spring框架的生态。</p>
-<ol>
-<li><p>创建properties文件，并在<strong>配置类</strong>中使用<code>@PropertySource</code>加载</p>
-</li>
-<li><p>让你的Aspect类继承<code>org.springframework.core.Ordered</code>接口并按照如下来实现接口方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> <span class="keyword">implements</span> <span class="title">Ordered</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;keyName&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> order;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="关于解决方法"><a href="#关于解决方法" class="headerlink" title="关于解决方法"></a>关于解决方法</h4><p>注解配置的解决方法可能不够完美，但是也很好的进行解耦了，还有一些比较方便的方法但是实现难度较大，比如动态代理注解，用类名代替注解内的参数，来避免每次创建类都要用<code>@Value</code>注入order，然后就可以再配置文件中直接使用类名作为<code>key</code>配置Order了，目前动态代理注释的方法仍不清楚，所以暂时放弃这种方案。</p>
-
-      
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="ShiJh">
+            <img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="ShiJh" alt="ShiJh">
+        </a>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.pressed.top/2021/02/21/springTxError/" data-id="ckm77mrja0008aghj16hg4ieg" data-title="关于Spring事务管理失效问题" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-web/" rel="tag">java web</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/03/12/javaweb/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Java Web
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/02/14/signUpBaiduOcr/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">使用BaiduOcr识别图片文字</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm-c-c/" rel="tag">algorithm c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cocos-tiledmap/" rel="tag">cocos tiledmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-swing/" rel="tag">java swing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-web/" rel="tag">java web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-ai/" rel="tag">web ai</a></li></ul>
+    <div class="nexmoe-count">
+        <div><span>文章</span>9</div>
+        <div><span>标签</span>5</div>
+        <div><span>分类</span>0</div>
     </div>
-  </div>
-
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=5CfKHun" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
       <a href="/tags/algorithm-c-c/" style="font-size: 15px;">algorithm c/c++</a> <a href="/tags/cocos-tiledmap/" style="font-size: 10px;">cocos tiledmap</a> <a href="/tags/java-swing/" style="font-size: 15px;">java swing</a> <a href="/tags/java-web/" style="font-size: 20px;">java web</a> <a href="/tags/web-ai/" style="font-size: 10px;">web ai</a>
     </div>
-  </div>
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/03/12/myBatis/">MyBatis</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/12/javaweb/">Java Web</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/21/springTxError/">关于Spring事务管理失效问题</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/14/signUpBaiduOcr/">使用BaiduOcr识别图片文字</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/18/LinkGame/">LinkGame</a>
-          </li>
-        
-      </ul>
-    </div>
   </div>
 
   
 </aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 ShiJh
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
         
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+          <img data-src="/assets/images/tree.jpg" data-sizes="auto" alt="关于Spring事务管理失效问题" class="lazyload">
+          <h1>关于Spring事务管理失效问题</h1>
       </div>
-      <footer id="footer">
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 ShiJh<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>895 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+</div>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+  <div class="nexmoe-post-right">
     
+  </div>
 
+  <article>
+    <p>123</p>
+<span id="more"></span>
+<h1>关于Spring事务管理失效问题</h1>
+<h2 id="前言">前言</h2>
+<p>学习 <a href="https://blog.pressed.top/javaweb">Java Web</a>学到了Spring的事务管理，在实际使用过程中发现，<code>@Transcational</code>与 <code>@EnableTranscationManagement</code> 组合使用时，出现了事务管理失效、无法回滚的问题，在网上搜索一番依然无法得到答案，后来在自己的冥思苦想下联想起Spring事务管理本质时AOP的结论时恍然大悟，于是通过逐个注释来测试其他切面的方法终于得到答案——环绕通知导致了无法进行事务回滚！</p>
+<h2 id="原因分析">原因分析</h2>
+<p>得知无法进行事务管理的原因是环绕通知时，我开始思考原因，通过查阅网上资料，得知Spring执行AOP切面遵循着一定的顺序，而这个顺序是由 <code>Order</code> 属性决定的！然后我就通过更改<code>Order</code>的方式对环绕通知的切面和事务管理切面进行测试，最终得出原因为<strong>事务切面的优先级高于环绕通知切面的优先级时，事务管理无法执行（回滚）</strong></p>
+<h2 id="解决办法">解决办法</h2>
+<h3 id="快速解决办法">快速解决办法</h3>
+<p>解决办法由上文非常容易得知，需要通过以下方法修改<code>Order</code>的值，需要注意的是该值越大，优先级越低，而事务切面默认值为<code>Integer.MAX_VALUE</code>，默认是优先级最低的，但是同样的其他Aspect默认值也是<code>Integral.MAX_VALAUE</code>，具体原因本人愚昧未知。所以说以下配置可以忽略事务管理切面的优先级Order的配置，只更改其他Aspect的Order。</p>
+<h4 id="XML式配置">XML式配置</h4>
+<p>在以下两个标签中添加配置order属性值</p>
+<pre><code class="language-xml">&lt;aop:advisor order=&quot;&quot; /&gt;
+&lt;aop:around order=&quot;&quot; /&gt;
+</code></pre>
+<h4 id="注解式配置">注解式配置</h4>
+<p>普通切面类通过<code>@Order</code> 注释传入一个<code>int</code>值即可</p>
+<pre><code class="language-java">@Component
+@Aspect
+@Order(10086)
+public class MyAspect &#123;&#125;
+</code></pre>
+<p>事务管理切面需要在<code>@EnableTranscationManagement</code>中配置<code>order</code>参数</p>
+<pre><code class="language-java">@EnableTransactionManagement(order = 1008611)
+@Configuration
+public class SpringConfiguration &#123;&#125;
+</code></pre>
+<h3 id="优雅的解决办法">优雅的解决办法</h3>
+<p>如果按照以上方法配置Order难免会在项目越来越大的情况变得难以管理，因为是耦合在代码上的所以不利于管理，所以我们最优雅的解决办法是使用.<code>properties</code>配置文件。</p>
+<h4 id="XML配置">XML配置</h4>
+<p>这个就是引用properties罢了，没什么好讲的，学过Spring XML配置都应该知道如何引入properties文件然后通过<code>$&#123;keyName&#125;</code>访问。</p>
+<h4 id="注解配置">注解配置</h4>
+<p>因为注解配置使用的是<code>Java</code>代码，且本人暂未发现Spring框架本身对Order批量管理的支持，所以只好自己想一套简单但又良好的方法，从贴合框架啊本身的角度来讲，使用XML配置更符合🍃Spring框架的生态。</p>
+<ol>
+<li>
+<p>创建properties文件，并在<strong>配置类</strong>中使用<code>@PropertySource</code>加载</p>
+</li>
+<li>
+<p>让你的Aspect类继承<code>org.springframework.core.Ordered</code>接口并按照如下来实现接口方法</p>
+<pre><code class="language-java">@Component
+@Aspect
+public class MyAspect implements Ordered &#123;
+    @Value(&quot;$&#123;keyName&#125;&quot;)
+    private int order;
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+    @Override
+    public int getOrder() &#123;
+        return this.order;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h4 id="关于解决方法">关于解决方法</h4>
+<p>注解配置的解决方法可能不够完美，但是也很好的进行解耦了，还有一些比较方便的方法但是实现难度较大，比如动态代理注解，用类名代替注解内的参数，来避免每次创建类都要用<code>@Value</code>注入order，然后就可以再配置文件中直接使用类名作为<code>key</code>配置Order了，目前动态代理注释的方法仍不清楚，所以暂时放弃这种方案。</p>
 
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>ShiJh<br>
+    <strong>本文链接：</strong><a href="https://blog.pressed.top/2021/02/21/springTxError/" title="https:&#x2F;&#x2F;blog.pressed.top&#x2F;2021&#x2F;02&#x2F;21&#x2F;springTxError&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.pressed.top&#x2F;2021&#x2F;02&#x2F;21&#x2F;springTxError&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/java-web/" rel="tag">java web</a>
+    
+</div>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
   </div>
+</div>
+        <div class="nexmoe-post-right">
+          <div class="nexmoe-fixed">
+            <div class="nexmoe-tool">
+              <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1615612224446"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
 </body>
+
 </html>
