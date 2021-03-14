@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pressed.top/2020/12/18/LinkGame/</loc>
+    <lastmod>2021-03-14</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.pressed.top/2020/11/18/JavaSimpleCalculator/</loc>
+    <lastmod>2021-03-14</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.pressed.top/2020/05/12/roleAndMap/</loc>
+    <lastmod>2021-03-14</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.pressed.top/2021/03/12/myBatis/</loc>
+    <lastmod>2021-03-13</lastmod>
+  </url>
+  <url>
     <loc>https://blog.pressed.top/2019/12/15/bagProblem2/</loc>
     <lastmod>2021-03-13</lastmod>
   </url>
   <url>
-    <loc>https://blog.pressed.top/2020/05/12/roleAndMap/</loc>
-    <lastmod>2021-03-13</lastmod>
-  </url>
-  <url>
     <loc>https://blog.pressed.top/2020/05/18/cityRescue/</loc>
-    <lastmod>2021-03-13</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.pressed.top/2020/11/18/JavaSimpleCalculator/</loc>
-    <lastmod>2021-03-13</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.pressed.top/2020/12/18/LinkGame/</loc>
     <lastmod>2021-03-13</lastmod>
   </url>
   <url>
@@ -30,10 +34,6 @@
   </url>
   <url>
     <loc>https://blog.pressed.top/2021/03/12/javaweb/</loc>
-    <lastmod>2021-03-13</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.pressed.top/2021/03/12/myBatis/</loc>
     <lastmod>2021-03-13</lastmod>
   </url>
 </urlset> 

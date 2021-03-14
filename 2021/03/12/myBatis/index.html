@@ -217,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>4.1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.2k 字</span>
         </span>
     
     
@@ -325,7 +325,8 @@
 </li>
 <li>
 <p>INSERT</p>
-<p><code>&lt;insert id=&quot;&quot; &gt;sql&lt;/insert&gt;</code></p>
+<pre><code class="highlight xml"><span class="comment">&lt;!--后面三个属性表示返回插入的主键id并使用指定的映射关系！--&gt;</span>
+<span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">true</span> <span class="attr">keyProperty</span>=<span class="string">&quot;&quot;</span> <span class="attr">keyColumn</span>=<span class="string">&quot;&quot;</span>&gt;</span>sql<span class="tag">&lt;/<span class="name">insert</span>&gt;</span></code></pre>
 </li>
 </ul>
 <h5 id="使用占位符"><a class="header-anchor" href="#使用占位符">○</a>使用占位符</h5>
@@ -364,6 +365,9 @@
 <li><code>order</code> 指定为BEFORE/AFTER，意为在主查询之前还是之后进行这个子查询</li>
 </ul>
 <p><em>SelectKey需要注意order属性，像Mysql一类支持自动增长类型的数据库中，order需要设置为after才会取到正确的值</em></p>
+<blockquote>
+<p>⚠️如果是需要获取自增长的主键ID，推荐使用insert标签中的<a href="#sql%E8%AF%AD%E5%8F%A5%E9%85%8D%E7%BD%AE">useGeneratorKeys模式</a>，如果是注解方法，请使用<code>@Options</code>配置相同的内容。<em>mssql中，用SelectKey且使用<code>SCOPE_IDENTITY()</code>来获取主键的话是无法获取的（null）但使用<code>@@IDENTITY</code>能够正确获取</em></p>
+</blockquote>
 <h4 id="缓存优化"><a class="header-anchor" href="#缓存优化">○</a>缓存优化</h4>
 <p>当一条语句被调用时，mybatis能够将其返回结果缓存起来，若有多次查询则可以使用缓存直接返回。</p>
 <p>Select语句默认是打开缓存的，缓存开启方式如下：</p>
@@ -387,7 +391,7 @@
 </tr>
 <tr>
 <td>@Results</td>
-<td>封装多个结果，相当于xml中的resultMap，组合多个<code>@Result</code>标签</td>
+<td>封装多个结果，相当于xml中的resultMap，可指定属性<code>id</code>，组合多个<code>@Result</code>标签</td>
 </tr>
 <tr>
 <td>@One</td>
@@ -399,7 +403,7 @@
 </tr>
 <tr>
 <td>@ResultMap</td>
-<td>给<code>@Select</code>或者<code>@SelectProvider</code>提供在XML映射中的<code>&lt;resultMap&gt;</code>的id，参数为一个<code>int</code>数组</td>
+<td>给<code>@Select</code>提供<code>&lt;resultMap&gt;/@Results</code>的id，复用resultMap，参数为一个<code>int</code>数组</td>
 </tr>
 <tr>
 <td>@Options</td>
