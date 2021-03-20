@@ -197,6 +197,17 @@
         <i class="fas fa-edit"></i>&nbsp;2021-02-21 00:00:00
     </span>
     
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E9%97%AE%E9%A2%98/">问题</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -250,18 +261,18 @@
 <p>解决办法由上文非常容易得知，需要通过以下方法修改<code>Order</code>的值，需要注意的是该值越大，优先级越低，而事务切面默认值为<code>Integer.MAX_VALUE</code>，默认是优先级最低的，但是同样的其他Aspect默认值也是<code>Integral.MAX_VALAUE</code>，具体原因本人愚昧未知。所以说以下配置可以忽略事务管理切面的优先级Order的配置，只更改其他Aspect的Order。</p>
 <h4 id="XML式配置"><a class="header-anchor" href="#XML式配置">○</a>XML式配置</h4>
 <p>在以下两个标签中添加配置order属性值</p>
-<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span>
-<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">order</span>=<span class="string">&quot;&quot;</span> /&gt;</span></code></pre>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aop:around</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span></code></pre>
 <h4 id="注解式配置"><a class="header-anchor" href="#注解式配置">○</a>注解式配置</h4>
 <p>普通切面类通过<code>@Order</code> 注释传入一个<code>int</code>值即可</p>
-<pre><code class="highlight java"><span class="meta">@Component</span>
-<span class="meta">@Aspect</span>
-<span class="meta">@Order(10086)</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;&#125;</code></pre>
+<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<span class="hljs-meta">@Aspect</span>
+<span class="hljs-meta">@Order(10086)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAspect</span> </span>&#123;&#125;</code></pre>
 <p>事务管理切面需要在<code>@EnableTranscationManagement</code>中配置<code>order</code>参数</p>
-<pre><code class="highlight java"><span class="meta">@EnableTransactionManagement(order = 1008611)</span>
-<span class="meta">@Configuration</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>&#123;&#125;</code></pre>
+<pre><code class="hljs java"><span class="hljs-meta">@EnableTransactionManagement(order = 1008611)</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>&#123;&#125;</code></pre>
 <h3 id="优雅的解决办法"><a class="header-anchor" href="#优雅的解决办法">○</a>优雅的解决办法</h3>
 <p>如果按照以上方法配置Order难免会在项目越来越大的情况变得难以管理，因为是耦合在代码上的所以不利于管理，所以我们最优雅的解决办法是使用.<code>properties</code>配置文件。</p>
 <h4 id="XML配置"><a class="header-anchor" href="#XML配置">○</a>XML配置</h4>
@@ -274,15 +285,15 @@
 </li>
 <li>
 <p>让你的Aspect类继承<code>org.springframework.core.Ordered</code>接口并按照如下来实现接口方法</p>
-<pre><code class="highlight java"><span class="meta">@Component</span>
-<span class="meta">@Aspect</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> <span class="keyword">implements</span> <span class="title">Ordered</span> </span>&#123;
-    <span class="meta">@Value(&quot;$&#123;keyName&#125;&quot;)</span>
-    <span class="keyword">private</span> <span class="keyword">int</span> order;
+<pre><code class="hljs java"><span class="hljs-meta">@Component</span>
+<span class="hljs-meta">@Aspect</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAspect</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Ordered</span> </span>&#123;
+    <span class="hljs-meta">@Value(&quot;$&#123;keyName&#125;&quot;)</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> order;
 
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;
-        <span class="keyword">return</span> <span class="keyword">this</span>.order;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getOrder</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.order;
     &#125;
 &#125;</code></pre>
 </li>

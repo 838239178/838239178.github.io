@@ -228,7 +228,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>8.2k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>8.3k 字</span>
         </span>
     
     
@@ -872,9 +872,9 @@ resultSet.close();</code></pre>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myPointCut</span><span class="hljs-params">()</span></span>&#123;&#125;
 
     <span class="hljs-meta">@Before(&quot;Aspect.myPointCut()&quot;)</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeEnhance</span><span class="hljs-params">()</span>    </span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeEnhance</span><span class="hljs-params">(JoinPoint jp)</span>    </span>
 <span class="hljs-function">&#125;</span>
-<span class="hljs-function"></span></code></pre>
+<span class="hljs-function"><span class="hljs-comment">// 所有通知增强方法都能使用JoinPoint作为参数，Springzi</span></span></code></pre>
 <h4 id="Spring事务控制"><a class="header-anchor" href="#Spring事务控制">○</a>Spring事务控制</h4>
 <p>底层基于<a href="#aop">AOP</a>实现事务管理，一般在Service层进行。</p>
 <p>切点：Service方法</p>
@@ -1293,7 +1293,8 @@ resultSet.close();</code></pre>
 <li><code>transferTo(File)</code>通过IO保存本地或其他服务器</li>
 </ul>
 <h5 id="自定义类型转换器"><a class="header-anchor" href="#自定义类型转换器">○</a>自定义类型转换器</h5>
-<p>实现 <code>Convert&lt;S,D&gt;</code> 接口，并配置到SpringMvc中。接口泛型分别为转换前类型和转换后类型。</p>
+<p><em>SpringMvc从Request中获取参数时会使用Converter进行类型转化来匹配Controller方法中的参数类型。</em></p>
+<p>实现 <code>Convert&lt;S,D&gt;</code> 接口，并配置到SpringMvc中。接口泛型分别为<strong>转换前类型</strong>和<strong>转换后类型</strong>。</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.context.support.ConversionServiceFactoryBean&quot;</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;converters&quot;</span>&gt;</span>
     	<span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span>
@@ -1501,6 +1502,7 @@ resultSet.close();</code></pre>
 <ul>
 <li><code>@JSONType</code>: 可以标注在类上，通过指定orders参数可以决定转化该类时解析属性的顺序。</li>
 <li><code>@JSONFiled</code>: 标注在成员变量上，可以指定转化后名称以及转化顺序</li>
+<li><code>@ResponseJSONP</code>：标注在Controller类或方法上，并配置Bean:<code>JsonpResponseAdvice</code>，可实现注解方法返回Jsonp格式的数据，格式头取决于前端参数 <code>callback</code>，也可通过注解参数重新指定。(<a href="https://blog.pressed.top/2021/03/20/fastjsonperror">中文乱码问题</a>)</li>
 </ul>
 <hr class="footnotes-sep">
 <section class="footnotes">
