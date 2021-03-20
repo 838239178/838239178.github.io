@@ -217,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>877 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>840 字</span>
         </span>
     
     
@@ -250,15 +250,15 @@
 <ol>
 <li>
 <p>登入控制台后会要求填写以下信息来激活账号，只需要填写<code>*</code>号信息栏。</p>
-<img src="https://i.loli.net/2021/02/14/SK3zbi5NUAHoPOj.jpg" alt="#1" style="zoom: 67%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/838239178/PicgoBed/img/1.jpg" alt="1"></p>
 </li>
 <li>
 <p>完成后点击左侧工具栏的文字识别，如下图所示</p>
-<img src="https://i.loli.net/2021/02/14/bAF5XQBje4CSOHR.jpg" alt="#2" style="zoom: 50%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/838239178/PicgoBed/img/3.png" alt="3"></p>
 </li>
 <li>
 <p>点击<strong>立即认证</strong>，填入姓名和身份后点击下一步，无需刷脸验证，直接返回上一步的页面即可</p>
-<img src="https://i.loli.net/2021/02/14/YUC32t7WH6xpiID.jpg" alt="#3" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/838239178/PicgoBed/img/2.png" alt="2"></p>
 </li>
 </ol>
 <h3 id="创建文字识别应用"><a class="header-anchor" href="#创建文字识别应用">○</a>创建文字识别应用</h3>
@@ -269,10 +269,10 @@
 </li>
 <li>
 <p>创建完成后点击 <strong>应用详情</strong> ，进入页面后请记住<code>API Key</code>和<code>Secret Key</code></p>
-<img src="https://i.loli.net/2021/02/14/xZ8SFYnuoUJwRgp.jpg" alt="#5" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/838239178/PicgoBed/img/4.png" alt="4"></p>
 </li>
 </ol>
-<h2 id="调用API识别图片"><a class="header-anchor" href="#调用API识别图片">○</a>调用API识别图片</h2>
+<h2 id="调用API识别图"><a class="header-anchor" href="#调用API识别图">○</a>调用API识别图</h2>
 <h3 id="获取Token"><a class="header-anchor" href="#获取Token">○</a>获取Token</h3>
 <p>每隔一段时间使用前都需要获取<code>Token</code>，一个Token的有效期为30分钟</p>
 <p>通过发送<code>HTTP Get</code>请求token：</p>
@@ -285,14 +285,14 @@
 </li>
 <li>
 <p>请求成功将获得一串<code>Json</code>，例如</p>
-<pre><code class="highlight json">&#123;
-  <span class="attr">&quot;refresh_token&quot;</span>: <span class="string">&quot;25.b55fe1d287227ca97aab219bb249b8ab.315360000.1798284651.282335-8574074&quot;</span>,
-  <span class="attr">&quot;expires_in&quot;</span>: <span class="number">2592000</span>,
-  <span class="attr">&quot;scope&quot;</span>: <span class="string">&quot;public wise_adapt&quot;</span>,
-  <span class="attr">&quot;session_key&quot;</span>: <span class="string">&quot;9mzdDZXu3dENdFZQurfg0Vz8slgSgvvOAUebNFzyzcpQ5EnbxbF+hfG9DQkpUVQdh4p6HbQcAiz5RmuBAja1JJGgIdJI&quot;</span>,
-  <span class="attr">&quot;access_token&quot;</span>: <span class="string">&quot;24.6c5e1ff107f0e8bcef8c46d3424a0e78.2592000.1485516651.282335-8574074&quot;</span>,
-  <span class="attr">&quot;session_secret&quot;</span>: <span class="string">&quot;dfac94a3489fe9fca7c3221cbf7525ff&quot;</span>
-&#125;</code></pre>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"refresh_token"</span><span class="token operator">:</span> <span class="token string">"25.b55fe1d287227ca97aab219bb249b8ab.315360000.1798284651.282335-8574074"</span><span class="token punctuation">,</span>
+  <span class="token property">"expires_in"</span><span class="token operator">:</span> <span class="token number">2592000</span><span class="token punctuation">,</span>
+  <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"public wise_adapt"</span><span class="token punctuation">,</span>
+  <span class="token property">"session_key"</span><span class="token operator">:</span> <span class="token string">"9mzdDZXu3dENdFZQurfg0Vz8slgSgvvOAUebNFzyzcpQ5EnbxbF+hfG9DQkpUVQdh4p6HbQcAiz5RmuBAja1JJGgIdJI"</span><span class="token punctuation">,</span>
+  <span class="token property">"access_token"</span><span class="token operator">:</span> <span class="token string">"24.6c5e1ff107f0e8bcef8c46d3424a0e78.2592000.1485516651.282335-8574074"</span><span class="token punctuation">,</span>
+  <span class="token property">"session_secret"</span><span class="token operator">:</span> <span class="token string">"dfac94a3489fe9fca7c3221cbf7525ff"</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p>我们只需要获取<code>access_token</code>即可</p>
 <p>若返回失败则会得到包含<code>error_description</code>的<code>Json</code>信息</p>
 </li>
@@ -349,14 +349,14 @@
 </li>
 <li>
 <p>请求完成后将返回 Json 数据</p>
-<pre><code class="highlight json">&#123;
-    <span class="attr">&quot;log_id&quot;</span>: <span class="number">2471272194</span>,
-    <span class="attr">&quot;words_result_num&quot;</span>: <span class="number">2</span>,
-    <span class="attr">&quot;words_result&quot;</span>: [
-        &#123;<span class="attr">&quot;words&quot;</span>: <span class="string">&quot; example&quot;</span>&#125;,
-        &#123;<span class="attr">&quot;words&quot;</span>: <span class="string">&quot;helloworld&quot;</span>&#125;
-    ]
-&#125;</code></pre>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+    <span class="token property">"log_id"</span><span class="token operator">:</span> <span class="token number">2471272194</span><span class="token punctuation">,</span>
+    <span class="token property">"words_result_num"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">"words_result"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token property">"words"</span><span class="token operator">:</span> <span class="token string">" example"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token property">"words"</span><span class="token operator">:</span> <span class="token string">"helloworld"</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p>出错则会返回包含<code>err_msg</code>的 Json 数据，具体错误类型可见<a class="link"   target="_blank" rel="noopener" href="https://ai.baidu.com/ai-doc/OCR/dkibizxnx" >官方文档<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 </ul>
@@ -578,7 +578,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">使用BaiduOcr识别图片文字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%94%B3%E8%AF%B7%E4%BD%BF%E7%94%A8%E6%9D%83"><span class="nav-text">注册并申请使用权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BE%E5%BA%A6%E8%B4%A6%E5%8F%B7"><span class="nav-text">注册百度账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-text">实名认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E5%BA%94%E7%94%A8"><span class="nav-text">创建文字识别应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8API%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87"><span class="nav-text">调用API识别图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Token"><span class="nav-text">获取Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%89%80%E9%9C%80%E6%8E%A5%E5%8F%A3"><span class="nav-text">调用所需接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E4%BD%BF%E7%94%A8%E4%BE%8B"><span class="nav-text">Python使用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E9%80%89%E6%8B%A9"><span class="nav-text">额外选择</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">使用BaiduOcr识别图片文字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%B9%B6%E7%94%B3%E8%AF%B7%E4%BD%BF%E7%94%A8%E6%9D%83"><span class="nav-text">注册并申请使用权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BE%E5%BA%A6%E8%B4%A6%E5%8F%B7"><span class="nav-text">注册百度账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-text">实名认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E5%BA%94%E7%94%A8"><span class="nav-text">创建文字识别应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8API%E8%AF%86%E5%88%AB%E5%9B%BE"><span class="nav-text">调用API识别图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Token"><span class="nav-text">获取Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%89%80%E9%9C%80%E6%8E%A5%E5%8F%A3"><span class="nav-text">调用所需接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E4%BD%BF%E7%94%A8%E4%BE%8B"><span class="nav-text">Python使用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E9%80%89%E6%8B%A9"><span class="nav-text">额外选择</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
