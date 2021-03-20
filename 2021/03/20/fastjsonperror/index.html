@@ -224,7 +224,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>325 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>323 字</span>
         </span>
     
     
@@ -256,22 +256,22 @@
 <p><strong><a class="link"   target="_blank" rel="noopener" href="https://github.com/neil4dong" >neil4dong<i class="fas fa-external-link-alt"></i></a></strong> commented <a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/fastjson/issues/1689#issuecomment-510800670" >on 12 Jul 2019<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://github.com/kakakeven" >@kakakeven<i class="fas fa-external-link-alt"></i></a> 最终响应的Charset不取决于JSONPResponseBodyAdvice 的操作， JSONPResponseBodyAdvice 仅仅只是将返回结果做了封装， 实际响应Charset是取决于FastJsonHttpMessageConverter中的Charset配置。</p>
 </blockquote>
-<p>事实上无论我怎么设置<code>FastJsonHttpMessageConverter</code>的<code>Charset</code>，事情也无法得到解决，因此只好重写<code>JSONPResponseBodyAdvice</code> ，因为通过<code>HttpServletResponse</code>指定<code>ContentType</code>是有效的！并且正好发现<code>beforeBodyWriteInternal</code>是个空实现的方法，并在返回<code>JSONPObject</code>之前调用了一次。</p>
+<p>事实上，无论我怎么设置<code>FastJsonHttpMessageConverter</code>的<code>Charset</code>，事情也无法得到解决，因此只好重写<code>JSONPResponseBodyAdvice</code> ，因为通过<code>HttpServletResponse</code>指定<code>ContentType</code>是有效的！并且正好发现<code>beforeBodyWriteInternal</code>是个空实现的方法，并在返回<code>JSONPObject</code>之前调用了一次。</p>
 <p><strong>实现类：</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JsonpBodyAdvice</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JSONPResponseBodyAdvice</span> </span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeBodyWriteInternal</span><span class="hljs-params">(JSONPObject jsonpObject, MediaType contentType, MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response)</span> </span>&#123;
-        ((ServletServerHttpResponse) response).getServletResponse().setContentType(<span class="hljs-string">&quot;application/javascript;charset=UTF-8&quot;</span>);
-    &#125;
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonpBodyAdvice</span> <span class="token keyword">extends</span> <span class="token class-name">JSONPResponseBodyAdvice</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">beforeBodyWriteInternal</span><span class="token punctuation">(</span><span class="token class-name">JSONPObject</span> jsonpObject<span class="token punctuation">,</span> <span class="token class-name">MediaType</span> contentType<span class="token punctuation">,</span> <span class="token class-name">MethodParameter</span> returnType<span class="token punctuation">,</span> <span class="token class-name">ServerHttpRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServerHttpResponse</span> response<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ServletServerHttpResponse</span><span class="token punctuation">)</span> response<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getServletResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/javascript;charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p>把上述类作为配置JSONP Advice时的类即可：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringMvcConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>&#123;
-    <span class="hljs-meta">@Bean</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> JSONPResponseBodyAdvice <span class="hljs-title">jsonpResponseBodyAdvice</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JsonpBodyAdvice();
-    &#125;
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringMvcConfig</span> <span class="token keyword">implements</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">JSONPResponseBodyAdvice</span> <span class="token function">jsonpResponseBodyAdvice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JsonpBodyAdvice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
         </div>
 
