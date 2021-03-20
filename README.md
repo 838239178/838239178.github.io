@@ -4,7 +4,7 @@
 
 最开始使用的是Jekll，由于Hexo过于优秀所以换成了Hexo，新的博客在本地构建然后发布到gh-pags分支
 
-## master分支
+## main分支
 
 这个分支是Jekyll源代码，已经废弃了，不再使用。
 
