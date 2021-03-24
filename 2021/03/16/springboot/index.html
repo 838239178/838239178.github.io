@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
         </span>
     
     
@@ -268,17 +268,17 @@
 <h3 id="Application"><a class="header-anchor" href="#Application">○</a>Application</h3>
 <p>使用注解<code>@SpringBootApplication</code>标注为入口类</p>
 <p>每个Springboot应用的入口类，类似于Spring的注解类，其注解已经配置好了一部分内容。我们需要在其中添加<code>main</code>方法：</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    SpringApplication.run(Application.class, args);
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p><strong>Springboot基本上使用注解进行配置，部分注解详见SSM篇</strong></p>
 <h4 id="新注解"><a class="header-anchor" href="#新注解">○</a>新注解</h4>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--注解处理器--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--注解处理器--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-configuration-processor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <ul>
 <li>
 <p><code>@ConfigurationProperties(prefix)</code></p>
@@ -303,15 +303,15 @@
 <p>Springboot的核心配置文件，有且仅能使用该名称。该文件用于配置各种框架的参数，如jdbc、spring-mvc等一系列能够与Springboot集成的框架。能够被Springboot自动加载，不需要手动引入。</p>
 <h4 id="模块化"><a class="header-anchor" href="#模块化">○</a>模块化</h4>
 <p>以<code>application-name.yml</code>为格式的文件能够作为副配置文件，需要在主文件中“激活”</p>
-<pre><code class="hljs yml"><span class="hljs-comment"># application.yml</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span>
-    <span class="hljs-attr">active:</span> <span class="hljs-string">&quot;name1,name2&quot;</span></code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml"># application.yml
+spring:
+  profiles:
+    active: &quot;name1,name2&quot;</code></pre>
 <h3 id="Spring-AOP"><a class="header-anchor" href="#Spring-AOP">○</a>Spring AOP</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-aop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p><strong>不需要</strong>手动注解<code>@EnableAspectJAutoProxy</code>，即可使用AOP编程。</p>
 <h2 id="Springboot-SpringMvc"><a class="header-anchor" href="#Springboot-SpringMvc">○</a>Springboot+SpringMvc</h2>
 <p>通过<code>application.yml</code>可以直接配置Spring Mvc</p>
@@ -321,36 +321,40 @@
 <p><code>@RestController</code></p>
 <p>使用此注解标注的类中的方法不需要使用<code>@ResponseBody</code>，默认返回纯数据。</p>
 </li>
+<li>
+<p><code>@MatrixVariable</code></p>
+<p>获取请求中矩阵变量<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>的值，Springboot默认禁用了这个功能。Springboot对于请求路径的处理是使用了<code>UrlPathHelper</code>组件进行解析，其中对于<code>;</code>默认采用了**“截断”**的策略，因此无法获取分号后的内容，需要设置该组件中的<code>removeSemicolonContent=false</code></p>
+</li>
 </ul>
 <h3 id="静态资源访问"><a class="header-anchor" href="#静态资源访问">○</a>静态资源访问</h3>
 <p>**访问端口：**默认8080，通过<code>application.yml</code>指定<code>server.port</code>修改</p>
 <p>Springboot默认会加载<code>classpath:(/static)(/public)(/resource)(/META-INF/resources)</code>下的文件作为静态资源。</p>
 <h3 id="配置拦截器、消息转换器等"><a class="header-anchor" href="#配置拦截器、消息转换器等">○</a>配置拦截器、消息转换器等</h3>
-<p>配置拦截器（包括视图解析器、消息转换器都一样）需要自定义一个配置类<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>并继承<code>WebMvcConfigurer</code>类，在SSM篇中有详细说明。</p>
+<p>配置拦截器（包括视图解析器、消息转换器都一样）需要自定义一个配置类<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>并继承<code>WebMvcConfigurer</code>类，在SSM篇中有详细说明。</p>
 <blockquote>
 <p>⚠️Springboot默认为SpringMvc配置了许多内容，如果不希望覆盖默认的配置就不能使用<code>@EnableWebMvc</code>注解</p>
 </blockquote>
 <h3 id="数据类型转换器Converter"><a class="header-anchor" href="#数据类型转换器Converter">○</a>数据类型转换器Converter</h3>
 <p>自定义的数据类型转换器实现接口<code>Converter&lt;S,D&gt;</code>，并注解<code>@Component</code>即可完成自动装配。</p>
 <h3 id="字符集处理"><a class="header-anchor" href="#字符集处理">○</a>字符集处理</h3>
-<p>在SSM中我们需要配置过滤器Filter<code>CharacterEncodingFilter</code>，但是在Springboot中我们不需要<code>Web.xml</code>文件，使用<code>application.yml</code>配置即可。</p>
-<pre><code class="hljs yml"><span class="hljs-attr">server:</span>
-  <span class="hljs-attr">servlet:</span>
-    <span class="hljs-attr">encoding:</span>
-      <span class="hljs-attr">charset:</span> <span class="hljs-string">UTF-8</span></code></pre>
+<p>在SSM中我们需要配置过滤器<code>CharacterEncodingFilter</code>，但是在Springboot中我们不需要<code>Web.xml</code>文件，使用<code>application.yml</code>配置即可。</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">server:
+  servlet:
+    encoding:
+      charset: UTF-8</code></pre>
 <h2 id="Springboot-Mybatis"><a class="header-anchor" href="#Springboot-Mybatis">○</a>Springboot+Mybatis</h2>
 <p>可以在IDEA项目创建阶段勾选<code>SQL-&gt;Mybatis Framwork</code>自动引入以下jar包</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.1.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="连接池策略"><a class="header-anchor" href="#连接池策略">○</a>连接池策略</h3>
 <p>可以在IDEA项目创建阶段勾选<code>SQL-&gt;JDBC API</code>自动引入以下jar包</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-jdbc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p>springboot默认使用HikariCP连接池，可以通过<code>spring.datasource</code>直接在配置文件中配置Jdbc参数。通过<code>spring.datasource.type</code>指定自己想要的连接池全限定类名即可更换，前提是需要手动导入相关依赖。</p>
 <h3 id="事务控制"><a class="header-anchor" href="#事务控制">○</a>事务控制</h3>
 <p>Springboot不需要我们配置TransactionManager，只需要引入<code>spring-boot-starter-jdbc</code>即可使用注解<code>@Transactional</code></p>
@@ -369,12 +373,33 @@
 </li>
 </ul>
 <h2 id="Springboot-Test"><a class="header-anchor" href="#Springboot-Test">○</a>Springboot Test</h2>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p>测试类直接使用<code>@SpringbootTest</code>注解即可，Springboot默认使用<code>JUnit5</code>！</p>
+<h2 id="Thymeleaf"><a class="header-anchor" href="#Thymeleaf">○</a>Thymeleaf</h2>
+<p>Springboot对Thymeleaf模板引擎有很好的支持，但是也需要一些配置。</p>
+<h3 id="配置ViewController"><a class="header-anchor" href="#配置ViewController">○</a>配置ViewController</h3>
+<p>所有的<code>thymeleaf</code>文件都存放在<code>resource/template</code>中，无法当作静态资源进行访问的，需要通过SpringMvc的视图解析器进行访问，也就是说需要通过<code>@Controller</code>来访问View视图。</p>
+<ol>
+<li>
+<p><strong>方法一</strong></p>
+<p>在Controller类中配置映射方法，并返回地址字符串，如<code>return &quot;index&quot;</code>表示访问<code>resource/template/index.html</code></p>
+</li>
+<li>
+<p><strong>方法二</strong></p>
+<p>在SpringMvc配置类<sup class="footnote-ref"><a href="#fn4" id="fnref4:1">[4:1]</a></sup>中实现如下方法直接进行视图解析。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addViewControllers</span><span class="token punctuation">(</span><span class="token class-name">ViewControllerRegistry</span> registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 同一个View可以映射到多个地址上</span>
+    registry<span class="token punctuation">.</span><span class="token function">addViewController</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    registry<span class="token punctuation">.</span><span class="token function">addViewController</span><span class="token punctuation">(</span><span class="token string">"/index"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    registry<span class="token punctuation">.</span><span class="token function">addViewController</span><span class="token punctuation">(</span><span class="token string">"/index.html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+</li>
+</ol>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -382,7 +407,9 @@
 </li>
 <li id="fn2" class="footnote-item"><p>使用@ConfigurationProperties注解标注的类 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn3" class="footnote-item"><p>使用@Configuration标注的类，在springboot中使用该注解的类会自动@Import到主配置类中，不需要手动引入 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+<li id="fn3" class="footnote-item"><p>在请求地址中使用<code>;</code>分割的变量称为矩阵变量 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>使用@Configuration标注的类，在springboot中使用该注解的类会自动@Import到主配置类中，不需要手动引入 <a href="#fnref4" class="footnote-backref">↩︎</a> <a href="#fnref4:1" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -600,7 +627,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">🍃 SpringBoot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA-build-Springboot-project"><span class="nav-text">IDEA build Springboot project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Config"><span class="nav-text">Springboot Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E6%B3%A8%E8%A7%A3"><span class="nav-text">新注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application-yml"><span class="nav-text">application.yml</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="nav-text">模块化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-AOP"><span class="nav-text">Spring AOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-SpringMvc"><span class="nav-text">Springboot+SpringMvc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E6%B3%A8%E8%A7%A3-v2"><span class="nav-text">新注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE"><span class="nav-text">静态资源访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E6%B6%88%E6%81%AF%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AD%89"><span class="nav-text">配置拦截器、消息转换器等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8Converter"><span class="nav-text">数据类型转换器Converter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%A4%84%E7%90%86"><span class="nav-text">字符集处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Mybatis"><span class="nav-text">Springboot+Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%AD%96%E7%95%A5"><span class="nav-text">连接池策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">事务控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis%E9%85%8D%E7%BD%AE"><span class="nav-text">Mybatis配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Test"><span class="nav-text">Springboot Test</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">🍃 SpringBoot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA-build-Springboot-project"><span class="nav-text">IDEA build Springboot project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Config"><span class="nav-text">Springboot Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E6%B3%A8%E8%A7%A3"><span class="nav-text">新注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application-yml"><span class="nav-text">application.yml</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="nav-text">模块化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-AOP"><span class="nav-text">Spring AOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-SpringMvc"><span class="nav-text">Springboot+SpringMvc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E6%B3%A8%E8%A7%A3-v2"><span class="nav-text">新注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE"><span class="nav-text">静态资源访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8B%A6%E6%88%AA%E5%99%A8%E3%80%81%E6%B6%88%E6%81%AF%E8%BD%AC%E6%8D%A2%E5%99%A8%E7%AD%89"><span class="nav-text">配置拦截器、消息转换器等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8Converter"><span class="nav-text">数据类型转换器Converter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%A4%84%E7%90%86"><span class="nav-text">字符集处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Mybatis"><span class="nav-text">Springboot+Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%AD%96%E7%95%A5"><span class="nav-text">连接池策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">事务控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis%E9%85%8D%E7%BD%AE"><span class="nav-text">Mybatis配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot-Test"><span class="nav-text">Springboot Test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thymeleaf"><span class="nav-text">Thymeleaf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEViewController"><span class="nav-text">配置ViewController</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

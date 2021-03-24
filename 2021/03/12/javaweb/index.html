@@ -337,12 +337,12 @@
 <h4 id="ProxyMode"><a class="header-anchor" href="#ProxyMode">○</a>ProxyMode</h4>
 <p>代理模式，软件设计模式的一种，通过中间代理执行方法，来达到增强的目的。后续框架中经常使用该模式。</p>
 <p>动态代理在Java中使用</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Proxy</span></span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">newProxyInstance</span><span class="hljs-params">(ClassLoader loader, Class&lt;?&gt;[] interfacies, InvocationHandler h)</span></span>&#123;&#125;
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Proxy</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Object</span> <span class="token function">newProxyInstance</span><span class="token punctuation">(</span><span class="token class-name">ClassLoader</span> loader<span class="token punctuation">,</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> interfacies<span class="token punctuation">,</span> <span class="token class-name">InvocationHandler</span> h<span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p>其中<code>InvocationHandler</code>是抽象类，需实现</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">Object</span> proxy<span class="token punctuation">,</span> <span class="token class-name">Method</span> method<span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
 <p>通过在该方法中调用<code>method.invoke(obj,args)</code>来执行被代理的对象的方法。可以<strong>修改返回值</strong>或者<strong>参数</strong>等手段来增强该方法，也可以在方法调用前和调用后增加其他类的方法。</p>
 <h4 id="MVC开发模式"><a class="header-anchor" href="#MVC开发模式">○</a>MVC开发模式</h4>
 <ol>
@@ -465,47 +465,47 @@
 <ol>
 <li>
 <p>注册驱动</p>
-<pre><code class="hljs java"><span class="hljs-comment">/*</span>
-<span class="hljs-comment"> 通过该方法把类加载到内存</span>
-<span class="hljs-comment"> 驱动类来自每个不同的数据库公司，以下是mysql的驱动类</span>
-<span class="hljs-comment"> 该方法执行时，类的静态代码块会被执行，Driver会使用registerDriver方法注册DriverManager</span>
-<span class="hljs-comment"> mysql5以上的版本可以省略这个注册过程</span>
-<span class="hljs-comment">*/</span>
-Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/*
+ 通过该方法把类加载到内存
+ 驱动类来自每个不同的数据库公司，以下是mysql的驱动类
+ 该方法执行时，类的静态代码块会被执行，Driver会使用registerDriver方法注册DriverManager
+ mysql5以上的版本可以省略这个注册过程
+*/</span>
+<span class="token class-name">Class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>获取数据库连接对象</p>
-<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.sql.*;
-<span class="hljs-comment">/*</span>
-<span class="hljs-comment"> url: 数据库地址 jdbc:mysql://域名:端口/dbName</span>
-<span class="hljs-comment"> user: 管理员用户名</span>
-<span class="hljs-comment"> pwd: 管理员密码</span>
-<span class="hljs-comment">*/</span>
-Connection conn = DriverManager.getConnection(url,user,pwd);</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token comment">/*
+ url: 数据库地址 jdbc:mysql://域名:端口/dbName
+ user: 管理员用户名
+ pwd: 管理员密码
+*/</span>
+<span class="token class-name">Connection</span> conn <span class="token operator">=</span> <span class="token class-name">DriverManager</span><span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>user<span class="token punctuation">,</span>pwd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>定义sql语句<code>String</code></p>
 </li>
 <li>
 <p>获取执行sql对象</p>
-<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.sql.*;
-<span class="hljs-comment">//satement 可以执行sql语句</span>
-Statement stat = conn.createStatement();</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token comment">//satement 可以执行sql语句</span>
+<span class="token class-name">Statement</span> stat <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">createStatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>执行sql获取返回结果</p>
-<pre><code class="hljs java"><span class="hljs-comment">//sqlStr 为数据库执行语句，如DML(insert、update、delete)、DDL(create、alter、drop)</span>
-<span class="hljs-comment">//返回影响的行数：可以通过这个值判断DML语句是否执行成功</span>
-stat.excuteUpdate(sqlStr);</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//sqlStr 为数据库执行语句，如DML(insert、update、delete)、DDL(create、alter、drop)</span>
+<span class="token comment">//返回影响的行数：可以通过这个值判断DML语句是否执行成功</span>
+stat<span class="token punctuation">.</span><span class="token function">excuteUpdate</span><span class="token punctuation">(</span>sqlStr<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>释放资源</p>
-<pre><code class="hljs java"><span class="hljs-comment">//执行对象释放</span>
-stat.close();
-<span class="hljs-comment">//数据库连接释放</span>
-conn.close();
-<span class="hljs-comment">//结果对象释放</span>
-resultSet.close();</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//执行对象释放</span>
+stat<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//数据库连接释放</span>
+conn<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//结果对象释放</span>
+resultSet<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
 <h4 id="常用对象详解"><a class="header-anchor" href="#常用对象详解">○</a>常用对象详解</h4>
@@ -561,13 +561,13 @@ resultSet.close();</code></pre>
 <li>开启 提交 回滚 <a href="#%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3">使用Connection管理</a></li>
 </ul>
 <h5 id="使用方法-v2"><a class="header-anchor" href="#使用方法-v2">○</a>使用方法</h5>
-<pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;
-    conn.setAutoCommit(<span class="hljs-keyword">false</span>); <span class="hljs-comment">//open</span>
-    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> do sql</span>
-    conn.commit(); <span class="hljs-comment">//commit if no exception occur</span>
-&#125; <span class="hljs-keyword">catch</span> (Exception e)&#123;
-    conn.rollback(); <span class="hljs-comment">//rollback if has any exception </span>
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    conn<span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//open</span>
+    <span class="token comment">// TODO: do sql</span>
+    conn<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//commit if no exception occur</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    conn<span class="token punctuation">.</span><span class="token function">rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//rollback if has any exception </span>
+<span class="token punctuation">&#125;</span></code></pre>
 <p>当<code>rollback()</code>执行时，刚刚执行的sql操作都会撤销。</p>
 <h4 id="数据库连接池"><a class="header-anchor" href="#数据库连接池">○</a>数据库连接池</h4>
 <p>优化Connection操作，提高数据库访问性能</p>
@@ -638,16 +638,16 @@ resultSet.close();</code></pre>
 </li>
 </ul>
 <p><strong>模块开发</strong></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">import</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;applicationContext-xxx.xml&quot;</span> /&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>import</span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>applicationContext-xxx.xml<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h5 id="注解式依赖注入"><a class="header-anchor" href="#注解式依赖注入">○</a>注解式依赖注入</h5>
 <ol>
 <li>
 <p><strong>原始注解</strong></p>
 <p>使用前须在配置文件中配置组件扫描，指定需要注解开发的包</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--用于排除不需要被扫描的类--&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">context:exclude-filter</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--用于排除不需要被扫描的类--></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>exclude-filter</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">expression</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">></span></span></code></pre>
 <table>
 <thead>
 <tr>
@@ -762,14 +762,14 @@ resultSet.close();</code></pre>
 <li>
 <p>配置织入（前置、后置……）</p>
 <p>使用命名空间<code>xmlns:aop</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span>
- 	<span class="hljs-comment">&lt;!--声明切面类--&gt;</span>   
-	<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;beanName&quot;</span>&gt;</span>
-    	<span class="hljs-comment">&lt;!--配置切面：切点+通知--&gt;</span>
-        <span class="hljs-comment">&lt;!--类似的还有aop:after等等--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;adviceName&quot;</span> <span class="hljs-attr">pointcut</span>=<span class="hljs-string">&quot;execution(&#x27;方法声明&#x27;)&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">></span></span>
+ 	<span class="token comment">&lt;!--声明切面类--></span>   
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>aspect</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>beanName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    	<span class="token comment">&lt;!--配置切面：切点+通知--></span>
+        <span class="token comment">&lt;!--类似的还有aop:after等等--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>before</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>adviceName<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>execution(<span class="token punctuation">'</span>方法声明<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>aspect</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">></span></span></code></pre>
 <p><strong>切面标签</strong></p>
 <table>
 <thead>
@@ -825,7 +825,7 @@ resultSet.close();</code></pre>
 </li>
 </ul>
 <p>ex:</p>
-<pre><code class="hljs java">execution(* cn.test.*.*(..)) <span class="hljs-comment">//cn.test包下任意类的任意方法</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token function">execution</span><span class="token punctuation">(</span><span class="token operator">*</span> cn<span class="token punctuation">.</span>test<span class="token punctuation">.</span>*<span class="token punctuation">.</span>*<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//cn.test包下任意类的任意方法</span></code></pre>
 <p>**表达式抽取：**替换<code>point-cut</code>为<code>point-cut-ref</code>，引用<code>&lt;aop:pointcut id=&quot;&quot; expression=&quot;&quot;/&gt;</code>标签设定好的表达式<u>id</u></p>
 </li>
 </ol>
@@ -867,14 +867,14 @@ resultSet.close();</code></pre>
 </tbody>
 </table>
 <p>**切点<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>表达式抽取：**在切面类中定义空实现方法，在方法上用<code>@PointCut（’表达式‘）</code>标注，引用时按照<code>className.methodName()</code>来描述</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Aspect</span> </span>&#123;
-    <span class="hljs-meta">@PointCut(&quot;excution(*.cn.shijh.*.*(..))&quot;)</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myPointCut</span><span class="hljs-params">()</span></span>&#123;&#125;
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Aspect</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@PointCut</span><span class="token punctuation">(</span><span class="token string">"excution(*.cn.shijh.*.*(..))"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myPointCut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-    <span class="hljs-meta">@Before(&quot;Aspect.myPointCut()&quot;)</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeEnhance</span><span class="hljs-params">(JoinPoint jp)</span>    </span>
-<span class="hljs-function">&#125;</span>
-<span class="hljs-function"><span class="hljs-comment">// 所有通知增强方法都能使用JoinPoint作为参数，Springzi</span></span></code></pre>
+    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"Aspect.myPointCut()"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">beforeEnhance</span><span class="token punctuation">(</span><span class="token class-name">JoinPoint</span> jp<span class="token punctuation">)</span>    
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 所有通知增强方法都能使用JoinPoint作为参数，Springzi</span></code></pre>
 <h4 id="Spring事务控制"><a class="header-anchor" href="#Spring事务控制">○</a>Spring事务控制</h4>
 <p>底层基于<a href="#aop">AOP</a>实现事务管理，一般在Service层进行。</p>
 <p>切点：Service方法</p>
@@ -920,20 +920,20 @@ resultSet.close();</code></pre>
 </li>
 </ol>
 <h5 id="XML声明式控制"><a class="header-anchor" href="#XML声明式控制">○</a>XML声明式控制</h5>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--配置事务管理的增强方法--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">tx:advice</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">tx:attributes</span>&gt;</span>
-        <span class="hljs-comment">&lt;!--name可以使用通配符‘*’和字符串组合使用</span>
-<span class="hljs-comment">			如‘update*’表示以update开头的所有方法名--&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;methodName&quot;</span> <span class="hljs-attr">isolation</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">propogation</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">tx:attributes</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">tx:advice</span>&gt;</span>
-<span class="hljs-comment">&lt;!--transactionManager需要注入到IOC容器中--&gt;</span>
-<span class="hljs-comment">&lt;!--配置增强方法的织入，使用aop--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--事务管理增强专用标签--&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">advice-ref</span>=<span class="hljs-string">&quot;tx:advice&quot;</span> <span class="hljs-attr">pointcut</span>=<span class="hljs-string">&quot;execution&quot;</span>/&gt;</span>	
-<span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--配置事务管理的增强方法--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tx:</span>advice</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">transaction-manager</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tx:</span>attributes</span><span class="token punctuation">></span></span>
+        <span class="token comment">&lt;!--name可以使用通配符‘*’和字符串组合使用
+			如‘update*’表示以update开头的所有方法名--></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tx:</span>method</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>methodName<span class="token punctuation">"</span></span> <span class="token attr-name">isolation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">propogation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tx:</span>attributes</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tx:</span>advice</span><span class="token punctuation">></span></span>
+<span class="token comment">&lt;!--transactionManager需要注入到IOC容器中--></span>
+<span class="token comment">&lt;!--配置增强方法的织入，使用aop--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--事务管理增强专用标签--></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>advisor</span> <span class="token attr-name">advice-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tx:advice<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>execution<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>	
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">></span></span></code></pre>
 <table>
 <thead>
 <tr>
@@ -1018,7 +1018,7 @@ resultSet.close();</code></pre>
 </li>
 <li>
 <p><code>RowMapper&lt;T&gt;</code>可以自动完成数据封装的接口，是<code>query()</code>的方法参数，对应实现类有 <code>BeanPropertyRowMapper&lt;T&gt;</code>，需要构造参数：</p>
-<pre><code class="hljs java"><span class="hljs-keyword">new</span> BeanPropertyRowMapper&lt;JavaBean&gt;(JavaBean.class)</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">BeanPropertyRowMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">JavaBean</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">JavaBean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span></code></pre>
 <p><code>query()</code>将返回<code>List&lt;T&gt;</code>类型的集合</p>
 </li>
 <li>
@@ -1037,15 +1037,15 @@ resultSet.close();</code></pre>
 </li>
 <li>
 <p>配置<code>&lt;context-param&gt;</code>指定applicationContext.xml/.class的路径</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>xx.xx.xx.ClassName<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span>
-<span class="hljs-comment">&lt;!--如果使用类配置则一定要指定下面的参数--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context-param</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextClass<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>org.springframework.web.context.support.AnnotationConfigWebApplicationContext<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>contextConfigLocation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>xx.xx.xx.ClassName<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">></span></span>
+<span class="token comment">&lt;!--如果使用类配置则一定要指定下面的参数--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>contextClass<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>org.springframework.web.context.support.AnnotationConfigWebApplicationContext<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p>使用<code>WebApplicationContextUtils</code>获取上下文</p>
@@ -1089,21 +1089,21 @@ resultSet.close();</code></pre>
 <ol>
 <li>
 <p>在<code>web.xml</code>中配置前端控制器<code>DispatcherServlet</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--设定SpringMVC配置文件的地址 使用类配置时要指定contextClass类型，同spring-web--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>配置文件地址<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>org.springframework.web.servlet.DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--设定SpringMVC配置文件的地址 使用类配置时要指定contextClass类型，同spring-web--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>contextConfigLocation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>配置文件地址<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>load-on-startup</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>load-on-startup</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet</span><span class="token punctuation">></span></span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-mapping</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-name</span><span class="token punctuation">></span></span>DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-mapping</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p>使用独立的<code>spring-mvc.xml</code>配置SpringMVC的各种属性</p>
@@ -1180,33 +1180,33 @@ resultSet.close();</code></pre>
 <p>Mvc配置类需要实现的接口，用于配置更多SpringMvc的属性，如资源解析、拦截器等。</p>
 <h5 id="注解配置web-xml"><a class="header-anchor" href="#注解配置web-xml">○</a>注解配置web.xml</h5>
 <p>配置web.xml的类需要实现接口<code>AbstractAnnotationConfigDispatcherServletInitializer</code>，并实现其中方法，Spring会自动查找该实现类来代替web.xml</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 指定 ContextLoaderListener 所需的配置类</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;&#125;
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * 指定 ContextLoaderListener 所需的配置类
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getRootConfigClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 指定mvc的核心配置类</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;&#125;
+<span class="token comment">/**
+ * 指定mvc的核心配置类
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getServletConfigClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 等同于设置 DispatcherServlet 的 url-pattern</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-keyword">protected</span> String[] getServletMappings() &#123;&#125;
+<span class="token comment">/**
+ * 等同于设置 DispatcherServlet 的 url-pattern
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getServletMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 配置过滤器</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-keyword">protected</span> Filter[] getServletFilters() &#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Filter[]&#123;
-        <span class="hljs-keyword">new</span> CharacterEncodingFilter(<span class="hljs-string">&quot;UTF-8&quot;</span>),
-    &#125;;
-&#125;</code></pre>
+<span class="token comment">/**
+ * 配置过滤器
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">Filter</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getServletFilters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Filter</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">new</span> <span class="token class-name">CharacterEncodingFilter</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <h4 id="数据响应"><a class="header-anchor" href="#数据响应">○</a>数据响应</h4>
 <p>服务的的数据响应分为页面跳转和回写数据。</p>
 <h5 id="页面跳转"><a class="header-anchor" href="#页面跳转">○</a>页面跳转</h5>
@@ -1225,7 +1225,7 @@ resultSet.close();</code></pre>
 <li>
 <p>ModelAndView</p>
 <p>Json数据内容由<code>LinkedHashMap</code>转化而来，Json转化驱动可以是<code>jackjson</code>、<code>fastjson</code>，需要添加maven依赖。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelAndView(<span class="hljs-keyword">new</span> FastJsonJsonView(), map);</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ModelAndView</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FastJsonJsonView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>字符串</p>
@@ -1242,19 +1242,19 @@ resultSet.close();</code></pre>
 <li>
 <p>注解、类配置</p>
 <p>在Mvc配置类中继承<code>WebMvcConfigurer</code>接口，实现以下方法</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configureMessageConverters</span><span class="hljs-params">(List&lt;HttpMessageConverter&lt;?&gt;&gt; converters)</span> </span>&#123;
-    <span class="hljs-comment">// 此处配置FastJson</span>
-    FastJsonConfig config = <span class="hljs-keyword">new</span> FastJsonConfig();
-    FastJsonHttpMessageConverter converter = <span class="hljs-keyword">new</span> FastJsonHttpMessageConverter();
-    config.setSerializerFeatures(
-        SerializerFeature.DisableCircularReferenceDetect,
-        SerializerFeature.WriteMapNullValue,
-        SerializerFeature.WriteNullStringAsEmpty
-    );
-    converter.setFastJsonConfig(config);
-    converters.add(converter);
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configureMessageConverters</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HttpMessageConverter</span><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span><span class="token punctuation">></span></span> converters<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 此处配置FastJson</span>
+    <span class="token class-name">FastJsonConfig</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastJsonConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">FastJsonHttpMessageConverter</span> converter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastJsonHttpMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    config<span class="token punctuation">.</span><span class="token function">setSerializerFeatures</span><span class="token punctuation">(</span>
+        <span class="token class-name">SerializerFeature<span class="token punctuation">.</span>DisableCircularReferenceDetect</span><span class="token punctuation">,</span>
+        <span class="token class-name">SerializerFeature<span class="token punctuation">.</span>WriteMapNullValue</span><span class="token punctuation">,</span>
+        <span class="token class-name">SerializerFeature<span class="token punctuation">.</span>WriteNullStringAsEmpty</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    converter<span class="token punctuation">.</span><span class="token function">setFastJsonConfig</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    converters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>converter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 </li>
 </ul>
 <p><em>*返回Map集合时，最好使用<strong>LinkedHashMap</strong>来保证Json内数据顺序不会乱掉</em></p>
@@ -1274,8 +1274,8 @@ resultSet.close();</code></pre>
 <li>
 <p>获得<a href="#Restful">Restful</a>风格的请求参数</p>
 <p>使用<code>@PathVariable</code>获取，具体使用如下</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequsetMapping(&quot;/api/&#123;id&#125;/&#123;name&#125;&quot;)</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testController</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> <span class="hljs-keyword">int</span> id, <span class="hljs-meta">@PathVariable(&quot;name&quot;)</span> Stirng name)</span> </span>&#123;&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RequsetMapping</span><span class="token punctuation">(</span><span class="token string">"/api/&#123;id&#125;/&#123;name&#125;"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testController</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token keyword">int</span> id<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span> <span class="token class-name">Stirng</span> name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
 </li>
 <li>
 <p>获取<strong>请求头</strong></p>
@@ -1295,31 +1295,31 @@ resultSet.close();</code></pre>
 <h5 id="自定义类型转换器"><a class="header-anchor" href="#自定义类型转换器">○</a>自定义类型转换器</h5>
 <p><em>SpringMvc从Request中获取参数时会使用Converter进行类型转化来匹配Controller方法中的参数类型。</em></p>
 <p>实现 <code>Convert&lt;S,D&gt;</code> 接口，并配置到SpringMvc中。接口泛型分别为<strong>转换前类型</strong>和<strong>转换后类型</strong>。</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.context.support.ConversionServiceFactoryBean&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;converters&quot;</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span> <span class="hljs-attr">conversion-service</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.springframework.context.support.ConversionServiceFactoryBean<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>converters<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list</span><span class="token punctuation">></span></span>
+        	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>annotation-driven</span> <span class="token attr-name">conversion-service</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
 <h4 id="静态资源访问"><a class="header-anchor" href="#静态资源访问">○</a>静态资源访问</h4>
 <p>当 spring-mvc 的 dispatcher-servlet 路径配置为<code>/</code>，访问资源时也会去寻找Handler，无法访问到资源文件。解决方法有两种，第一种是配置资源文件的映射，第二种是交由tomcat来寻找资源文件。</p>
 <ul>
 <li>
 <p>XML配置</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--1.配置资源文件的映射--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:resource</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">location</span>=<span class="hljs-string">&quot;path&quot;</span> /&gt;</span>
-<span class="hljs-comment">&lt;!--2.启用默认servlet-handler管理资源文件--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:default-servlet-handler</span> /&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--1.配置资源文件的映射--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>resource</span> <span class="token attr-name">mapping</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>url<span class="token punctuation">"</span></span> <span class="token attr-name">location</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>path<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token comment">&lt;!--2.启用默认servlet-handler管理资源文件--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>default-servlet-handler</span> <span class="token punctuation">/></span></span></code></pre>
 </li>
 <li>
 <p>注解、类配置</p>
 <p>在Mvc配置类中继承<code>WebMvcConfigurer</code>接口，实现以下方法</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configureDefaultServletHandling</span><span class="hljs-params">(DefaultServletHandlerConfigurer configurer)</span> </span>&#123;
-    configurer.enable();
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configureDefaultServletHandling</span><span class="token punctuation">(</span><span class="token class-name">DefaultServletHandlerConfigurer</span> configurer<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    configurer<span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 </li>
 </ul>
 <h4 id="Session管理"><a class="header-anchor" href="#Session管理">○</a>Session管理</h4>
@@ -1334,7 +1334,7 @@ resultSet.close();</code></pre>
 <p>在Controller类上使用<code>@SessionAttributes</code>并指定参数为该类需要使用的AttributeNames，然后方法上的参数就可以使用<code>@ModelAttribute(name)</code>注入Session域的数据。在方法参数中使用Model类型，Spring会把该类的所有Session注入到Model对象中，因此也能够获取Session中的值，同时能够<strong>向Session中添加值</strong>。需要注意的是，使用该方法清除Session时，需要使用SessionStatus（作为方法参数，spring自动注入）的<code>SetComplete()</code>来清除，并且只会清除<code>@SessionAttributes</code>中标记的键值对。</p>
 </li>
 </ol>
-<p>✋<em>Spring官方文档中提出，对于用户登录验证的session最好使用<strong>方法一</strong></em></p>
+<p>✋<em>Spring官方文档中提出，对于用户登录验证的session最好使用<strong>方法一</strong>，实际上我们会使用安全框架来完成这个功能，如 <strong>Shiro</strong></em></p>
 <h4 id="拦截器-Interceptor"><a class="header-anchor" href="#拦截器-Interceptor">○</a>拦截器 Interceptor</h4>
 <p>与Filter过滤器类似，用于预处理和后处理，原理为<a href="#AOP">AOP</a>。<strong>只对控制器方法进行拦截，不拦截资源访问</strong></p>
 <h5 id="自定义拦截器"><a class="header-anchor" href="#自定义拦截器">○</a>自定义拦截器</h5>
@@ -1342,28 +1342,28 @@ resultSet.close();</code></pre>
 <ul>
 <li>
 <p>类配置</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span></span>&#123;
-    registry.addInterceptor(interceptor).addPathPatterns(<span class="hljs-string">&quot;/&quot;</span>);
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addInterceptors</span><span class="token punctuation">(</span><span class="token class-name">InterceptorRegistry</span> registry<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    registry<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span>interceptor<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addPathPatterns</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 </li>
 <li>
 <p>xml配置</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>interceptors</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>interceptor</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">mvc:</span>mapping</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">mvc:</span>interceptor</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">mvc:</span>interceptors</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p><strong>HandlerInterceptor</strong></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 执行前拦截</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(req, resp, handler)</span></span>;	
-<span class="hljs-comment">// 执行后，返回前拦截</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(req,resp, handler, modelAndView)</span></span>;
-<span class="hljs-comment">// 流程完毕后拦截</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(req, resp, handler, exception)</span></span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 执行前拦截</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>	
+<span class="token comment">// 执行后，返回前拦截</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">postHandle</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span>resp<span class="token punctuation">,</span> handler<span class="token punctuation">,</span> modelAndView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 流程完毕后拦截</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">afterCompletion</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">,</span> handler<span class="token punctuation">,</span> exception<span class="token punctuation">)</span></code></pre>
 <ol>
 <li><code>preHandle</code>返回为 <code>True</code> 时，后续操作才能执行。</li>
 <li><code>Handler</code>为控制器方法执行对象（Method）</li>
@@ -1380,14 +1380,14 @@ resultSet.close();</code></pre>
 <li>
 <p><strong>SimpleMappingExceptionResolver</strong></p>
 <p>框架自带的实现类。Mapping——发生异常时跳转到异常视图，映射关系通过配置完成。</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.xx.x.SimpleMappingExceptionResolver&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;defalutErrorView&quot;</span> <span class="hljs-attr">vlaue</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;exceptionMappings&quot;</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">map</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">map</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.xx.x.SimpleMappingExceptionResolver<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>defalutErrorView<span class="token punctuation">"</span></span> <span class="token attr-name">vlaue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exceptionMappings<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span>
+        	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span></code></pre>
 </li>
 </ul>
 <h5 id="自定义异常处理器"><a class="header-anchor" href="#自定义异常处理器">○</a>自定义异常处理器</h5>
@@ -1440,18 +1440,18 @@ resultSet.close();</code></pre>
 <li><code>MvcResult</code>：结果对象，包含request和response信息</li>
 </ul>
 <p><strong>测试样例：</strong></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;
-    MvcResult res = mockMvc.perform(
-        MockMvcRequestBuilders
-        .post(<span class="hljs-string">&quot;/user/login&quot;</span>)
-        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .characterEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>)
-        .param(<span class="hljs-string">&quot;userName&quot;</span>, <span class="hljs-string">&quot;zhangsan&quot;</span>)
-        .param(<span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;123&quot;</span>)
-    ).andDo(MockMvcResultHandlers.print()).andReturn();
-    System.out.println(res.getResponse().getContentAsString());
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">MvcResult</span> res <span class="token operator">=</span> mockMvc<span class="token punctuation">.</span><span class="token function">perform</span><span class="token punctuation">(</span>
+        <span class="token class-name">MockMvcRequestBuilders</span>
+        <span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/user/login"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">contentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_FORM_URLENCODED<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">characterEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">param</span><span class="token punctuation">(</span><span class="token string">"userName"</span><span class="token punctuation">,</span> <span class="token string">"zhangsan"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">param</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">,</span> <span class="token string">"123"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">andDo</span><span class="token punctuation">(</span><span class="token class-name">MockMvcResultHandlers</span><span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">andReturn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContentAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <h3 id="Mybatis-Spring"><a class="header-anchor" href="#Mybatis-Spring">○</a>Mybatis-Spring</h3>
 <p><strong>前置</strong>-关于Mybatis的详细内容：<a href="https://blog.pressed.top/myBatis">Mybatis原始教程</a></p>
 <p><strong>Maven</strong>：mybatis-spring</p>
@@ -1497,6 +1497,7 @@ resultSet.close();</code></pre>
 <li>PUT 表示更新</li>
 <li>DELETE 表示删除</li>
 </ul>
+<p>在前端中，<strong>form</strong>表单形式的请求是不支持PUT/DELETE的，需要使用隐藏的参数配合后端<code>Filter</code>完成请求映射，在spring-mvc使用自带的<code>HiddenHttpMethodFilter</code>来完成这个功能，通过指定隐藏参数的名自动从前端请求中获取Method值，但是前端显式的Method必须是&quot;POST&quot;形式。</p>
 <h4 id="FastJson"><a class="header-anchor" href="#FastJson">○</a>FastJson</h4>
 <p>由阿里巴巴开发的Json转化驱动。其中<code>FastJsonHttpMessageConverter</code>可以用于SpringMvc的消息转换器中。</p>
 <ul>

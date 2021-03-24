@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.pressed.top/2021/03/16/springboot/</loc>
+    <lastmod>2021-03-24</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.pressed.top/2021/03/12/javaweb/</loc>
+    <lastmod>2021-03-24</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.pressed.top/2020/12/18/LinkGame/</loc>
+    <lastmod>2021-03-23</lastmod>
+  </url>
+  <url>
     <loc>https://blog.pressed.top/2021/03/20/fastjsonperror/</loc>
     <lastmod>2021-03-20</lastmod>
   </url>
@@ -9,24 +21,12 @@
     <lastmod>2021-03-20</lastmod>
   </url>
   <url>
-    <loc>https://blog.pressed.top/2021/03/12/javaweb/</loc>
-    <lastmod>2021-03-20</lastmod>
-  </url>
-  <url>
     <loc>https://blog.pressed.top/2021/02/21/springTxError/</loc>
     <lastmod>2021-03-20</lastmod>
   </url>
   <url>
-    <loc>https://blog.pressed.top/2021/03/16/springboot/</loc>
-    <lastmod>2021-03-19</lastmod>
-  </url>
-  <url>
     <loc>https://blog.pressed.top/2021/03/12/myBatis/</loc>
     <lastmod>2021-03-16</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.pressed.top/2020/12/18/LinkGame/</loc>
-    <lastmod>2021-03-14</lastmod>
   </url>
   <url>
     <loc>https://blog.pressed.top/2020/11/18/JavaSimpleCalculator/</loc>
