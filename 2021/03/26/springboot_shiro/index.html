@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>875 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
         </span>
     
     
@@ -276,6 +276,8 @@
 <p>框架的使用入口，也相当于是一个会话对象<code>Session</code>，每个不同的用户访问Shiro都会提供不同的Subject，使用<code>SecurityUtils</code>进行获取。</p>
 </li>
 </ul>
+<h3 id="执行流程图"><a class="header-anchor" href="#执行流程图">○</a>执行流程图</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/838239178/PicgoBed/img/1460000037648599" alt="Shiro流程图"></p>
 <h2 id="快速入门"><a class="header-anchor" href="#快速入门">○</a>快速入门</h2>
 <h3 id="核心配置"><a class="header-anchor" href="#核心配置">○</a>核心配置</h3>
 <p>在SpringBoot使用Shiro需要三个完成最低限度的配置，分别是<code>ShiroFilterChainDefinition</code>、<code>SessionsSecurityManager</code>、<code>DefaultAdvisorAutoProxyCreator</code>，在<code>@Configuration</code>类中配置以下Bean</p>
@@ -351,12 +353,79 @@
 <h3 id="实现鉴权"><a class="header-anchor" href="#实现鉴权">○</a>实现鉴权</h3>
 <p>鉴权分为两条路径，一条是<strong>角色鉴定</strong>另一条是<strong>权力鉴定</strong>，一般我们使用<code>Filter</code>来鉴定角色，<code>注解</code>来鉴定权力。</p>
 <p>首先是使用注解<code>@RequirePermission(value,logic)</code>鉴定权限，<em>value</em>为权限名即上文代码中所述的<code>StringPermission</code>，属于数组，能够指定多个，<em>logic</em>是一个枚举，仅有<code>AND</code>、<code>OR</code>两种，表示多个<em>value</em>之间是<strong>且</strong>还是<strong>或</strong>的关系，默认为<code>AND</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Require</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"admin:read"</span><span class="token punctuation">,</span><span class="token string">"admin:write"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token class-name">Logic</span><span class="token punctuation">.</span>AND<span class="token punctuation">)</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RequirePermission</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"admin:read"</span><span class="token punctuation">,</span><span class="token string">"admin:write"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token class-name">Logic</span><span class="token punctuation">.</span>AND<span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">controllerMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
-<p>其次是<em>FIlter</em>，在上文中配置了<code>/**</code>表示任意路径，<code>anno</code>为匿名过滤器，允许未认证用户访问。还有其他过滤器以及我们自定义的过滤器都使用这种方式来配置，过滤器能通过用户所具有角色进行角色鉴定！</p>
+<p>其次是<em>Filter</em>，在上文中配置了<code>/**</code>表示任意路径，<code>anon</code>为匿名过滤器，允许未认证用户访问。还有其他过滤器以及我们自定义的过滤器都使用这种方式来配置，过滤器能通过用户所具有角色进行角色鉴定！</p>
 <blockquote>
 <p>💬无论是角色还是权限都能使用 <code>Filter</code>和注解，不过各有各的方便之处</p>
 </blockquote>
+<h2 id="Shiro原理解析"><a class="header-anchor" href="#Shiro原理解析">○</a>Shiro原理解析</h2>
+<h3 id="Subject"><a class="header-anchor" href="#Subject">○</a>Subject</h3>
+<p>代表当前会话的对象，从<code>SecurityUtils</code>中能够获得，最主要的方法就是<code>login(token)</code>方法，执行该方法后将进入Shiro框架的<code>SecurityManager</code>对象中，此时将会调用<code>Realm</code>中的<code>doGetAuthenticationInfo()</code>并传入从<em>Login</em>方法中获取的token进行验证。Login之后，当前会话的<code>Subject</code>中就会保存一个Principal，通过<code>getPrincipal()</code>方法获取。</p>
+<h3 id="Realm"><a class="header-anchor" href="#Realm">○</a>Realm</h3>
+<p><code>doGetAuthenticationInfo</code>方法用来验证传入的Token信息是否合法，判断逻辑由我们来编写，失败需要返回null，而成功需要返回认证信息，认证信息包括<code>Principal</code>、<code>credentials</code>、当前使用的<code>RealmName</code>以及用于MD5加密<em>credentials</em>的<code>salt</code>。</p>
+<blockquote>
+<p>Shrio能够通过配置使用MD5加密Credentials</p>
+<p>对于<em>credentialsSalt</em>，在Shiro中为<code>org.apache.shiro.util.ByteSource</code>对象：<br>
+<code>ByteSource credentialsSalt = ByteSource.Util.bytes(&quot;&quot;);</code><br>
+ByteSource提供了一个内部方法，可以将字符串转换为对应的盐值信息。一般情况下我们使用一个唯一的字符串作为盐值，这个<strong>salt</strong>需要同用户信息保存到数据库，再Realm中验证时需要使用同一个<strong>salt</strong>加密Token中的credential后进行比较验证。</p>
+</blockquote>
+<p>验证通过后会调用*<code>doGetAuthorizationInfo()</code>将当前会话的<strong>PrimaryPrincipal</strong>从<em>principalCollection</em>中取出，PrimaryPrincipal 由 doGetAuthenticationInfo 方法创建认证信息时指定。与<code>Subject.Login</code>传入的Token中的Principle不同，PrimaryPrincipal 将会代表整个会话。在这个阶段需要编写角色和权限获取的逻辑，并保存到一个授权信息对象中返回给<code>SecurityManager</code></p>
+<h3 id="Filter"><a class="header-anchor" href="#Filter">○</a>Filter</h3>
+<p>FIlter是Shiro框架组成中的一个关键部分，Shiro所有鉴权和认证都是通过Filter进行的，内部实现了许多默认的Filter供开发人员配置，但是通过重写Shiro的FIlter类能够实现一套自定义的认证或鉴权逻辑，一般都会用来实现不同的认证，如token认证。</p>
+<h2 id="Filter详解"><a class="header-anchor" href="#Filter详解">○</a>Filter详解</h2>
+<h3 id="常用过滤器"><a class="header-anchor" href="#常用过滤器">○</a>常用过滤器</h3>
+<table>
+<thead>
+<tr>
+<th>过滤器名</th>
+<th>作用</th>
+<th>对应注解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anon</td>
+<td>允许匿名访问</td>
+<td>无</td>
+</tr>
+<tr>
+<td>authc</td>
+<td>只允许认证用户访问</td>
+<td>@RequiresAuthentication</td>
+</tr>
+<tr>
+<td>roles</td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/xh199110/article/details/45025627" >只允许指定角色访问<i class="fas fa-external-link-alt"></i></a></td>
+<td>@RequiresRoles</td>
+</tr>
+<tr>
+<td>user</td>
+<td>存在用户信息才可以访问</td>
+<td>@RequiresUser</td>
+</tr>
+<tr>
+<td>perms</td>
+<td>只允许拥有指定权限才能访问</td>
+<td>@RequiresPermission</td>
+</tr>
+<tr>
+<td>logout</td>
+<td>清空访问用户的认证授权信息</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️<code>authc</code>和<code>perms</code>字符串末尾连接多个<code>[name]</code>来表示指定的角色或权限。</p>
+</blockquote>
+<h3 id="自定义Filter"><a class="header-anchor" href="#自定义Filter">○</a>自定义Filter</h3>
+<p>最常见的是实现类<code>AuthenticatingFilter</code>，通过重写其<code>onAccessDenied</code>、<code>createToken</code>即可实现一个不同于Shiro默认的认证逻辑。</p>
+<blockquote>
+<p>推荐一篇<a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022631899" >文章<i class="fas fa-external-link-alt"></i></a>，对Shiro各大Filter都进行了详细解读</p>
+</blockquote>
+<p>具体讲一讲<code>AuthenticatingFilter</code>这个认证过滤器。它默认实现了一个从请求中进行登录的功能 <code>executeLogin(resq,resp)</code>利用这个功能，我们能在用户会话失效认证失败后尝试进行自动登录，也就是再onAccessDenied中调用它，它将返回一个是否登录成功的布尔值，其中执行的逻辑是调用<strong>createToken</strong>从<code>request</code>或者<code>response</code>获取Token进入Realm中验证，因此我们可以利用这个性质在前后端通过一个唯一对应的值进行认证！也就是我们经常在抓包中经常见到的<strong>token</strong>字符串</p>
+<p><code>onAccessDenied</code>方法会在默认的<code>isAccessAllow</code>返回<strong>False</strong>后调用作进一步的判断。默认的<code>isAccessAllow</code>其实是沿用了<code>AccessControlFilter</code>中的方法——对当前Subject对象进行判断是否处于认证状态来决定是否放行——并添加了一条<code>isLoginRequest</code>方法进行判断，该方法判断请求的连接是否是用于登录的连接，如果是则会放行，如果不是则最终调用<em>onAccessDenied</em>进行判断。</p>
 
         </div>
 
@@ -364,6 +433,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/03/27/shiro-token/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用token完成Shrio鉴权认证</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -556,7 +640,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringBoot-Shiro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-text">核心配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80Realm"><span class="nav-text">编写基础Realm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E9%89%B4%E6%9D%83"><span class="nav-text">实现鉴权</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringBoot-Shiro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-text">执行流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-text">核心配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80Realm"><span class="nav-text">编写基础Realm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E9%89%B4%E6%9D%83"><span class="nav-text">实现鉴权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shiro%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-text">Shiro原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Subject"><span class="nav-text">Subject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Realm"><span class="nav-text">Realm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-text">Filter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter%E8%AF%A6%E8%A7%A3"><span class="nav-text">Filter详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-text">常用过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Filter"><span class="nav-text">自定义Filter</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
