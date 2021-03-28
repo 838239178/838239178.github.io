@@ -228,7 +228,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>932 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k 字</span>
         </span>
     
     
@@ -260,6 +260,7 @@
 <li>因为没有执行过<code>Subject.login()</code>所以访问限制资源是会被拦截失效</li>
 <li>失败后调用自定义<code>Filter</code>的<code>onAccessDenied()</code>，获取携带的token并执行登录(executeLogin)</li>
 <li>登陆时使用自定义的<code>Realm</code>验证token合法性和时效性，通过则返回认证信息</li>
+<li>Shiro调用<code>CredentialsMatcher</code>验证输入的credentials与Realm中返回的认证信息是否匹配（需要自定义Mathcer）</li>
 <li>有了认证信息即可进行授权鉴权！！！</li>
 </ol>
 </blockquote>
@@ -271,7 +272,7 @@
 <li>
 <p><code>AuthenticationToken createToken(request,response)</code></p>
 <p>这个方法将会在认证失败后尝试登录时调用（executeLogin），它返回的<em>AuthenticationToken</em>将作为<code>Subject.login</code>方法的参数，也就是**它将进入到我们自定义的Realm当中！**根据需求，此处创建<em>AuthenticationToken</em> 我们需要依赖于前端传递的token，因此我们是从<em>request</em>中获得的（请求头、请求体）</p>
-<p>无法获取怎么办呢？直接返回null即可，Shiro将会抛出<code>IllegalStateException</code>，在<code>ControllerAdvice</code>中处理即可。</p>
+<p>无法获取怎么办呢？直接返回null即可，Shiro将会抛出<code>IllegalStateException</code>。</p>
 </li>
 <li>
 <p><code>boolean onAccessDenied(request,response)</code></p>
@@ -299,7 +300,14 @@
 </li>
 </ol>
 </blockquote>
-<p>理清了各种Token，接下来要解决的就是Token如何加密的问题了，就如前面提到的，加密Token可以使用<code>JWT</code>，使用JWT可以方便的设置失效时间，节省数据库资源，也提供<em>secret</em>加密，能够进行二次验证，这里不再赘述使用方法。</p>
+<p>理清了各种Token，接下来要解决的就是Token如何加密的问题了，就如前面提到的，Token可以使用<code>JWT</code>，使用JWT可以方便的设置失效时间，节省数据库资源，也提供<em>secret</em>加密，能够进行二次验证，这里不再赘述使用方法。</p>
+<h3 id="自定义CredentialsMatcher"><a class="header-anchor" href="#自定义CredentialsMatcher">○</a>自定义CredentialsMatcher</h3>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">doCredentialsMatch</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationToken</span> authenticationToken<span class="token punctuation">,</span> <span class="token class-name">AuthenticationInfo</span> authenticationInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
+<p>Token是从前端获取的Token，Info是Realm返回的Info，在该方法中实现验证即可。</p>
+<blockquote>
+<p>😄自定义Matcher后需要注入到自定义的Realm中，通过<code>setCredentialsMatcher</code>方法</p>
+</blockquote>
 
         </div>
 
@@ -499,7 +507,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前后端分离——使用token完成Shrio鉴权认证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="nav-text">核心流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-text">原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Filter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Filter实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Realm%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Realm实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Token"><span class="nav-text">自定义Token</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前后端分离——使用token完成Shrio鉴权认证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="nav-text">核心流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-text">原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Filter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Filter实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Realm%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Realm实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Token"><span class="nav-text">自定义Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89CredentialsMatcher"><span class="nav-text">自定义CredentialsMatcher</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
