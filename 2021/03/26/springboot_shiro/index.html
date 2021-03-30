@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
         </span>
     
     
@@ -371,6 +371,9 @@
 ByteSource提供了一个内部方法，可以将字符串转换为对应的盐值信息。一般情况下我们使用一个唯一的字符串作为盐值，这个<strong>salt</strong>需要同用户信息保存到数据库，再Realm中验证时需要使用同一个<strong>salt</strong>加密Token中的credential后进行比较验证。</p>
 </blockquote>
 <p>验证通过后会调用*<code>doGetAuthorizationInfo()</code>将当前会话的<strong>PrimaryPrincipal</strong>从<em>principalCollection</em>中取出，PrimaryPrincipal 由 doGetAuthenticationInfo 方法创建认证信息时指定。与<code>Subject.Login</code>传入的Token中的Principle不同，PrimaryPrincipal 将会代表整个会话。在这个阶段需要编写角色和权限获取的逻辑，并保存到一个授权信息对象中返回给<code>SecurityManager</code></p>
+<blockquote>
+<p>⚠️Shiro使用单个Realm和多个Realm的策略是不同的，其中对异常的处理也是不同的，多Realm在认证失败的时候会很坑爹的<strong>抛出找不到对应Realm的异常，无法抛出自定义异常</strong>，详细情况和勉强的解决方法可以看这篇<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/6a33c22c2c55" >文章<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
 <h3 id="Filter"><a class="header-anchor" href="#Filter">○</a>Filter</h3>
 <p>FIlter是Shiro框架组成中的一个关键部分，Shiro所有鉴权和认证都是通过Filter进行的，内部实现了许多默认的Filter供开发人员配置，但是通过重写Shiro的FIlter类能够实现一套自定义的认证或鉴权逻辑，一般都会用来实现不同的认证，如token认证。</p>
 <h2 id="Filter详解"><a class="header-anchor" href="#Filter详解">○</a>Filter详解</h2>
