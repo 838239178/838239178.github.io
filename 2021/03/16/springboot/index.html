@@ -228,7 +228,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k 字</span>
         </span>
     
     
@@ -378,7 +378,10 @@ spring:
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-<p>测试类直接使用<code>@SpringbootTest</code>注解即可，Springboot默认使用<code>JUnit5</code>！</p>
+<p>测试类直接使用<code>@SpringbootTest(class)</code>注解并指定SpringbootApplication类，Springboot默认使用<code>JUnit5</code>！</p>
+<blockquote>
+<p>⚠️在单元测试中使用<code>@Transactional</code>注解就算执行成功也会自动回滚，如果需要提交事务请加上<code>@Commit</code>注解</p>
+</blockquote>
 <h2 id="Thymeleaf"><a class="header-anchor" href="#Thymeleaf">○</a>Thymeleaf</h2>
 <p>Springboot对Thymeleaf模板引擎有很好的支持，但是也需要一些配置。</p>
 <h3 id="配置ViewController"><a class="header-anchor" href="#配置ViewController">○</a>配置ViewController</h3>

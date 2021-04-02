@@ -233,7 +233,7 @@
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>17 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>16 分钟</span>
         </span>
     
     
@@ -258,32 +258,32 @@
 </blockquote>
 <h2 id="配置详解"><a class="header-anchor" href="#配置详解">○</a>配置详解</h2>
 <p><strong>Maven坐标</strong></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>x.x.x<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>x.x.x<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="XML核心配置"><a class="header-anchor" href="#XML核心配置">○</a>XML核心配置</h3>
 <h4 id="运行环境配置"><a class="header-anchor" href="#运行环境配置">○</a>运行环境配置</h4>
 <p>运行环境需要指定数据库连接池和事务管理类型。完成以下配置即可完成最简单的持久化操作。</p>
 <ul>
 <li>
 <p>数据源环境</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">&quot;id&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;JDBC&quot;</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;POOLED&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;&#125;&quot;</span>/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>environments</span> <span class="token attr-name">default</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>environment</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>transactionManager</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>JDBC<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dataSource</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POOLED<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dataSource</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>environment</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>environments</span><span class="token punctuation">></span></span></code></pre>
 <p>数据源环境可以配置多个，其中指定一个ID为默认运行环境，配置DataSource的方法与Spring配置相似，同样可以使用properties文件。</p>
 </li>
 <li>
 <p>加载映射文件</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;xml-url&quot;</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mappers</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xml-url<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mappers</span><span class="token punctuation">></span></span></code></pre>
 </li>
 </ul>
 <h4 id="详细配置"><a class="header-anchor" href="#详细配置">○</a>详细配置</h4>
@@ -317,14 +317,14 @@
 <h3 id="XML映射关系配置"><a class="header-anchor" href="#XML映射关系配置">○</a>XML映射关系配置</h3>
 <h4 id="命名空间"><a class="header-anchor" href="#命名空间">○</a>命名空间</h4>
 <p>每个映射文件对应一个命名空间，需要在标签内指定。命名空间的作用同Java包，使用映射关系时，需要以命名空间为开头的路径。</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;spaceName&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>spaceName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span></code></pre>
 <h4 id="sql语句配置"><a class="header-anchor" href="#sql语句配置">○</a>sql语句配置</h4>
 <p><code>id</code>是语句的标识符，sql语句可以直接写在标签中。</p>
 <ul>
 <li>
 <p>SELECT</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--resultType是返回结果的类型，指定一个类Mybatis能够自动封装--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>sql<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--resultType是返回结果的类型，指定一个类Mybatis能够自动封装--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p>UPDATE</p>
@@ -336,14 +336,30 @@
 </li>
 <li>
 <p>INSERT</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--后面三个属性表示返回插入的主键id并使用指定的映射关系！--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">true</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>sql<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--后面三个属性表示返回插入的主键id并使用指定的映射关系！--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">useGeneratedKeys</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>true</span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">keyColumn</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>insert</span><span class="token punctuation">></span></span></code></pre>
 </li>
 </ul>
 <h5 id="使用占位符"><a class="header-anchor" href="#使用占位符">○</a>使用占位符</h5>
-<p>mybatis中占位符用<code>#&#123;name&#125;</code>表示，这个占位符是安全的，与Jdbc的<code>?</code>一样。在符号内部可以填写多个属性，如限定这个占位符的类型等，更多属性的设置请到官方文档中查询。</p>
-<pre><code class="hljs sql">#&#123;id, javaType=int, jdbcType=NUMERIC&#125;</code></pre>
-<p>ℹ️<em>EL表达式<code>$&#123;&#125;</code>会将参数直接作为字符串插入，属于不安全操作，不能用于<strong>条件表达式</strong></em></p>
+<p>mybatis中占位符用<em>OGNL</em><code>#&#123;name&#125;</code>表示，这个占位符是安全的，与Jdbc的<code>?</code>一样。在符号内部可以填写多个属性，如限定这个占位符的类型等，更多属性的设置请到官方文档中查询。</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#&#123;id, javaType=int, jdbcType=NUMERIC&#125;</span></code></pre>
+<h5 id="OGNL表达式"><a class="header-anchor" href="#OGNL表达式">○</a>OGNL表达式</h5>
+<p>ognl只能对应数据库存在的值类型，但是它能够解析数组和POJO</p>
+<ol>
+<li>
+<p>数组</p>
+<p><code>#&#123;listName[index].propertyName&#125;</code></p>
+</li>
+<li>
+<p>POJO(JavaBean)</p>
+<p><code>#&#123;propertyName&#125;</code></p>
+<p>直接使用POJO内的属性名，如果是数组则需参照<code>1</code></p>
+</li>
+</ol>
+<blockquote>
+<p>⚠️当使用注解编写Mapper时，要注意多个参数时，应使用<code>@Param</code>注解指定参数对应OGNL表达式中的属性名，且对于数组类型的参数将默认使用**“list”**</p>
+<p>ℹ️EL表达式<code>$&#123;&#125;</code>会将参数直接作为字符串插入，属于不安全操作</p>
+</blockquote>
 <p><strong>用实体对象作为占位符参数</strong></p>
 <p>Mybatis具备将复杂对象的属性配置到占位符中的功能，其中对象的属性名需要和占位符内<code>name</code>的参数名保持一致，mybatis即可自动的配置到占位符中。</p>
 <p>sql标签使用<code>parameterType</code>属性可以指定该条语句所需要的参数对象类型，在缺省的情况下Mybatis能够自动推断。</p>
@@ -353,24 +369,24 @@
 <ol>
 <li>配置一个所需的resultMap</li>
 </ol>
-   <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span>  <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;class&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--把class的属性名同列名关联起来--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">column</span>=<span class="hljs-string">&quot;name&quot;</span>/&gt;</span>
-    <span class="hljs-comment">&lt;!--一对一关系映射--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">assosiation</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">&quot;class&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">assosiation</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--一对多/多对多关系映射--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">&quot;class&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span></code></pre>
+   <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span>  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>class<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--把class的属性名同列名关联起来--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token comment">&lt;!--一对一关系映射--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>assosiation</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">javaType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>class<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>assosiation</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--一对多/多对多关系映射--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">ofType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>class<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre>
 <p>主键一般使用<code>&lt;id&gt;</code>标签来配置。</p>
 <ol start="2">
 <li>将sql语句的<code>resultType</code>更换为<code>resultMap</code></li>
 </ol>
-   <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">&quot;mapId&quot;</span>&gt;</span>sql<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+   <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mapId<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 <p><a class="link"   target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#Result_Maps" >更加复杂的高级结果映射请看官方文档<i class="fas fa-external-link-alt"></i></a>包含多表关系查询需要的复杂嵌套映射</p>
 <h4 id="SelectKey"><a class="header-anchor" href="#SelectKey">○</a>SelectKey</h4>
 <p>该标签用在增删改语句中，能够完成一次子查询并封装到参数中。</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>sql<span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>selectKey</span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">keyColumn</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">order</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>selectKey</span><span class="token punctuation">></span></span></code></pre>
 <ul>
 <li><code>keyProperty</code>、<code>keyColumn</code> 配置映射关系，结果将保存到keyProperty对应参数中（可以是对象中的属性）</li>
 <li><code>resultType</code> 返回结果对应的JavaType</li>
@@ -431,26 +447,26 @@
 <li>
 <p>一对一查询</p>
 <p>原理是进行两次查询，第二次查询的条件取决于第一次查询得到的外键</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Results(&#123;</span>
-<span class="hljs-meta">    @Result(id=true,column=&quot;&quot;,property=&quot;&quot;),</span>
-<span class="hljs-meta">    // 进行一次子查询封装</span>
-<span class="hljs-meta">   	@Resutl(</span>
-<span class="hljs-meta">        property=&quot;&quot;,javaType=class,</span>
-<span class="hljs-meta">        column=&quot;下一次查询使用哪一列的值&quot;</span>
-<span class="hljs-meta">    	one=@One(select=&quot;接口方法全限定名&quot;)</span>
-<span class="hljs-meta">    )</span>
-<span class="hljs-meta">&#125;)</span>
-<span class="hljs-meta">@Select(&quot;sql&quot;)</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span>column<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>property<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// 进行一次子查询封装</span>
+   	<span class="token annotation punctuation">@Resutl</span><span class="token punctuation">(</span>
+        property<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>javaType<span class="token operator">=</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        column<span class="token operator">=</span><span class="token string">"下一次查询使用哪一列的值"</span>
+    	one<span class="token operator">=</span><span class="token annotation punctuation">@One</span><span class="token punctuation">(</span>select<span class="token operator">=</span><span class="token string">"接口方法全限定名"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"sql"</span><span class="token punctuation">)</span></code></pre>
 </li>
 <li>
 <p>一对多、多对多查询</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Result(</span>
-<span class="hljs-meta">    @Result(</span>
-<span class="hljs-meta">		/*省略相同部分*/</span>
-<span class="hljs-meta">        many=@Many(select=&quot;&quot;)</span>
-<span class="hljs-meta">    )</span>
-<span class="hljs-meta">)</span>
-<span class="hljs-meta">@Select(&quot;sql&quot;)</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>
+    <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>
+		<span class="token comment">/*省略相同部分*/</span>
+        many<span class="token operator">=</span><span class="token annotation punctuation">@Many</span><span class="token punctuation">(</span>select<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"sql"</span><span class="token punctuation">)</span></code></pre>
 </li>
 </ul>
 <h2 id="动态SQL"><a class="header-anchor" href="#动态SQL">○</a>动态SQL</h2>
@@ -464,21 +480,21 @@
 </li>
 <li>
 <p><code>&lt;if&gt;</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;bool表达式&quot;</span>&gt;</span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bool表达式<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     sql
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p><code>&lt;foreach&gt;</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;集合类型&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;开始字段&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;结束字段&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;分隔符&quot;</span>&gt;</span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">collection</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>集合类型<span class="token punctuation">"</span></span> <span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>开始字段<span class="token punctuation">"</span></span> <span class="token attr-name">close</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>结束字段<span class="token punctuation">"</span></span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">separator</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>分隔符<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	sql，使用#&#123;name&#125;引用item
-<span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span><span class="token punctuation">></span></span></code></pre>
 </li>
 <li>
 <p><code>&lt;trim&gt;</code> 与where用法相似</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">perfix</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">prefixOverrides</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>trim</span> <span class="token attr-name">perfix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">suffix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">prefixOverrides</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">suffixOverrides</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	sql
-<span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>trim</span><span class="token punctuation">></span></span></code></pre>
 <table>
 <thead>
 <tr>
@@ -511,9 +527,9 @@
 <h3 id="片段抽取"><a class="header-anchor" href="#片段抽取">○</a>片段抽取</h3>
 <p><code>&lt;sql&gt;</code>片段标签，使用这个标签可以抽取重复片段，并使用标签id作为变量代替。</p>
 <p><strong>创建sql片段</strong></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>sql<span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sql</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>sql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sql</span><span class="token punctuation">></span></span></code></pre>
 <p><strong>引用sql片段</strong></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;sqlId&quot;</span>/&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sqlId<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
 <h3 id="注解使用动态SQL"><a class="header-anchor" href="#注解使用动态SQL">○</a>注解使用动态SQL</h3>
 <p>Mybatis对注解方式的SQL也有动态功能的支持，一共有两种方法。</p>
 <ol>
@@ -524,7 +540,7 @@
 <li>
 <p><strong>方法二</strong></p>
 <p>使用<code>@XXXProvider</code>标签，<code>XXX</code>包括Select、Insert等，如：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@SelectProvider(type=A.class, method=&quot;mySelect&quot;)</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SelectProvider</span><span class="token punctuation">(</span>type<span class="token operator">=</span><span class="token class-name">A</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">"mySelect"</span><span class="token punctuation">)</span></code></pre>
 <p><code>type</code>指定一个类，<code>method</code>指定一个方法的名称，该方法的参数应与接口方法参数相同方便判空，并返回一个<code>String</code>对象作为为Sql字符串。所以我们需要在方法中实现Sql的动态生成！</p>
 <p>在这个方法中，Sql如何动态生成完全取决于我们自己，我们可以使用自己定义的逻辑来完成这个工作。但是Mybatis也为我们提供了一种选择——使用<code>SQL</code>对象构建sql语句。</p>
 </li>
@@ -532,58 +548,61 @@
 <h4 id="SQL对象"><a class="header-anchor" href="#SQL对象">○</a>SQL对象</h4>
 <p>SQL对象是一个构建Sql的工具类，可以很方便的构造一个Sql语句，使用其提供的<code>SELECT()</code>、<code>WHERER()</code>、<code>JOIN()</code>等方法来拼接字符串，且无需担心语法问题。</p>
 <p>简单用例（来自官方文档）</p>
-<pre><code class="hljs java"><span class="hljs-comment">// 匿名内部类风格</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deletePersonSql</span><span class="hljs-params">()</span> </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SQL() &#123;&#123;
-    DELETE_FROM(<span class="hljs-string">&quot;PERSON&quot;</span>);
-    WHERE(<span class="hljs-string">&quot;ID = #&#123;id&#125;&quot;</span>);
-  &#125;&#125;.toString();
-&#125;
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 匿名内部类风格</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">deletePersonSql</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token function">SQL</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+    <span class="token function">DELETE_FROM</span><span class="token punctuation">(</span><span class="token string">"PERSON"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">WHERE</span><span class="token punctuation">(</span><span class="token string">"ID = #&#123;id&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">// Builder / Fluent 风格</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">insertPersonSql</span><span class="hljs-params">()</span> </span>&#123;
-  String sql = <span class="hljs-keyword">new</span> SQL()
-    .INSERT_INTO(<span class="hljs-string">&quot;PERSON&quot;</span>)
-    .VALUES(<span class="hljs-string">&quot;ID, FIRST_NAME&quot;</span>, <span class="hljs-string">&quot;#&#123;id&#125;, #&#123;firstName&#125;&quot;</span>)
-    .VALUES(<span class="hljs-string">&quot;LAST_NAME&quot;</span>, <span class="hljs-string">&quot;#&#123;lastName&#125;&quot;</span>)
-    .toString();
-  <span class="hljs-keyword">return</span> sql;
-&#125;
+<span class="token comment">// Builder / Fluent 风格</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">insertPersonSql</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token class-name">String</span> sql <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">SQL</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">INSERT_INTO</span><span class="token punctuation">(</span><span class="token string">"PERSON"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">VALUES</span><span class="token punctuation">(</span><span class="token string">"ID, FIRST_NAME"</span><span class="token punctuation">,</span> <span class="token string">"#&#123;id&#125;, #&#123;firstName&#125;"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">VALUES</span><span class="token punctuation">(</span><span class="token string">"LAST_NAME"</span><span class="token punctuation">,</span> <span class="token string">"#&#123;lastName&#125;"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> sql<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">// 动态条件（注意参数需要使用 final 修饰，以便匿名内部类对它们进行访问）</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">selectPersonLike</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String id, <span class="hljs-keyword">final</span> String firstName, <span class="hljs-keyword">final</span> String lastName)</span> </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SQL() &#123;&#123;
-    SELECT(<span class="hljs-string">&quot;P.ID, P.USERNAME, P.PASSWORD, P.FIRST_NAME, P.LAST_NAME&quot;</span>);
-    FROM(<span class="hljs-string">&quot;PERSON P&quot;</span>);
-    <span class="hljs-keyword">if</span> (id != <span class="hljs-keyword">null</span>) &#123;
-      WHERE(<span class="hljs-string">&quot;P.ID like #&#123;id&#125;&quot;</span>);
-    &#125;
-    <span class="hljs-keyword">if</span> (firstName != <span class="hljs-keyword">null</span>) &#123;
-      WHERE(<span class="hljs-string">&quot;P.FIRST_NAME like #&#123;firstName&#125;&quot;</span>);
-    &#125;
-    <span class="hljs-keyword">if</span> (lastName != <span class="hljs-keyword">null</span>) &#123;
-      WHERE(<span class="hljs-string">&quot;P.LAST_NAME like #&#123;lastName&#125;&quot;</span>);
-    &#125;
-    ORDER_BY(<span class="hljs-string">&quot;P.LAST_NAME&quot;</span>);
-  &#125;&#125;.toString();
-&#125;</code></pre>
+<span class="token comment">// 动态条件（注意参数需要使用 final 修饰，以便匿名内部类对它们进行访问）</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">selectPersonLike</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> id<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">String</span> firstName<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">String</span> lastName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token function">SQL</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+    <span class="token function">SELECT</span><span class="token punctuation">(</span><span class="token string">"P.ID, P.USERNAME, P.PASSWORD, P.FIRST_NAME, P.LAST_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">FROM</span><span class="token punctuation">(</span><span class="token string">"PERSON P"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">WHERE</span><span class="token punctuation">(</span><span class="token string">"P.ID like #&#123;id&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>firstName <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">WHERE</span><span class="token punctuation">(</span><span class="token string">"P.FIRST_NAME like #&#123;firstName&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>lastName <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">WHERE</span><span class="token punctuation">(</span><span class="token string">"P.LAST_NAME like #&#123;lastName&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">ORDER_BY</span><span class="token punctuation">(</span><span class="token string">"P.LAST_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<blockquote>
+<p>使用Provider时，Mapper接口上的<code>@Param</code>将无法对应到在SQL构造器方法中的参数，<strong>一定要在构造器方法的参数上使用@Param</strong></p>
+</blockquote>
 <h2 id="Plugins"><a class="header-anchor" href="#Plugins">○</a>Plugins</h2>
 <p>使用第三方插件或自己开发的插件对Mybatis的功能进行拓展</p>
 <h3 id="配置Plugin"><a class="header-anchor" href="#配置Plugin">○</a>配置Plugin</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span> <span class="hljs-attr">interceptor</span>=<span class="hljs-string">&quot;类全限定名&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;&quot;</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span> <span class="token attr-name">interceptor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>类全限定名<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="常用插件"><a class="header-anchor" href="#常用插件">○</a>常用插件</h3>
 <ul>
 <li>
 <p><a class="link"   target="_blank" rel="noopener" href="https://search.maven.org/artifact/com.github.pagehelper/pagehelper/" >pageHelper<i class="fas fa-external-link-alt"></i></a></p>
 <p>非常好用的分页插件，简单的参数设定，简单的数据获取。</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.pagehelper<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>pagehelper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.github.pagehelper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>pagehelper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 </li>
 </ul>
 <h3 id="自定义插件"><a class="header-anchor" href="#自定义插件">○</a>自定义插件</h3>
@@ -591,18 +610,18 @@
 <ol>
 <li>
 <p>核心方法，通过<code>invocation</code>参数能够获得映射好的sql语句，该方法的返回值是invocation对象proceed方法的返回值，与<a href="https://blog.pressed.top/javaweb#proxymode">Proxy代理模式</a>一样。</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">intercept</span><span class="hljs-params">(Invocation invocation)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">intercept</span><span class="token punctuation">(</span><span class="token class-name">Invocation</span> invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
 </li>
 <li>
 <p>主要用来将对象封装成代理对象，确保<code>interceptI()</code>能够被调用</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">plugin</span><span class="hljs-params">(Object target)</span> </span>&#123;
-	<span class="hljs-comment">// 一般都是通过该方法封装</span>
-    <span class="hljs-keyword">return</span> Plugin.wrap(target, <span class="hljs-keyword">this</span>);
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">plugin</span><span class="token punctuation">(</span><span class="token class-name">Object</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 一般都是通过该方法封装</span>
+    <span class="token keyword">return</span> <span class="token class-name">Plugin</span><span class="token punctuation">.</span><span class="token function">wrap</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 </li>
 <li>
 <p>提供插件自定义属性，这个方法的属性能够在配置阶段进行注入</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setProperties</span><span class="hljs-params">(Properties properties)</span> </span>&#123;&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token class-name">Properties</span> properties<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
 </li>
 </ol>
 <h4 id="配置拦截注解"><a class="header-anchor" href="#配置拦截注解">○</a>配置拦截注解</h4>
@@ -614,10 +633,10 @@
 <li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
 <li>StatementHandler (prepare, parameterize, batch, update, query)</li>
 </ul>
-<pre><code class="hljs java"><span class="hljs-meta">@Intercepts(&#123;@Signature(</span>
-<span class="hljs-meta">  type= Executor.class,</span>
-<span class="hljs-meta">  method = &quot;update&quot;,</span>
-<span class="hljs-meta">  args = &#123;MappedStatement.class,Object.class&#125;)&#125;)</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Intercepts</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token annotation punctuation">@Signature</span><span class="token punctuation">(</span>
+  type<span class="token operator">=</span> <span class="token class-name">Executor</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+  method <span class="token operator">=</span> <span class="token string">"update"</span><span class="token punctuation">,</span>
+  args <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MappedStatement</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code></pre>
 <ul>
 <li><code>@Singnature</code>：表示一个构造一个方法签名
 <ul>
@@ -631,18 +650,18 @@
 <p>使用mybatis提供的java开发包，用java对数据库进行持久化操作。</p>
 <h3 id="快速入门"><a class="header-anchor" href="#快速入门">○</a>快速入门</h3>
 <p>快速入门演示了mybatis-api的一个基本使用流程</p>
-<pre><code class="hljs java"><span class="hljs-comment">//1. 加载核心配置</span>
-InputStream configStream = Resources.getResourcesAsStream(<span class="hljs-string">&quot;sqlMapConfig.xml&quot;</span>);
-<span class="hljs-comment">//2. 获得SqlSession工厂对象</span>
-SqlSessionFactory factory = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder().build(configStream);
-<span class="hljs-comment">//3. SqlSession对象</span>
-SqlSession session = factory.openSession();
-<span class="hljs-comment">//4. 执行sql语句</span>
-List&lt;Object&gt; list = session.selectList(<span class="hljs-string">&quot;mapping-parttern&quot;</span>);
-<span class="hljs-comment">// 提交事务</span>
-session.commit();
-<span class="hljs-comment">//5. 释放SqlSession</span>
-session.close();</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//1. 加载核心配置</span>
+<span class="token class-name">InputStream</span> configStream <span class="token operator">=</span> <span class="token class-name">Resources</span><span class="token punctuation">.</span><span class="token function">getResourcesAsStream</span><span class="token punctuation">(</span><span class="token string">"sqlMapConfig.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//2. 获得SqlSession工厂对象</span>
+<span class="token class-name">SqlSessionFactory</span> factory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>configStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//3. SqlSession对象</span>
+<span class="token class-name">SqlSession</span> session <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//4. 执行sql语句</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> session<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span><span class="token string">"mapping-parttern"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 提交事务</span>
+session<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//5. 释放SqlSession</span>
+session<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3 id="常用对象详解"><a class="header-anchor" href="#常用对象详解">○</a>常用对象详解</h3>
 <ul>
 <li>
@@ -687,24 +706,24 @@ session.close();</code></pre>
 <li>
 <p>parameter转化逻辑</p>
 <p>当mybatis设置数据到数据库时调用，使用这个方法来自定义参数转化逻辑</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNonNullParameter</span><span class="hljs-params">(PreparedStatement preparedStatement, <span class="hljs-keyword">int</span> i, T obj, </span></span>
-<span class="hljs-function"><span class="hljs-params">                                JdbcType jdbcType)</span> </span>&#123;
-    <span class="hljs-comment">//直接使用preparedStatement的set方法设置参数&#x27;obj&#x27;，参数的index为&#x27;i&#x27;</span>
-&#125;</code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNonNullParameter</span><span class="token punctuation">(</span><span class="token class-name">PreparedStatement</span> preparedStatement<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token class-name">T</span> obj<span class="token punctuation">,</span> 
+                                <span class="token class-name">JdbcType</span> jdbcType<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//直接使用preparedStatement的set方法设置参数'obj'，参数的index为'i'</span>
+<span class="token punctuation">&#125;</span></code></pre>
 </li>
 <li>
 <p>result转化逻辑</p>
 <p>从数据库取出数据时调用的转化方法</p>
-<pre><code class="hljs java"><span class="hljs-comment">//从三类不同的结果集取出给定的数据并转化成Java数据，第二个参数即为结果集中所需参数的位置</span>
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getNullableResult</span><span class="hljs-params">(ResultSet resultSet, String s)</span> </span>&#123;&#125;
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//从三类不同的结果集取出给定的数据并转化成Java数据，第二个参数即为结果集中所需参数的位置</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">getNullableResult</span><span class="token punctuation">(</span><span class="token class-name">ResultSet</span> resultSet<span class="token punctuation">,</span> <span class="token class-name">String</span> s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getNullableResult</span><span class="hljs-params">(ResultSet resultSet, <span class="hljs-keyword">int</span> i)</span> </span>&#123;&#125;
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">getNullableResult</span><span class="token punctuation">(</span><span class="token class-name">ResultSet</span> resultSet<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-meta">@Override</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getNullableResult</span><span class="hljs-params">(CallableStatement callableStatement, <span class="hljs-keyword">int</span> i)</span> </span>&#123;&#125;</code></pre></li>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">getNullableResult</span><span class="token punctuation">(</span><span class="token class-name">CallableStatement</span> callableStatement<span class="token punctuation">,</span> <span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre></li>
 </ul>
 
         </div>
@@ -920,7 +939,7 @@ session.close();</code></pre>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">🐦MyBatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-text">配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XML%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-text">XML核心配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">运行环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE"><span class="nav-text">详细配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE"><span class="nav-text">XML映射关系配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql%E8%AF%AD%E5%8F%A5%E9%85%8D%E7%BD%AE"><span class="nav-text">sql语句配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%A0%E4%BD%8D%E7%AC%A6"><span class="nav-text">使用占位符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ResultMap"><span class="nav-text">ResultMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SelectKey"><span class="nav-text">SelectKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-text">缓存优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE"><span class="nav-text">注解配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81SQL"><span class="nav-text">动态SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%A0%87%E7%AD%BE"><span class="nav-text">动态标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%87%E6%AE%B5%E6%8A%BD%E5%8F%96"><span class="nav-text">片段抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81SQL"><span class="nav-text">注解使用动态SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL%E5%AF%B9%E8%B1%A1"><span class="nav-text">SQL对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugins"><span class="nav-text">Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEPlugin"><span class="nav-text">配置Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="nav-text">常用插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6"><span class="nav-text">自定义插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3"><span class="nav-text">配置拦截注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-API"><span class="nav-text">JAVA-API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3"><span class="nav-text">常用对象详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAO%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%BB%A3%E7%90%86"><span class="nav-text">DAO层接口代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typeHandler"><span class="nav-text">typeHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89typeHandler"><span class="nav-text">自定义typeHandler</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">🐦MyBatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-text">配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XML%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-text">XML核心配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">运行环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE"><span class="nav-text">详细配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB%E9%85%8D%E7%BD%AE"><span class="nav-text">XML映射关系配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql%E8%AF%AD%E5%8F%A5%E9%85%8D%E7%BD%AE"><span class="nav-text">sql语句配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%A0%E4%BD%8D%E7%AC%A6"><span class="nav-text">使用占位符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">OGNL表达式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ResultMap"><span class="nav-text">ResultMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SelectKey"><span class="nav-text">SelectKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-text">缓存优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE"><span class="nav-text">注解配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81SQL"><span class="nav-text">动态SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%A0%87%E7%AD%BE"><span class="nav-text">动态标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%87%E6%AE%B5%E6%8A%BD%E5%8F%96"><span class="nav-text">片段抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81SQL"><span class="nav-text">注解使用动态SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL%E5%AF%B9%E8%B1%A1"><span class="nav-text">SQL对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugins"><span class="nav-text">Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEPlugin"><span class="nav-text">配置Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="nav-text">常用插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6"><span class="nav-text">自定义插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3"><span class="nav-text">配置拦截注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA-API"><span class="nav-text">JAVA-API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3"><span class="nav-text">常用对象详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAO%E5%B1%82%E6%8E%A5%E5%8F%A3%E4%BB%A3%E7%90%86"><span class="nav-text">DAO层接口代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typeHandler"><span class="nav-text">typeHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89typeHandler"><span class="nav-text">自定义typeHandler</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
