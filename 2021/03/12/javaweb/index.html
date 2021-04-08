@@ -458,7 +458,7 @@
 <p>JDBC是Java用来操作数据库的接口，具体实现由不同数据库公司实现，他的实现类被称为**“驱动”（Driver）**。</p>
 <p><strong>常见驱动类：</strong></p>
 <ul>
-<li>MySql：“com.mysql.jdbc.Driver”</li>
+<li>MySql：“com.mysql.cj.jdbc.Driver”</li>
 <li>SqlServer：“com.microsoft.sqlserver.jdbc.SQLServerDriver”</li>
 </ul>
 <h4 id="使用方法"><a class="header-anchor" href="#使用方法">○</a>使用方法</h4>
@@ -471,7 +471,7 @@
  该方法执行时，类的静态代码块会被执行，Driver会使用registerDriver方法注册DriverManager
  mysql5以上的版本可以省略这个注册过程
 */</span>
-<span class="token class-name">Class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token class-name">Class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.mysql.cj.jdbc.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 <li>
 <p>获取数据库连接对象</p>
@@ -827,6 +827,11 @@ resultSet<span class="token punctuation">.</span><span class="token function">cl
 <p>ex:</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token function">execution</span><span class="token punctuation">(</span><span class="token operator">*</span> cn<span class="token punctuation">.</span>test<span class="token punctuation">.</span>*<span class="token punctuation">.</span>*<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//cn.test包下任意类的任意方法</span></code></pre>
 <p>**表达式抽取：**替换<code>point-cut</code>为<code>point-cut-ref</code>，引用<code>&lt;aop:pointcut id=&quot;&quot; expression=&quot;&quot;/&gt;</code>标签设定好的表达式<u>id</u></p>
+<p><code>args()</code></p>
+<p>限制并自动抽取切点的方法参数，可以使用<code>..</code>表示缺省，一般配合通知方法获取方法参数，如：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"pointCut() &amp;&amp; args(.., name)"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">before</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token comment">//表示pointCut限制下 要求“存在”参数【String name】</span></code></pre>
 </li>
 </ol>
 <h5 id="注解配置动态代理"><a class="header-anchor" href="#注解配置动态代理">○</a>注解配置动态代理</h5>
@@ -874,7 +879,7 @@ resultSet<span class="token punctuation">.</span><span class="token function">cl
     <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"Aspect.myPointCut()"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">beforeEnhance</span><span class="token punctuation">(</span><span class="token class-name">JoinPoint</span> jp<span class="token punctuation">)</span>    
 <span class="token punctuation">&#125;</span>
-<span class="token comment">// 所有通知增强方法都能使用JoinPoint作为参数，Springzi</span></code></pre>
+<span class="token comment">// 所有通知方法都能使用JoinPoint作为参数，Spring自动注入</span></code></pre>
 <h4 id="Spring事务控制"><a class="header-anchor" href="#Spring事务控制">○</a>Spring事务控制</h4>
 <p>底层基于<a href="#aop">AOP</a>实现事务管理，一般在Service层进行。</p>
 <p>切点：Service方法</p>
