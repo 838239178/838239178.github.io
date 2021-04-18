@@ -9,7 +9,7 @@
     
     <title>
         
-            使用token完成Shrio鉴权认证 |
+            springboot+shiro整合redis |
         
         ShiJhBlogs
     </title>
@@ -176,7 +176,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">使用token完成Shrio鉴权认证</span>
+            <span class="title-hover-animation">springboot+shiro整合redis</span>
         </div>
 
         
@@ -194,7 +194,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-03-27 13:06:21
+        <i class="fas fa-edit"></i>&nbsp;2021-04-18 14:08:19
     </span>
     
         <span class="article-categories article-meta-item">
@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>512 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -249,65 +249,127 @@
         
 
         <div class="article-content markdown-body">
-            <p>用于前后端分离情况，需要使用token进行权限验证</p>
+            <p>将shiro的缓存交给redis管理，可以提高访问性能</p>
 <span id="more"></span>
-<h1>前后端分离——使用token完成Shrio鉴权认证</h1>
-<h2 id="核心流程"><a class="header-anchor" href="#核心流程">○</a>核心流程</h2>
+<h1>Shiro快速整合Redis</h1>
+<h2 id="安装Redis"><a class="header-anchor" href="#安装Redis">○</a>安装Redis</h2>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.runoob.com/redis/redis-install.html" >菜鸟教程-安装Redis<i class="fas fa-external-link-alt"></i></a>(下载Github上的MSI安装包更加方便。)</p>
+<table>
+<thead>
+<tr>
+<th>CMD命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redis-server</td>
+<td>启动redis服务</td>
+</tr>
+<tr>
+<td>redis-cli</td>
+<td>打开redis客户端</td>
+</tr>
+<tr>
+<td>get、set</td>
+<td>简单存取Key-Value</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<ol>
-<li>用户登录，保存token到数据库，并返回给前端</li>
-<li>用户访问资源并携带token，经过各种过滤器</li>
-<li>因为没有执行过<code>Subject.login()</code>所以访问限制资源是会被拦截失效</li>
-<li>失败后调用自定义<code>Filter</code>的<code>onAccessDenied()</code>，获取携带的token并执行登录(executeLogin)</li>
-<li>登陆时使用自定义的<code>Realm</code>验证token合法性和时效性，通过则返回认证信息</li>
-<li>Shiro调用<code>CredentialsMatcher</code>验证输入的credentials与Realm中返回的认证信息是否匹配（需要自定义Mathcer）</li>
-<li>有了认证信息即可进行授权鉴权！！！</li>
-</ol>
+<p>部署在远程服务器的Redis，需要打开服务器<code>:6379</code>端口的防火墙，并配置<code>redis.conf</code>-<code>protectmode no</code></p>
 </blockquote>
-<h2 id="原理解析"><a class="header-anchor" href="#原理解析">○</a>原理解析</h2>
-<p>使用token进行登录认证，主要就是要求前端的请求需要合法token支持，所以这个token是前后端共享的，因此需要<code>JWT</code>进行加密，而设计Shiro认证时需要考虑到认证信息由默认的<code>Username/Password</code>转变成了自定义的<code>Token</code>，因此不能再使用原有的过滤器来控制认证鉴权，所以实现一个Filter是完成这个任务的一个至关重要的操作。</p>
-<h3 id="自定义Filter实现原理"><a class="header-anchor" href="#自定义Filter实现原理">○</a>自定义Filter实现原理</h3>
-<p>以不需要RememberMe为例，我们需要实现的 Filter Interface 为<code>AuthenticatingFilter</code>，实现几个关键的方法：</p>
-<ol>
-<li>
-<p><code>AuthenticationToken createToken(request,response)</code></p>
-<p>这个方法将会在认证失败后尝试登录时调用（executeLogin），它返回的<em>AuthenticationToken</em>将作为<code>Subject.login</code>方法的参数，也就是**它将进入到我们自定义的Realm当中！**根据需求，此处创建<em>AuthenticationToken</em> 我们需要依赖于前端传递的token，因此我们是从<em>request</em>中获得的（请求头、请求体）</p>
-<p>无法获取怎么办呢？直接返回null即可，Shiro将会抛出<code>IllegalStateException</code>。</p>
-</li>
-<li>
-<p><code>boolean onAccessDenied(request,response)</code></p>
-<p>在请求被<em>Filter</em>验证失败时会调用此方法，该方法的返回值决定这个请求是否能够放行，在这个方法中我们才会执行<strong>登录</strong>操作！我们根据登录是否成功（Realm中返回认证信息）来决定是否放行，如何登录？就采用刚才所说的<code>executeLogin</code>方法，这是<code>AuthenticatingFilter</code>类已经实现了的方法，根据<em>createToken</em>返回的Token进行登录，如果登录成功即可返回<code>true</code></p>
-</li>
-</ol>
-<h3 id="自定义Realm实现原理"><a class="header-anchor" href="#自定义Realm实现原理">○</a>自定义Realm实现原理</h3>
-<p>使用Token方法进行验证的<em>Realm</em>其实与<em>Username/Password</em>的核心思想是相同的，只不过认证时通过前端的token从数据库中取出完整的token实体，对token本身的信息进行校验如是否失效等作为认证是否通过的依据。</p>
-<p>授权时，我们需要从Token实体中获取到用户对应的ID，通过ID从数据库中查找角色、权限进行然后正常的进行授权操作！</p>
-<h3 id="自定义Token"><a class="header-anchor" href="#自定义Token">○</a>自定义Token</h3>
-<p>这里要说的Token分为：</p>
+<h2 id="Maven依赖"><a class="header-anchor" href="#Maven依赖">○</a>Maven依赖</h2>
+<p>Springboot-Redis</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>Shiro-Redis</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.crazycake<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>shiro-redis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>$&#123;shiro-redis.version&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="配置ShiroConfig"><a class="header-anchor" href="#配置ShiroConfig">○</a>配置ShiroConfig</h2>
+<p>使用<code>shiro-redis-spring-boot-starter</code>将会自动配置Shiro的<code>SessionSecurityManager</code>，包括<code>Realm</code>、<code>CacheManager</code>和<code>SessionManager</code>，其中<em>Realm</em>为IOC容器中所有Realm的子类，而另外两个则是继承了父类并使用Redis作为缓存的类。</p>
+<p>由于通常情况下，我们需要配置Filter和filterMap等属性，所以只需要新配置<code>ShiroFilterFactoryBean</code>即可，通过参数注入框架为我们默认配置的对象并稍微修改即可正常使用。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"shiroFilterFactoryBean"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">ShiroFilterFactoryBean</span> <span class="token function">getShiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token class-name">SessionsSecurityManager</span> securityManager<span class="token punctuation">,</span>
+                                                        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Filter</span><span class="token punctuation">></span></span> filterMap<span class="token punctuation">,</span>
+                                                        <span class="token class-name">SelectiveRealmAuthenticator</span> authenticator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ShiroFilterFactoryBean</span> shiroFilterFactoryBean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShiroFilterFactoryBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//注入的manager已经配置好了Realm，如果没有重写authenticator则不需要进行修改</span>
+    authenticator<span class="token punctuation">.</span><span class="token function">setRealms</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">.</span><span class="token function">getRealms</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    securityManager<span class="token punctuation">.</span><span class="token function">setAuthenticator</span><span class="token punctuation">(</span>authenticator<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//设置安全管理器</span>
+    shiroFilterFactoryBean<span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    shiroFilterFactoryBean<span class="token punctuation">.</span><span class="token function">setFilters</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//spring自动注入的filterMap的key默认为class的simpleName</span>
+    shiroFilterFactoryBean<span class="token punctuation">.</span><span class="token function">setFilterChainDefinitionMap</span><span class="token punctuation">(</span>
+        <span class="token class-name">Cl</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">,</span><span class="token string">"anon"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"/user/info"</span><span class="token punctuation">,</span> <span class="token class-name">OAuth2Filter</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getSimpleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">castBuild</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    shiroFilterFactoryBean<span class="token punctuation">.</span><span class="token function">setGlobalFilters</span><span class="token punctuation">(</span>
+        <span class="token class-name">Cl</span><span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token class-name">CNInvalidRequestFilter</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getSimpleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> shiroFilterFactoryBean<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <blockquote>
-<ol>
-<li>
-<p>前端能够获取到的token——<code>String</code></p>
-<p>这个理应为一个加密后的字符串，也是认证流程中的核心。</p>
-</li>
-<li>
-<p>Shiro进行认证的token—— <code>AuthenticationToken</code></p>
-<p>实际上就是把String类型的token封装成实现接口的对象，其token作为<code>Principal</code>也作为<code>Credentials</code></p>
-</li>
-<li>
-<p>保存于数据库中的token——<code>JavaBean</code></p>
-<p>一个实体Entity类型的对象，与数据库设计有关，加密过的token应是其主要部分，此外，该token对应的用户与之是一对一关系，所以也可以保存对应用户的<code>ID</code></p>
-</li>
-</ol>
+<p>⚠️使用Redis存取的Object必须要实现<code>Serializable</code>接口</p>
 </blockquote>
-<p>理清了各种Token，接下来要解决的就是Token如何加密的问题了，就如前面提到的，Token可以使用<code>JWT</code>，使用JWT可以方便的设置失效时间，节省数据库资源，也提供<em>secret</em>加密，能够进行二次验证，这里不再赘述使用方法。</p>
-<h3 id="自定义CredentialsMatcher"><a class="header-anchor" href="#自定义CredentialsMatcher">○</a>自定义CredentialsMatcher</h3>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">doCredentialsMatch</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationToken</span> authenticationToken<span class="token punctuation">,</span> <span class="token class-name">AuthenticationInfo</span> authenticationInfo<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></code></pre>
-<p>Token是从前端获取的Token，Info是Realm返回的Info，在该方法中实现验证即可。</p>
-<blockquote>
-<p>😄自定义Matcher后需要注入到自定义的Realm中，通过<code>setCredentialsMatcher</code>方法</p>
-</blockquote>
+<h2 id="RedisTemplate"><a class="header-anchor" href="#RedisTemplate">○</a>RedisTemplate</h2>
+<p>spring为我们提供了一下两种对象，可直接注入使用：</p>
+<ul>
+<li>
+<p><code>RedisTemplate&lt;Object,Object&gt;</code>：Key-Value均为<code>Object</code>类型</p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>参数类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>delete</td>
+<td><code>Object... key</code></td>
+<td>删除一个或多个值</td>
+</tr>
+<tr>
+<td>expire</td>
+<td><code>Object key</code>，<code>long timeout</code></td>
+<td>设置一个值的失效时间，使用getExpire可获取</td>
+</tr>
+<tr>
+<td>haskey</td>
+<td><code>Object key</code></td>
+<td>查询是否存在值</td>
+</tr>
+<tr>
+<td>opsForValue().get()</td>
+<td><code>Object key</code></td>
+<td>获取值</td>
+</tr>
+<tr>
+<td>opsForValue().set()</td>
+<td><code>Object key</code>，<code>Object value</code></td>
+<td>设置值</td>
+</tr>
+<tr>
+<td>opsForXXX().XXX()</td>
+<td>省略</td>
+<td>Redis中包含多种数据结构，使用方法大致相同</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>StringRedisTemplate</code>：Key-Value均为<code>String</code>类型</p>
+</li>
+</ul>
 
         </div>
 
@@ -316,29 +378,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/04/18/shiroro-redis/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">springboot+shiro整合redis</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/03/26/springboot_shiro/"
+                           href="/2021/03/27/shiro-token/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">在Springboot中使用Shiro</span>
+                                <span class="post-nav-title-item">使用token完成Shrio鉴权认证</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -522,7 +569,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前后端分离——使用token完成Shrio鉴权认证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="nav-text">核心流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="nav-text">原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Filter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Filter实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Realm%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">自定义Realm实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Token"><span class="nav-text">自定义Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89CredentialsMatcher"><span class="nav-text">自定义CredentialsMatcher</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Shiro快速整合Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Redis"><span class="nav-text">安装Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven%E4%BE%9D%E8%B5%96"><span class="nav-text">Maven依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEShiroConfig"><span class="nav-text">配置ShiroConfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RedisTemplate"><span class="nav-text">RedisTemplate</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
