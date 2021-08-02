@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>917 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -265,7 +265,7 @@
 </li>
 <li>
 <p>P 即 分区容忍性</p>
-<p>允许部分服务出错，但是不能影响系统其他部分的可用性。</p>
+<p>允许部分服务出错，但是不能影响系统其他部分的可用性。相当于单体服务分割为微服务。</p>
 </li>
 </ul>
 <p><strong>CAP三者不可兼得，该如何取舍：</strong></p>
@@ -300,10 +300,44 @@
 <p>开启全局事务、注册分支事务，嵌入到应用程序当中。</p>
 </li>
 </ul>
-<h2 id="3PC原理"><a class="header-anchor" href="#3PC原理">○</a>3PC原理</h2>
-<h2 id="TCC原理"><a class="header-anchor" href="#TCC原理">○</a>TCC原理</h2>
-<h2 id="GTS原理"><a class="header-anchor" href="#GTS原理">○</a>GTS原理</h2>
-<h2 id="消息中间件最终一致性"><a class="header-anchor" href="#消息中间件最终一致性">○</a>消息中间件最终一致性</h2>
+<h2 id="可靠消息最终一致性方案"><a class="header-anchor" href="#可靠消息最终一致性方案">○</a>可靠消息最终一致性方案</h2>
+<p>通过消息传递来控制事务的进行。</p>
+<ol>
+<li>
+<p>可靠性</p>
+<p>当一个事务成功执行时需要保证一条成功执行的消息发送到消息队列中。同理事务失败时不可发送消息，即消息与事务具有原子性。</p>
+</li>
+<li>
+<p>最终一致性</p>
+<p>另一个事务要保证收到消息并成功执行事务。</p>
+</li>
+</ol>
+<p>存在问题：最终一致性要求消息接收方事务必须执行成功，因为消息发送方事务无法进行回滚。</p>
+<h3 id="RocketMQ实现"><a class="header-anchor" href="#RocketMQ实现">○</a>RocketMQ实现</h3>
+<ol>
+<li>
+<p>消息预发送</p>
+<p>事务执行前先发送下一个事务执行的消息但不投递，得到ACK回复后开始事务。</p>
+</li>
+<li>
+<p>消息确认</p>
+<ol>
+<li>
+<p>事务成功</p>
+<p>事务执行成功后向消息队列发送确认消息，消息队列将消息投递</p>
+</li>
+<li>
+<p>事务失败</p>
+<p>事务执行失败则要求消息队列丢弃预发送的消息</p>
+</li>
+<li>
+<p>未收到确认</p>
+<p>由于其他不可控因素导致消息队列未收到进一步回复，需要对发起方的事务进行回查。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>RockectMQ相当于一个事务的协调器。通过<code>RocketMQLocalTransactionListener</code>接口可用于实现事务的回查。</p>
 
         </div>
 
@@ -518,7 +552,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">分布式事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP%E7%90%86%E8%AE%BA"><span class="nav-text">CAP理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC%E5%8E%9F%E7%90%86"><span class="nav-text">2PC原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XA%E6%96%B9%E6%A1%88"><span class="nav-text">XA方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BASE%E7%90%86%E8%AE%BA"><span class="nav-text">BASE理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Seata-2pc%E6%96%B9%E6%A1%88"><span class="nav-text">Seata-2pc方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3PC%E5%8E%9F%E7%90%86"><span class="nav-text">3PC原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC%E5%8E%9F%E7%90%86"><span class="nav-text">TCC原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GTS%E5%8E%9F%E7%90%86"><span class="nav-text">GTS原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-text">消息中间件最终一致性</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">分布式事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP%E7%90%86%E8%AE%BA"><span class="nav-text">CAP理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC%E5%8E%9F%E7%90%86"><span class="nav-text">2PC原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XA%E6%96%B9%E6%A1%88"><span class="nav-text">XA方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BASE%E7%90%86%E8%AE%BA"><span class="nav-text">BASE理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Seata-2pc%E6%96%B9%E6%A1%88"><span class="nav-text">Seata-2pc方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88"><span class="nav-text">可靠消息最终一致性方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RocketMQ%E5%AE%9E%E7%8E%B0"><span class="nav-text">RocketMQ实现</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
