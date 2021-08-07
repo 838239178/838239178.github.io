@@ -9,7 +9,7 @@
     
     <title>
         
-            Vue自定义组件v-model |
+            分布式日志（二）注册中心和配置中心 |
         
         ShiJhBlogs
     </title>
@@ -176,7 +176,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Vue自定义组件v-model</span>
+            <span class="title-hover-animation">分布式日志（二）注册中心和配置中心</span>
         </div>
 
         
@@ -194,7 +194,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-06-23 18:39:37
+        <i class="fas fa-edit"></i>&nbsp;2021-08-17 23:00:20
     </span>
     
         <span class="article-categories article-meta-item">
@@ -202,7 +202,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
                     </li>
                 
             </ul>
@@ -214,7 +214,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/vue/">vue</a>&nbsp;
+                        <a href="/tags/web/">web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/java/">java</a>&nbsp;
                     </li>
                 
             </ul>
@@ -224,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>333 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>584 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -245,60 +249,50 @@
         
 
         <div class="article-content markdown-body">
-            <p>关于Vue.js中在自定义组件中使用 v-model 进行双向绑定的最佳实践</p>
+            <p>分布式日志系列第二篇，关于服务注册中心和配置中心的学习</p>
 <span id="more"></span>
-<h1>Vue自定义组件使用v-model</h1>
-<h2 id="实现代码"><a class="header-anchor" href="#实现代码">○</a>实现代码</h2>
-<pre class="language-vue" data-language="vue"><code class="language-vue">&lt;script&gt;
-export default &#123;
-    data() &#123;
-        return &#123;
-            myData: this.modelValue
-        &#125;
-    &#125;,
-    props: [&#39;modelValue&#39;],
-    watch: &#123;
-        myData: (newVal, oldVal) &#x3D;&gt; &#123;
-            this.$emit(&#39;update:modelValue&#39;,newVal);
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre>
-<h2 id="简单解释"><a class="header-anchor" href="#简单解释">○</a>简单解释</h2>
+<h1>注册中心和配置中心</h1>
+<p>注册中心是保存微服务地址的地方，配置中心是保存微服务配置文件的地方。</p>
+<h2 id="为何需要注册中心"><a class="header-anchor" href="#为何需要注册中心">○</a>为何需要注册中心</h2>
+<p>注册中心的功能很简单，微服务启动时向注册中心发送注册请求，需要调用其他微服务时通过服务名称从注册中心获取真实的<code>IP:PORT</code>。与直接使用真实地址相比有以下好处：</p>
 <ol>
-<li>
-<p>Vue.js 要求组件的props内的属性为<code>单向数据流</code>，即父组件对props内的数据修改后，组件内的prop也会响应改变，但是不允许组件直接对prop进行修改或作为组件内另一子组件的<code>v-model</code>。</p>
-<p><strong>错误示范：</strong></p>
-<pre class="language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-&lt;!--报错！！--&gt;
-&lt;input v-model&#x3D;&quot;propData&quot; &#x2F;&gt;
-&lt;&#x2F;template&gt;
-&lt;script&gt;
-export default &#123;
-    props:[&#39;propData&#39;],
-    method: &#123;
-        myFunc() &#123;
-            &#x2F;&#x2F;报错！！
-            this.propData &#x3D; &#39;anyData&#39;
-        &#125;
-    &#125;
-&#125;
-&lt;&#x2F;script&gt;</code></pre>
-</li>
-<li>
-<p>Vue.js中自定义组件的<code>v-model</code>将会解析成<code>:value=&quot;data&quot;</code>和<code>@update:model-value=&quot;data=$event&quot;</code>，所以自定义组件必须要有名为<code>value</code>的props，并在需要改变时使用<code>$emit</code>调用<code>update:modelValue</code>方法。</p>
-</li>
+<li>通过注册中心控制台可以方便的下线故障或过时的微服务，防止其他微服务调用</li>
+<li>服务器更换后真实地址发生改变但服务名不变，降低微服务间的耦合性</li>
+<li>方便通过<code>Ribbon</code>等负载均衡器从集群中选择一台服务器。（最重要的特点）</li>
 </ol>
-<h2 id="问题补充"><a class="header-anchor" href="#问题补充">○</a>问题补充</h2>
-<p>前一段时间自定义组件时突然发现<strong>父组件更新子组件不更新</strong>的情况，加上反向监听后得以解决。</p>
-<pre class="language-js" data-language="js"><code class="language-js">watch<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token function-variable function">myData</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">newVal<span class="token punctuation">,</span> oldVal</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'update:modelValue'</span><span class="token punctuation">,</span>newVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token function">modelValue</span><span class="token punctuation">(</span><span class="token parameter">newVal<span class="token punctuation">,</span>oldVal</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>myData <span class="token operator">=</span> newVal<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<p>注册中心在集群环境下十分必要具体体现在1，3两点。</p>
+<h2 id="为何需要配置中心"><a class="header-anchor" href="#为何需要配置中心">○</a>为何需要配置中心</h2>
+<p>配置中心的功能也很简单，微服务注册时通过命名规范匹配配置中心中的文件，推送到对应的服务器上，相当于把<code>application.yml</code>从项目中分离出来，使得微服务的配置更新变得更加容易。</p>
+<ol>
+<li>不需要打开Jar包修改配置文件</li>
+<li>某些情况下不需要重启微服务</li>
+</ol>
+<h2 id="Nacos"><a class="header-anchor" href="#Nacos">○</a>Nacos</h2>
+<h3 id="简介"><a class="header-anchor" href="#简介">○</a>简介</h3>
+<p>nacos是<code>SpringCloudAlibaba</code>中的一个组成部分，承担注册中心和配置中心的角色。</p>
+<p>通过部署Nacos-server可以直接启动注册中心和配置中心，每个微服务相当于Nacos-client，配置Nacos-server的地址后即可注册微服务和获取配置文件。</p>
+<h3 id="配置"><a class="header-anchor" href="#配置">○</a>配置</h3>
+<p>对应依赖名称：</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifectId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifectId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifectId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifectId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<blockquote>
+<p>启用配置中心后，项目的配置文件需改名为 <code>bootstrap.yml</code>并配置必要参数：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://spring.application.name" >spring.application.name<i class="fas fa-external-link-alt"></i></a></li>
+<li>spring.cloud.nacos.server-addr</li>
+<li>spring.cloud.nacos.username</li>
+<li>spring.cloud.nacos.password</li>
+<li>spring.cloud.nacos.config.file-extension</li>
+</ul>
+</blockquote>
+<h3 id="热更新"><a class="header-anchor" href="#热更新">○</a>热更新</h3>
+<p>Nacos支持配置文件发布后进行热更新，须在类上标注<code>@RefreshScpoe</code>可实现引用配置项的热更新。</p>
 
         </div>
 
@@ -307,29 +301,14 @@ export default &#123;
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/08/17/distribute-registry-config/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">分布式日志（二）注册中心和配置中心</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/06/19/distribute-transaction/"
+                           href="/2021/06/23/vue-custom-vmodel/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">分布式日志（一）分布式事务管理</span>
+                                <span class="post-nav-title-item">Vue自定义组件v-model</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -513,7 +492,7 @@ export default &#123;
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Vue自定义组件使用v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%A7%A3%E9%87%8A"><span class="nav-text">简单解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A1%A5%E5%85%85"><span class="nav-text">问题补充</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">注册中心和配置中心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BD%95%E9%9C%80%E8%A6%81%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-text">为何需要注册中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BD%95%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="nav-text">为何需要配置中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nacos"><span class="nav-text">Nacos</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-text">热更新</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

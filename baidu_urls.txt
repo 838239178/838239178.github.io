@@ -1,3 +1,4 @@
+https://blog.pressed.top/2021/08/17/distribute-registry-config/
 https://blog.pressed.top/2021/06/23/vue-custom-vmodel/
 https://blog.pressed.top/2021/06/19/distribute-transaction/
 https://blog.pressed.top/2021/05/13/mybatisSqlBuilder/
