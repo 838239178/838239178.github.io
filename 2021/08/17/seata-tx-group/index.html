@@ -228,7 +228,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>412 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>460 字</span>
         </span>
     
     
@@ -257,10 +257,11 @@
 <p>server端根据文档中的 <strong>高可用部署</strong> 进行配置，其中修改<code>config.txt</code> 中的 <code>service.vgroupMapping.my_test_tx_group</code> 是一个错误的配置项，具体在github中 <code>seata/seata-samples</code>中的 <code>springcloud-nacos</code>下的文档中说明了 高版本的不可使用下划线 需使用上划线。<em>（文档中却不说明）</em></p>
 <p>my_test_tx_group 其实是一个分组名，可以自行决定！</p>
 <p>seata通过该分组名找到 <code>seata-server</code> 对应的集群名称，然后在找到该集群的服务列表。</p>
-<p>因此在配置<code>config.txt</code>时 <code>service.vgroupMapping.xxxx</code>后面的值为集群名称。在使用<strong>nacos</strong>进行注册时，该集群名称在<code>registry.conf</code>中的 <code>nacos.cluster</code> 决定。因此<code>config.txt</code>中的 <code>service.xxxx.grouplist</code> 是可以不用配置的。</p>
+<p>因此在配置<code>config.txt</code>时 <code>service.vgroupMapping.xxxx</code>后面的值为集群名称。在使用<strong>nacos</strong>进行注册时，该集群名称在<code>registry.conf</code>中的 <code>nacos.cluster</code> 决定。因此<code>config.txt</code>中的 <code>service.xxxx.grouplist</code> 是可以不用配置的（仅在文件模式下有效）。</p>
 <h2 id="client端配置"><a class="header-anchor" href="#client端配置">○</a>client端配置</h2>
 <p><code>seata-samples</code> 有太多老样例没更新了，根本不能作为参考。</p>
 <p>在 <code>application.yml</code> 中可以配置 <code>nacos</code> 注册中心和配置中心的地址及参数，最重要的是配置 <code>seata.tx-service-group</code>该项对应了 server 端中的 <code>service.vgroupMapping.xxxx</code> 因此在同一个组内的微服务需要配置相同的分组名。</p>
+<p>1.4.2 clinet端默认在注册中心中找 SEATA_GROUP 下的seata-server集群，因此部署server端时需要更改nacos配置下的 group 为 SEATA_GROUP</p>
 <blockquote>
 <p>值得注意的是 spring.cloud.alibaba.seata.tx-service-group 也是配置分组名的选项 显然与seata中的选项重复了！ 在两年前的官方样例和目前官方文档之事务分组章节中使用的是改项，个人认为这是一个过时的选项 可以不用管它</p>
 </blockquote>

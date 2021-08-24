@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="blog,java,mybatis,spring,web">
+    <meta name="description" content="java,web,spring,mybatis,vue,jquery,博客，blog，html,http">
+    <meta name="author" content="ShiJh">
+    
+    <title>
+        
+            分布式日志（三）OAuth2安全控制 |
+        
+        ShiJhBlogs
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.pressed.top","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://avatars.githubusercontent.com/u/55338151?s=60&v=4","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep learning Keep loving"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                ShiJhBlogs
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">分布式日志（三）OAuth2安全控制</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://avatars.githubusercontent.com/u/55338151?s=60&v=4">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ShiJh</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-08-21 18:23:14
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/web/">web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>分布式日志第三篇，基于SpringSecurity的分布式系统的安全管理方案</p>
+<span id="more"></span>
+<h1>分布式安全协议</h1>
+<p>微服务架构下的安全方案有许多种，如</p>
+<ol>
+<li>共享Session （最容易实现）</li>
+<li>Token凭证 （最高可用性）</li>
+<li>SSO单点登录 (折中方案)</li>
+</ol>
+<h2 id="共享Session"><a class="header-anchor" href="#共享Session">○</a>共享Session</h2>
+<p>由认证服务器认证后将本地Session保存在Redis中，其他服务器读取Redis中的Session对请求进行身份认证，最大的优点是不需要多余的代码，可以像开发单体应用一样开发安全管理系统</p>
+<p>缺点：Redis服务或认证服务不可用时 将无法访问所有的资源服务器。</p>
+<h2 id="基于OAuth2协议的Token认证方案"><a class="header-anchor" href="#基于OAuth2协议的Token认证方案">○</a>基于OAuth2协议的Token认证方案</h2>
+<p>Token也分为两种模式：</p>
+<ol>
+<li>
+<p>短Token</p>
+<p>认证服务器颁发access_token，与之对应的是储存在Redis或数据库中的权限信息，资源服务通过此凭证向认证服务器请求认证，从而获取用户的权限信息</p>
+</li>
+<li>
+<p>长Token(JWT)</p>
+<p>认证服务器直接颁发包含权限信息的Token，使用JWT的形式做签名加密，资源服务器可直接验证用户身份，不需要再次与认证服务器交互（除了使用非对称加密需要请求公钥）</p>
+</li>
+</ol>
+<p>短Token的优缺点：</p>
+<ul>
+<li>字段较短，网络传输更快</li>
+<li>回收Token更容易，只需对数据库或Redis进行删除</li>
+<li>依赖于认证服务，认证服务器不可用时 其他服务将无法访问</li>
+<li>每次请求都需要与认证服务器交互 增加了网络通信代价</li>
+</ul>
+<p>JWT优缺点：</p>
+<ul>
+<li>Token可本地解析，获得Token后不再依赖认证服务器，具有高可用性</li>
+<li>本地解析速度更快，没有网络通信代价</li>
+<li>字段较长，会增加网络传输时间</li>
+<li>回收Token困难 可能造成一定程度上的安全问题</li>
+</ul>
+<h3 id="SpringSecurity构建认证服务器"><a class="header-anchor" href="#SpringSecurity构建认证服务器">○</a>SpringSecurity构建认证服务器</h3>
+<p>SpringSecurityOAuth2认证流程为:</p>
+<p><code>TokenEndPoint-&gt;TokenGranter-&gt;AuthenticationManager-&gt;ProviderManager-&gt;Provider</code></p>
+<ul>
+<li>
+<p>TokenEndPoint</p>
+<p>其实就是一个内置的 Controller ，用于接收认证请求，内置异常处理，如果想要使用自己的异常处理，建议重写此类。</p>
+</li>
+<li>
+<p>TokenGranter</p>
+<p>一个验证方式管理器，根据 <code>grant_type</code>  选择验证方式，每个验证方式对应一个<code>TokenGranter</code>，但是我们需要多种验证方式，于是乎SpringSecurity内部采用了CompositeTokenGranter（可以放入多个TokenGranter，并根据grant_type选择）并包装成委托对象。<strong>如果想要自己添加新的认证方式，需要自己写该委托类并进行配置，可以参考AutoConfiguration进行编写和配置</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomTokenGranterDelegator</span> <span class="token keyword">implements</span> <span class="token class-name">TokenGranter</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">CompositeTokenGranter</span> delegate<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">OAuth2RequestFactory</span> <span class="token class-name">OAuth2RequestFactory</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">AuthorizationCodeServices</span> authorizationCodeServices<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">AuthorizationServerTokenServices</span> tokenServices<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">ClientDetailsService</span> clientDetailsService<span class="token punctuation">;</span>
+    <span class="token comment">//可以通过该属性在配置文件中添加新的TokenGranter</span>
+    <span class="token keyword">private</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">TokenGranter</span><span class="token punctuation">></span></span> additionalTokenGranters<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">CustomTokenGranterDelegator</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">,</span> <span class="token class-name">OAuth2RequestFactory</span> <span class="token class-name">OAuth2RequestFactory</span><span class="token punctuation">,</span> <span class="token class-name">AuthorizationCodeServices</span> authorizationCodeServices<span class="token punctuation">,</span> <span class="token class-name">AuthorizationServerTokenServices</span> tokenServices<span class="token punctuation">,</span> <span class="token class-name">ClientDetailsService</span> clientDetailsService<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>authenticationManager <span class="token operator">=</span> authenticationManager<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token namespace">this<span class="token punctuation">.</span></span>OAuth2RequestFactory</span> <span class="token operator">=</span> <span class="token class-name">OAuth2RequestFactory</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>authorizationCodeServices <span class="token operator">=</span> authorizationCodeServices<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenServices <span class="token operator">=</span> tokenServices<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>clientDetailsService <span class="token operator">=</span> clientDetailsService<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>additionalTokenGranters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">OAuth2AccessToken</span> <span class="token function">grant</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">,</span> <span class="token class-name">TokenRequest</span> tokenRequest<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>delegate <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CompositeTokenGranter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getDefaultTokenGranters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>delegate<span class="token punctuation">.</span><span class="token function">grant</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> tokenRequest<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addTokenGranter</span><span class="token punctuation">(</span><span class="token class-name">TokenGranter</span> tokenGranter<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>additionalTokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>tokenGranter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">TokenGranter</span><span class="token punctuation">></span></span> <span class="token function">getDefaultTokenGranters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">ClientDetailsService</span> clientDetails <span class="token operator">=</span> <span class="token function">getClientDetailsService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">AuthorizationServerTokenServices</span> tokenServices <span class="token operator">=</span> <span class="token function">getTokenServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">AuthorizationCodeServices</span> authorizationCodeServices <span class="token operator">=</span> <span class="token function">getAuthorizationCodeServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">OAuth2RequestFactory</span> requestFactory <span class="token operator">=</span> <span class="token function">getOAuth2RequestFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">TokenGranter</span><span class="token punctuation">></span></span> tokenGranters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>additionalTokenGranters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">AuthorizationCodeTokenGranter</span><span class="token punctuation">(</span>tokenServices<span class="token punctuation">,</span> authorizationCodeServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RefreshTokenGranter</span><span class="token punctuation">(</span>tokenServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ImplicitTokenGranter</span> implicit <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImplicitTokenGranter</span><span class="token punctuation">(</span>tokenServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>implicit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ClientCredentialsTokenGranter</span><span class="token punctuation">(</span>tokenServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getAuthenticationManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ResourceOwnerPasswordTokenGranter</span><span class="token punctuation">(</span><span class="token function">getAuthenticationManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//也可以直接写在这个方法内 不推荐</span>
+            tokenGranters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ResourceOwnerPhoneTokenGranter</span><span class="token punctuation">(</span><span class="token function">getAuthenticationManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenServices<span class="token punctuation">,</span> clientDetails<span class="token punctuation">,</span> requestFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> tokenGranters<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//... getter setter</span>
+<span class="token punctuation">&#125;</span></code></pre>
+</li>
+<li>
+<p>AuthenticationManager</p>
+<p>委托Provider对参数进行验证，本身用于执行验证前后的一些预处理</p>
+</li>
+<li>
+<p>ProviderManager</p>
+<p>用于选择合适的Provider进行验证，并举行投票机制</p>
+</li>
+<li>
+<p>Provider</p>
+<p>对具体的参数进行验证，需要自定义时请重写此类</p>
+<blockquote>
+<p>由于内部的<code>AbstractUserDetailsAuthenticationProvider</code>把Token类型写死了为<code>UsernamePasswordToken</code>，个人认为是非常不明智的设定，简直不把拓展考虑进来，所以可以复制其代码并改为泛型类作为以后拓展的通用继承类 <a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/1187f5a215ee0f2f064fca78d39e2f78" >参考<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+</li>
+</ul>
+<p>还有一些基本的组件 <code>ClientDetailsService</code> <code>UserDetailsService</code>是必备的拓展点 也很简单。</p>
+<p>自用配置文件参考（JWT版）</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableAuthorizationServer</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthorizationConfig</span> <span class="token keyword">extends</span> <span class="token class-name">AuthorizationServerConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"myAuthorizationTS"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">AuthorizationServerTokenServices</span> tokenServices<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">AuthenticationManager</span> authenticationManager<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"myUserDetailService"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"myClientDetailsService"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">ClientDetailsService</span> clientDetailsService<span class="token punctuation">;</span>
+
+    <span class="token comment">//授权码认证模式的拓展点 一般来说直接由内存记录就够了 不需要持久化</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">AuthorizationCodeServices</span> <span class="token function">authorizationCodeServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">InMemoryAuthorizationCodeServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthorizationServerSecurityConfigurer</span> security<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        security<span class="token punctuation">.</span><span class="token function">checkTokenAccess</span><span class="token punctuation">(</span><span class="token string">"permitAll()"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">tokenKeyAccess</span><span class="token punctuation">(</span><span class="token string">"isAuthenticated()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">ClientDetailsServiceConfigurer</span> clients<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        clients<span class="token punctuation">.</span><span class="token function">withClientDetails</span><span class="token punctuation">(</span>clientDetailsService<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthorizationServerEndpointsConfigurer</span> endpoints<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Function</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">AuthorizationServerEndpointsConfigurer</span><span class="token punctuation">,</span> <span class="token class-name">TokenGranter</span><span class="token punctuation">></span></span> customTokenGranter <span class="token operator">=</span> <span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token operator">-></span> <span class="token keyword">new</span> <span class="token class-name">CustomTokenGranterDelegator</span><span class="token punctuation">(</span>
+                authenticationManager<span class="token punctuation">,</span>
+                config<span class="token punctuation">.</span><span class="token function">getOAuth2RequestFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token function">authorizationCodeServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                tokenServices<span class="token punctuation">,</span>
+                clientDetailsService
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        endpoints<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">tokenGranter</span><span class="token punctuation">(</span>customTokenGranter<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>endpoints<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenConfig</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">JwtAccessTokenConverter</span> <span class="token function">jwtAccessTokenConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">JwtAccessTokenConverter</span> converter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JwtAccessTokenConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        converter<span class="token punctuation">.</span><span class="token function">setSigningKey</span><span class="token punctuation">(</span><span class="token string">"test_sign"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> converter<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"myTokenStore"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">TokenStore</span> <span class="token function">myTokenStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JwtTokenStore</span><span class="token punctuation">(</span><span class="token function">jwtAccessTokenConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+	
+    <span class="token comment">//由TokenGranter调用的服务 用于生成Token 也可以认证token</span>
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"myAuthorizationTS"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">AuthorizationServerTokenServices</span> <span class="token function">tokenServices</span><span class="token punctuation">(</span><span class="token class-name">ClientDetailsService</span> clientDetailsService<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">DefaultTokenServices</span> tokenServices <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DefaultTokenServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setClientDetailsService</span><span class="token punctuation">(</span>clientDetailsService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setTokenStore</span><span class="token punctuation">(</span><span class="token function">myTokenStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setTokenEnhancer</span><span class="token punctuation">(</span><span class="token function">jwtAccessTokenConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setSupportRefreshToken</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setAccessTokenValiditySeconds</span><span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tokenServices<span class="token punctuation">.</span><span class="token function">setRefreshTokenValiditySeconds</span><span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tokenServices<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableWebSecurity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebSecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"myUserDetailService"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserDetailsService</span> userDetailsService<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> redisTemplate<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">CacheManager</span> cacheManager<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">PasswordEncoder</span> <span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BCryptPasswordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">//AuthenticationManager 必须使用该方式注入</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">AuthenticationManager</span> <span class="token function">authenticationManagerProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">authenticationManagerBean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">UserCache</span> <span class="token function">userCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SpringCacheBasedUserCache</span><span class="token punctuation">(</span>cacheManager<span class="token punctuation">.</span><span class="token function">getCache</span><span class="token punctuation">(</span><span class="token string">"security:user:cache"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+	
+    <span class="token comment">//可对Provider添加缓存器 优化性能</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">AuthenticationManagerBuilder</span> auth<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">RedisPhoneAuthProvider</span> phoneAuthProvider <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisPhoneAuthProvider</span><span class="token punctuation">(</span>redisTemplate<span class="token punctuation">,</span> s <span class="token operator">-></span> s<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">":security:phone:code"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        phoneAuthProvider<span class="token punctuation">.</span><span class="token function">setUserCache</span><span class="token punctuation">(</span><span class="token function">userCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        phoneAuthProvider<span class="token punctuation">.</span><span class="token function">setUserDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        auth<span class="token punctuation">.</span><span class="token function">userDetailsService</span><span class="token punctuation">(</span>userDetailsService<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">authenticationProvider</span><span class="token punctuation">(</span>phoneAuthProvider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        http<span class="token punctuation">.</span><span class="token function">csrf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">disable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatcher</span><span class="token punctuation">(</span><span class="token string">"/oauth/**"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">"/oauth/**"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<h3 id="SpringSecurity构建资源服务器"><a class="header-anchor" href="#SpringSecurity构建资源服务器">○</a>SpringSecurity构建资源服务器</h3>
+<p><em><s>鲁迅说过，所有的微服务都是资源服务器</s></em></p>
+<p>资源服务器主要功能只有从access_token中获取用户信息 配置起来简单得多</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableResourceServer</span>
+<span class="token comment">//开启方法级别权限控制</span>
+<span class="token annotation punctuation">@EnableGlobalMethodSecurity</span><span class="token punctuation">(</span>prePostEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> securedEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ResourceServerConfig</span> <span class="token keyword">extends</span> <span class="token class-name">ResourceServerConfigurerAdapter</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RestTemplate</span> restTemplate<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">AccessDeniedHandler</span> securityAccessDeniedHandler<span class="token punctuation">;</span>
+
+    <span class="token comment">//配置当前资源服务器的ID</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> RESOURCE_ID <span class="token operator">=</span> <span class="token string">"test"</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**当前资源服务器的一些配置, 如资源服务器ID **/</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">ResourceServerSecurityConfigurer</span> resources<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+        <span class="token comment">// 配置当前资源服务器的ID, 会在认证服务器验证(客户端表的resources配置了就可以访问这个服务)</span>
+        resources<span class="token punctuation">.</span><span class="token function">resourceId</span><span class="token punctuation">(</span>RESOURCE_ID<span class="token punctuation">)</span>
+                <span class="token comment">// 实现令牌服务, ResourceServerTokenServices实例</span>
+                <span class="token punctuation">.</span><span class="token function">tokenServices</span><span class="token punctuation">(</span><span class="token function">defaultTokenService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">accessDeniedHandler</span><span class="token punctuation">(</span>securityAccessDeniedHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+	
+	<span class="token comment">//JWT本地认证</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResourceServerTokenServices</span> <span class="token function">defaultTokenService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+        <span class="token class-name">DefaultTokenServices</span> tk <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DefaultTokenServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">JwtAccessTokenConverter</span> jwtAccessTokenConverter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JwtAccessTokenConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//使用本地认证jwt，签名需在多个服务器上同步</span>
+        jwtAccessTokenConverter<span class="token punctuation">.</span><span class="token function">setSigningKey</span><span class="token punctuation">(</span><span class="token string">"test_sign"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//非Spring注入方式需手动调用来配置默认的 verifier</span>
+        jwtAccessTokenConverter<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">JwtTokenStore</span> jwtTokenStore <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JwtTokenStore</span><span class="token punctuation">(</span>jwtAccessTokenConverter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tk<span class="token punctuation">.</span><span class="token function">setTokenEnhancer</span><span class="token punctuation">(</span>jwtAccessTokenConverter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tk<span class="token punctuation">.</span><span class="token function">setTokenStore</span><span class="token punctuation">(</span>jwtTokenStore<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> tk<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token comment">//远程认证 非 JWT Token 使用</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResourceServerTokenServices</span> <span class="token function">tokenService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 资源服务器去远程认证服务器验证 token 是否有效</span>
+        <span class="token class-name">RemoteTokenServices</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RemoteTokenServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//负载均衡（使用自定义RestTemplate可以实现负载均衡和服务发现）</span>
+        service<span class="token punctuation">.</span><span class="token function">setRestTemplate</span><span class="token punctuation">(</span>restTemplate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 请求认证服务器验证URL，注意：默认这个端点是拒绝访问的，要设置认证后可访问</span>
+        service<span class="token punctuation">.</span><span class="token function">setCheckTokenEndpointUrl</span><span class="token punctuation">(</span><span class="token string">"http://auth-server/oauth/check_token"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 在认证服务器配置的客户端id</span>
+        service<span class="token punctuation">.</span><span class="token function">setClientId</span><span class="token punctuation">(</span><span class="token string">"test_client"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 在认证服务器配置的客户端密码</span>
+        service<span class="token punctuation">.</span><span class="token function">setClientSecret</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> service<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<h2 id="基于OAuth2协议的SSO"><a class="header-anchor" href="#基于OAuth2协议的SSO">○</a>基于OAuth2协议的SSO</h2>
+<p>待补充</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/08/18/vue-elemnt-tailwind/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vue中ElementPlus与Tailwindcss冲突问题解决</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '2982aa7bca818df9e147',
+                    clientSecret: '45eb0ac1328bfbca8db8c0340439fcce7e73d936',
+                    repo: '838239178.github.io',
+                    owner: '838239178',
+                    admin: ['838239178'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ShiJh</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">分布式安全协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E4%BA%ABSession"><span class="nav-text">共享Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EOAuth2%E5%8D%8F%E8%AE%AE%E7%9A%84Token%E8%AE%A4%E8%AF%81%E6%96%B9%E6%A1%88"><span class="nav-text">基于OAuth2协议的Token认证方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringSecurity%E6%9E%84%E5%BB%BA%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">SpringSecurity构建认证服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringSecurity%E6%9E%84%E5%BB%BA%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">SpringSecurity构建资源服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EOAuth2%E5%8D%8F%E8%AE%AE%E7%9A%84SSO"><span class="nav-text">基于OAuth2协议的SSO</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
