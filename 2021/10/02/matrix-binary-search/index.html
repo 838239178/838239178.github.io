@@ -217,7 +217,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>420 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>437 字</span>
         </span>
     
     
@@ -289,6 +289,8 @@
         <span class="token keyword">int</span> s <span class="token operator">=</span> size <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
         <span class="token keyword">int</span> centerRow <span class="token operator">=</span> startRow <span class="token operator">+</span> s<span class="token punctuation">;</span>
         <span class="token keyword">int</span> centerCol <span class="token operator">=</span> startCol <span class="token operator">+</span> s<span class="token punctuation">;</span>
+        <span class="token comment">//奇数矩阵需共用一条边</span>
+        s <span class="token operator">=</span> size <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> s <span class="token operator">:</span> s <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span>  <span class="token comment">//递归搜索左上矩阵</span>
                 <span class="token function">binarySearch</span><span class="token punctuation">(</span>matrix<span class="token punctuation">,</span> startRow<span class="token punctuation">,</span> startCol<span class="token punctuation">,</span> s<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token operator">||</span>
                 <span class="token comment">//递归搜索右上矩阵</span>
